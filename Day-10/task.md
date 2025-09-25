@@ -1,6 +1,4 @@
 # Tasks
-Please complete the following tasks and post them on the tapaScript Discord under "40 Days of JavaScript".
-
 ## 1. What will be the output of the following code and why?
 ```js
 let user = "Alice";
