@@ -9,7 +9,7 @@
   while (true) {
     // 1. Prompt for the key
     let key = prompt(
-      "Enter a property key (e.g., name, age, is admin). Press Cancel or leave blank to finish:"
+      "Enter a property key (e.g., name, age, isAdmin). Press Cancel or leave blank to finish:"
     );
 
     // Exit condition: if the user clicks 'Cancel' (key is null) or enters an empty string
@@ -22,17 +22,26 @@
     key = key.trim();
 
     // 2. Prompt for the value
-    let value = prompt(`Enter the value for the key=> ${key}: `);
+    let value = prompt(`Enter the value for the key "${key}":`);
 
     // Handle 'Cancel' on the value prompt by skipping this property but staying in the loop
     if (value === null) {
-      console.log(`Skipping key: ${key}`);
+      console.log(`Skipping key: "${key}"`);
       continue;
     }
 
     // 3. Dynamic Assignment using Bracket Notation
-    // This is the key step: it uses the string stored in the 'key' variable as the property name.
-    user[key] = value.trim();
+    // If value is a number, convert it. If "true"/"false", convert to boolean.
+    let trimmedValue = value.trim();
+    if (trimmedValue === "true") {
+      user[key] = true;
+    } else if (trimmedValue === "false") {
+      user[key] = false;
+    } else if (!isNaN(trimmedValue) && trimmedValue !== "") {
+      user[key] = Number(trimmedValue);
+    } else {
+      user[key] = trimmedValue;
+    }
 
     console.log(`Property added: "${key}"`);
   }
