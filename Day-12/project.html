@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Object Builder with Gemini AI</title>
+    <!-- Load Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9;
+        }
+
+        /* Style for the loading spinner */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #1e40af;
+            border-radius: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        // Set up Tailwind configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1e40af',
+                        'secondary-gray': '#e5e7eb',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="p-4 md:p-8 min-h-screen flex items-start justify-center">
+
+    <div class="w-full max-w-3xl bg-white shadow-xl rounded-xl p-6 md:p-8 space-y-6">
+        <h1 class="text-3xl font-bold text-center text-primary-blue">
+            Dynamic Object Builder with Gemini AI
+        </h1>
+        <p class="text-center text-gray-600">
+            Use the input fields to **Add/Update** or **Delete** properties, demonstrating dynamic object manipulation.
+        </p>
+
+        <!-- Input Section -->
+        <div class="flex flex-col gap-4">
+            <!-- Key and Value inputs -->
+            <div class="flex flex-col md:flex-row gap-4">
+                <input type="text" id="keyInput" placeholder="Enter Property Key (e.g., city, age, full name)"
+                    class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue transition duration-150">
+
+                <input type="text" id="valueInput"
+                    placeholder="Enter Property Value (e.g., London, 30, Jane Doe) for Add/Update"
+                    class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue transition duration-150">
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex flex-wrap gap-4 justify-between">
+                <button id="addButton"
+                    class="flex-1 min-w-[150px] bg-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-150 transform hover:scale-[1.02] active:scale-100">
+                    Add/Update Property
+                </button>
+                <button id="deleteButton"
+                    class="flex-1 min-w-[150px] bg-red-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-red-700 transition duration-150 transform hover:scale-[1.02] active:scale-100">
+                    Delete Property (by Key)
+                </button>
+                <button id="clearButton"
+                    class="flex-1 min-w-[150px] bg-gray-400 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-500 transition duration-150 transform hover:scale-[1.02] active:scale-100">
+                    Clear Object
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Gemini AI Feature Buttons -->
+        <div class="flex flex-wrap gap-3 pt-2 border-t border-gray-200 mt-6">
+            <button id="describeButton"
+                class="flex items-center justify-center bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-600 transition duration-150">
+                ✨ Describe Object
+            </button>
+            <button id="suggestButton"
+                class="flex items-center justify-center bg-purple-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-600 transition duration-150">
+                ✨ Suggest Keys
+            </button>
+        </div>
+
+
+        <!-- Result Section -->
+        <div class="pt-4 border-t border-gray-200">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800">
+                Current Object (`dataStore`)
+            </h2>
+            <pre id="objectDisplay"
+                class="bg-secondary-gray p-4 rounded-lg text-sm overflow-x-auto shadow-inner min-h-[100px]">
+                {}
+            </pre>
+            <div id="messageBox" class="text-sm mt-3 text-green-600"></div>
+        </div>
+
+        <!-- Gemini AI Output Section -->
+        <div class="pt-4 border-t border-gray-200">
+            <h2 class="text-xl font-semibold mb-3 text-gray-800 flex items-center">
+                Gemini AI Response
+                <span id="loadingIndicator" class="hidden ml-3">
+                    <div class="spinner"></div>
+                </span>
+            </h2>
+            <div id="geminiOutput"
+                class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-gray-700 min-h-[50px]">
+                AI analysis will appear here after you click a Gemini button.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration for Gemini API
+        const apiKey = ""; // This should be populated by the environment.
+        const API_URL_BASE = 'https://generativelanguage.googleapis.com/v1beta/models/';
+        const MODEL = 'gemini-2.5-flash-preview-05-20';
+
+        // 1. Initialize the central object where dynamic data will be stored.
+        let dataStore = {};
+
+        // DOM Elements
+        const keyInput = document.getElementById('keyInput');
+        const valueInput = document.getElementById('valueInput');
+        const addButton = document.getElementById('addButton');
+        const deleteButton = document.getElementById('deleteButton'); // NEW
+        const describeButton = document.getElementById('describeButton');
+        const suggestButton = document.getElementById('suggestButton');
+        const clearButton = document.getElementById('clearButton');
+        const objectDisplay = document.getElementById('objectDisplay');
+        const messageBox = document.getElementById('messageBox');
+        const geminiOutput = document.getElementById('geminiOutput');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        // Function to update the displayed object in JSON format
+        function updateDisplay() {
+            const formattedJson = JSON.stringify(dataStore, null, 4);
+            objectDisplay.textContent = formattedJson;
+        }
+
+        // Helper function for displaying messages
+        function showMessage(text, colorClass) {
+            messageBox.textContent = text;
+            messageBox.className = `text-sm mt-3 font-medium ${colorClass}`;
+            setTimeout(() => {
+                messageBox.textContent = '';
+                messageBox.className = 'text-sm mt-3 text-green-600';
+            }, 3000);
+        }
+
+        /**
+         * Helper function for making API calls with exponential backoff and detailed error logging.
+         */
+        async function exponentialBackoffFetch(model, payload, retries = 3, delay = 1000) {
+            const apiUrl = `${API_URL_BASE}${model}:generateContent?key=${apiKey}`;
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            };
+
+            console.log("--- API Request Details ---");
+            console.log("URL:", apiUrl);
+            console.log("Payload:", payload);
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(apiUrl, options);
+
+                    if (response.ok) {
+                        return response;
+                    } else {
+                        // Log detailed error response text if available
+                        const errorText = await response.text();
+                        console.error(`Attempt ${i + 1} failed with status: ${response.status} ${response.statusText}`);
+                        console.error("Error Body:", errorText);
+
+                        if (response.status === 429 && i < retries - 1) { // Too many requests
+                            await new Promise(resolve => setTimeout(resolve, delay * (2 ** i) + Math.random() * 500));
+                            continue;
+                        }
+                        // Throw a structured error object for better handling in the calling functions
+                        throw {
+                            message: `API failed after ${i + 1} attempts.`,
+                            status: response.status,
+                            fullError: new Error(`API failed after ${i + 1} attempts. Status: ${response.status}. Body: ${errorText.substring(0, 100)}...`)
+                        };
+                    }
+                } catch (error) {
+                    // Check if the error is our structured error or a general Fetch error
+                    const status = error.status || (error.message && error.message.includes('Failed to fetch') ? 0 : null);
+
+                    console.error(`Fetch error on attempt ${i + 1}:`, error);
+
+                    if (i === retries - 1) {
+                        throw {
+                            message: `Final attempt failed. Reason: ${error.message || 'Unknown network error'}`,
+                            status: status,
+                            fullError: error.fullError || error
+                        };
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay * (2 ** i) + Math.random() * 500));
+                }
+            }
+        }
+
+        // --- CORE APPLICATION LOGIC ---
+
+        // Function to handle adding a new property (or updating an existing one)
+        function addProperty() {
+            const key = keyInput.value.trim();
+            let value = valueInput.value.trim();
+
+            if (!key || !value) {
+                showMessage('Please enter both a key and a value.', 'text-red-600');
+                return;
+            }
+
+            // Attempt to convert numeric values to actual numbers or booleans
+            if (!isNaN(value) && value !== "") {
+                value = Number(value);
+            } else if (value.toLowerCase() === 'true') {
+                value = true;
+            } else if (value.toLowerCase() === 'false') {
+                value = false;
+            }
+
+            // Dynamic property assignment using bracket notation
+            dataStore[key] = value;
+
+            updateDisplay();
+            showMessage(`Successfully added/updated property: "${key}"`, 'text-green-600');
+
+            // Clear inputs for the next entry
+            keyInput.value = '';
+            valueInput.value = '';
+            keyInput.focus();
+        }
+
+        // NEW: Function to handle deleting a property
+        function deleteProperty() {
+            const key = keyInput.value.trim();
+
+            if (!key) {
+                showMessage('Please enter the key of the property you wish to delete.', 'text-red-600');
+                return;
+            }
+
+            if (dataStore.hasOwnProperty(key)) {
+                // The 'delete' operator removes the property from the object
+                delete dataStore[key];
+                updateDisplay();
+                showMessage(`Successfully deleted property: "${key}"`, 'text-red-600');
+            } else {
+                showMessage(`Key "${key}" does not exist in the object.`, 'text-orange-600');
+            }
+
+            // Clear key input after action
+            keyInput.value = '';
+            keyInput.focus();
+        }
+
+
+        // --- GEMINI API INTEGRATIONS ---
+
+        // Feature 1: Describe the currently built object
+        async function describeObject() {
+            if (Object.keys(dataStore).length === 0) {
+                geminiOutput.innerHTML = '<span class="text-red-600">The object is empty. Add some properties first!</span>';
+                return;
+            }
+
+            loadingIndicator.classList.remove('hidden');
+            geminiOutput.innerHTML = 'Analyzing object...';
+
+            const userQuery = `Analyze the following JavaScript object's properties and provide a concise, single-sentence summary (max 15 words) of what kind of entity this object likely represents. The object is: ${JSON.stringify(dataStore)}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: "You are an expert data modeling assistant. Your goal is to infer the context of a JSON object based on its keys and values." }]
+                }
+            };
+
+            try {
+                const response = await exponentialBackoffFetch(MODEL, payload);
+                const result = await response.json();
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "Error: Could not retrieve description.";
+
+                geminiOutput.innerHTML = `<p class="font-bold text-lg text-primary-blue mb-1">Object Description:</p>${text}`;
+
+            } catch (error) {
+                console.error("Final API Error (Describe):", error);
+
+                let errorMessage = "Could not connect to AI. Check console for details.";
+
+                if (error.status === 403) {
+                    errorMessage = "🛑 API Key Missing: The environment failed to provide the necessary key. Please check your environment configuration.";
+                } else if (error.message) {
+                    errorMessage = `Connection Error: ${error.message.substring(0, 50)}...`;
+                }
+
+                geminiOutput.innerHTML = `<span class="text-red-600">${errorMessage}</span>`;
+            } finally {
+                loadingIndicator.classList.add('hidden');
+            }
+        }
+
+        // Feature 2: Suggest relevant keys using structured output
+        async function suggestKeys() {
+            if (Object.keys(dataStore).length === 0) {
+                geminiOutput.innerHTML = '<span class="text-red-600">The object is empty. Add some properties first!</span>';
+                return;
+            }
+
+            loadingIndicator.classList.remove('hidden');
+            geminiOutput.innerHTML = 'Generating key suggestions...';
+
+            const currentKeys = Object.keys(dataStore).join(', ');
+            const userQuery = `Based on these existing keys: [${currentKeys}], suggest 3 to 5 highly relevant and useful properties (keys) that are currently missing from this object.`;
+
+            // Define the JSON schema for structured output
+            const responseSchema = {
+                type: "OBJECT",
+                properties: {
+                    suggestions: {
+                        type: "ARRAY",
+                        description: "A list of suggested property keys as strings.",
+                        items: { type: "STRING" }
+                    }
+                },
+                propertyOrdering: ["suggestions"]
+            };
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: "You are a data model expert. Suggest missing keys based on context. Provide only the JSON structure." }]
+                },
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: responseSchema
+                }
+            };
+
+            try {
+                const response = await exponentialBackoffFetch(MODEL, payload);
+                const result = await response.json();
+                const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (jsonText) {
+                    const parsedJson = JSON.parse(jsonText);
+                    const suggestions = parsedJson.suggestions || [];
+
+                    let outputHtml = `<p class="font-bold text-lg text-purple-600 mb-2">Suggested Missing Keys:</p>`;
+
+                    if (suggestions.length > 0) {
+                        outputHtml += '<ul class="list-disc list-inside space-y-1">';
+                        suggestions.forEach(key => {
+                            outputHtml += `<li class="hover:text-purple-800 transition duration-150 cursor-pointer" onclick="document.getElementById('keyInput').value = '${key}'; document.getElementById('keyInput').focus(); showMessage('Key copied to input field!', 'text-purple-600')">
+                                <span class="font-mono bg-purple-100 px-2 py-0.5 rounded text-purple-700">${key}</span> (Click to use)
+                            </li>`;
+                        });
+                        outputHtml += '</ul>';
+                    } else {
+                        outputHtml += 'The AI did not find any obvious missing keys. Your object is well-defined!';
+                    }
+                    geminiOutput.innerHTML = outputHtml;
+
+                } else {
+                    geminiOutput.innerHTML = `<span class="text-red-600">Error: Could not parse structured JSON response.</span>`;
+                }
+
+            } catch (error) {
+                console.error("Final API Error (Suggest):", error);
+
+                let errorMessage = "Could not connect to AI. Check console for details.";
+
+                if (error.status === 403) {
+                    errorMessage = "🛑 API Key Missing: The environment failed to provide the necessary key. Please check your environment configuration.";
+                } else if (error.message) {
+                    errorMessage = `Connection Error: ${error.message.substring(0, 50)}...`;
+                }
+
+                geminiOutput.innerHTML = `<span class="text-red-600">${errorMessage}</span>`;
+            } finally {
+                loadingIndicator.classList.add('hidden');
+            }
+        }
+
+        // Function to clear the object
+        function clearObject() {
+            dataStore = {};
+            updateDisplay();
+            geminiOutput.innerHTML = 'AI analysis will appear here after you click a Gemini button.';
+            showMessage('Object cleared.', 'text-gray-600');
+        }
+
+
+        // --- EVENT LISTENERS ---
+        addButton.addEventListener('click', addProperty);
+        deleteButton.addEventListener('click', deleteProperty); // NEW listener
+        describeButton.addEventListener('click', describeObject);
+        suggestButton.addEventListener('click', suggestKeys);
+        clearButton.addEventListener('click', clearObject);
+
+        // Allow adding by pressing Enter in the value field
+        valueInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                addProperty();
+            }
+        });
+
+        // Initialize display
+        updateDisplay();
+
+    </script>
+</body>
+
+</html>
