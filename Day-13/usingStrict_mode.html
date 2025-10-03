@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 13: The 'this' Keyword in Strict Mode</title>
+</head>
+
+<body>
+
+    <h1>The 'this' Keyword in JavaScript Strict Mode</h1>
+    <p>Open your browser's **Developer Console (F12)** to see the output.</p>
+    <button id="runStrict">Run Strict Mode Demo</button>
+    <br><br>
+    <p><strong>Observation:</strong> In non-strict mode, the simple function call logs the <code>window</code> object.
+        In strict mode, it logs <code>undefined</code>.</p>
+
+    <script>
+        // Global variable for reference (same as the main script)
+        var a = 10;
+
+        // -----------------------------------------------------------------
+        // ## 1. Non-Strict Mode (Default Behavior)
+
+        function nonStrictAdd() {
+            // No "use strict"; here, so 'this' defaults to the global 'window' object.
+            console.log("--- Non-Strict Mode ---");
+            console.log("Value of 'this':", this);
+            console.log("this.a:", this.a);
+        }
+
+        nonStrictAdd();
+
+        // -----------------------------------------------------------------
+        // ## 2. Strict Mode
+
+        function strictAdd() {
+            // The string literal "use strict"; enables strict mode only within this function.
+            "use strict";
+
+            // In strict mode, when a function is called without an explicit context (simple call),
+            // 'this' is not coerced to the global object. It remains undefined.
+            console.log("--- Strict Mode ---");
+            console.log("Value of 'this':", this); // Logs: undefined
+            // Note: Attempting to access this.a here would cause a TypeError 
+            // because 'this' is undefined.
+        }
+
+        // We can attach this to a button for an interactive demo
+        document.getElementById("runStrict").addEventListener("click", strictAdd);
+
+        // Also run it immediately for the console output
+        strictAdd();
+
+    </script>
+
+</body>
+
+</html>
