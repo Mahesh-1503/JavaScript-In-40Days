@@ -1,3 +1,4 @@
+````markdown
 # ⚡ JavaScript Strict Mode — Complete Guide
 
 Strict mode in **JavaScript** is a restricted variant of the language that helps you write **safer**, **cleaner**, and **faster** code.  
@@ -5,8 +6,6 @@ It was introduced in **ECMAScript 5 (ES5)** and is activated using the directive
 
 ```javascript
 "use strict";
-```
-
 ````
 
 ---
@@ -14,21 +13,25 @@ It was introduced in **ECMAScript 5 (ES5)** and is activated using the directive
 ## 📑 Table of Contents
 
 1. [🎯 Why Use Strict Mode](#-why-use-strict-mode)
+
 2. [🚀 How to Enable Strict Mode](#-how-to-enable-strict-mode)
 
-   - [Global Scope](#1️⃣-global-scope-entire-script)
-   - [Local Scope](#2️⃣-local-scope-inside-a-function)
+   * [Global Scope](#1️⃣-global-scope-entire-script)
+   * [Local Scope](#2️⃣-local-scope-inside-a-function)
 
 3. [🛑 Turning Silent Bugs into Errors](#-turning-silent-bugs-into-errors)
 
-   - [Example 1: Preventing Accidental Global Variables](#⚡-example-1-preventing-accidental-global-variables)
-   - [Example 2: Assignments to Read-Only Properties](#⚡-example-2-assignments-to-read-only-properties)
-   - [Example 3: Function Context (this)](#⚡-example-3-function-context-this)
-   - [Example 4: Duplicate Parameter Names](#⚡-example-4-duplicate-parameter-names)
+   * [Example 1: Preventing Accidental Global Variables](#⚡-example-1-preventing-accidental-global-variables)
+   * [Example 2: Assignments to Read-Only Properties](#⚡-example-2-assignments-to-read-only-properties)
+   * [Example 3: Function Context (this)](#⚡-example-3-function-context-this)
+   * [Example 4: Duplicate Parameter Names](#⚡-example-4-duplicate-parameter-names)
 
 4. [🚫 Restricted Features & Behavior](#-restricted-features--behavior)
+
 5. [🧩 Best Practice for Adopting Strict Mode](#-best-practice-for-adopting-strict-mode)
+
 6. [🧠 Quick Recap](#-quick-recap)
+
 7. [📘 Summary](#-summary)
 
 ---
@@ -82,8 +85,7 @@ function useSloppy() {
 ```
 
 > 💡 **Note:**
-> Modern **ES Modules** (`import` / `export`) and **Classes** are **strict by default** —
-> you don’t need to manually add `"use strict";` inside them.
+> Modern **ES Modules** (`import` / `export`) and **Classes** are **strict by default** — you don’t need to manually add `"use strict";` inside them.
 
 ---
 
@@ -171,8 +173,8 @@ getContext();
 
 ### ⚡ Example 4: Duplicate Parameter Names
 
-| Sloppy Mode                        | Strict Mode    |
-| ---------------------------------- | -------------- |
+| Sloppy Mode                        | Strict Mode   |
+| ---------------------------------- | ------------- |
 | Allowed — the last duplicate wins. | ❌ SyntaxError |
 
 ```javascript
@@ -198,10 +200,10 @@ function add(a, b, a) {
 
 | Feature                                             | Reason                                                  | Strict Mode Action                           |
 | --------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------- |
-| **`with` statement**                                | Prevents optimization, creates dynamic scope            | ❌ SyntaxError                               |
-| **Octal literals (`010`)**                          | Ambiguous (looks like decimal)                          | ❌ SyntaxError                               |
-| **`delete` on plain variables/functions**           | Only object properties should be deletable              | ❌ TypeError / SyntaxError                   |
-| **Reserved keywords** (`interface`, `public`, etc.) | Reserved for future use                                 | ❌ SyntaxError                               |
+| **`with` statement**                                | Prevents optimization, creates dynamic scope            | ❌ SyntaxError                                |
+| **Octal literals (`010`)**                          | Ambiguous (looks like decimal)                          | ❌ SyntaxError                                |
+| **`delete` on plain variables/functions**           | Only object properties should be deletable              | ❌ TypeError / SyntaxError                    |
+| **Reserved keywords** (`interface`, `public`, etc.) | Reserved for future use                                 | ❌ SyntaxError                                |
 | **`eval()` variable leak**                          | `eval()` can no longer create variables in parent scope | Variables are confined to `eval`'s own scope |
 
 ---
@@ -210,20 +212,20 @@ function add(a, b, a) {
 
 > ⚙️ If you’re migrating an older codebase:
 >
-> - Start by enabling strict mode **only** in **new files or new functions**.
-> - Gradually refactor older code to make it compliant.
-> - This ensures a smooth transition without breaking legacy logic.
+> * Start by enabling strict mode **only** in **new files or new functions**.
+> * Gradually refactor older code to make it compliant.
+> * This ensures a smooth transition without breaking legacy logic.
 
 ---
 
 ## 🧠 Quick Recap
 
-| Benefit               | Description                                   |
-| --------------------- | --------------------------------------------- |
-| 🧹 Cleaner Code       | Forces proper declarations and structure      |
-| 🚨 Fewer Bugs         | Converts silent mistakes into explicit errors |
+| Benefit              | Description                                   |
+| -------------------- | --------------------------------------------- |
+| 🧹 Cleaner Code      | Forces proper declarations and structure      |
+| 🚨 Fewer Bugs        | Converts silent mistakes into explicit errors |
 | ⚡ Faster Performance | Helps JavaScript engines optimize code        |
-| 🔒 Safer Environment  | Disables dangerous or confusing features      |
+| 🔒 Safer Environment | Disables dangerous or confusing features      |
 
 ---
 
@@ -231,9 +233,9 @@ function add(a, b, a) {
 
 Strict mode helps developers:
 
-- Avoid accidental globals
-- Catch common coding mistakes
-- Write more secure, predictable code
+* Avoid accidental globals
+* Catch common coding mistakes
+* Write more secure, predictable code
 
 Whenever possible, **use strict mode** — or simply rely on **ES Modules** and **Classes**, which are strict by default.
 
@@ -245,5 +247,10 @@ Always start every new JavaScript file with `"use strict";`
 
 ---
 
-> © 2025 — JavaScript Strict Mode Guide by **Mahesh Kumar** > _Clean Code. Fewer Bugs. Faster Apps._
-````
+> © 2025 — JavaScript Strict Mode Guide by **Mahesh Kumar**
+> *Clean Code. Fewer Bugs. Faster Apps.*
+
+`````
+
+---
+`````
