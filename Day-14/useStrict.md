@@ -1,11 +1,3 @@
-Perfect 🔥 Here’s your **professionally enhanced version** of the
-📘 **JavaScript Strict Mode Guide** — formatted as a **GitHub-ready README.md**, complete with:
-
-✅ Syntax highlighting
-✅ Emojis for readability
-✅ Table of Contents (auto-links work on GitHub and Markdown viewers)
-✅ Professional layout and section hierarchy
-
 ---
 
 ````markdown
