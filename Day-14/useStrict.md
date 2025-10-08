@@ -251,6 +251,3 @@ Always start every new JavaScript file with `"use strict";`
 > *Clean Code. Fewer Bugs. Faster Apps.*
 
 `````
-
----
-`````
