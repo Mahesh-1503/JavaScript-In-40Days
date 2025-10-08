@@ -81,3 +81,16 @@ tomCartoon.log(); // Output: Tom is a Cat
 
 const jerryCartoon = new Cartoon("Jerry", "Mouse");
 jerryCartoon.log(); // Output: Jerry is a Mouse
+
+
+// -----------------------------
+// Summary Table
+// -----------------------------
+/*
+| Method | When 'this' is set | Invoked Immediately? | Arguments Format        | Example Use Case                              |
+|--------|--------------------|----------------------|--------------------------|-----------------------------------------------|
+| call() | Explicitly (manual) | ✅ Yes              | List (comma-separated)   | Function borrowing with direct arguments      |
+| apply()| Explicitly (manual) | ✅ Yes              | Array                    | When args already exist in an array           |
+| bind() | Explicitly (manual) | ❌ No (returns func) | List or partial apply    | When you need a function with fixed context   |
+| new    | Implicitly (auto)  | ✅ Yes (via 'new')  | Constructor parameters   | When creating new objects (constructor usage) |
+*/
