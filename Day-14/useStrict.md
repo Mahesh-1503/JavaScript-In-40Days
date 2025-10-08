@@ -1,4 +1,3 @@
-markdown
 # ⚡ JavaScript Strict Mode — Complete Guide
 
 Strict mode in **JavaScript** is a restricted variant of the language that helps you write **safer**, **cleaner**, and **faster** code.  
@@ -7,6 +6,7 @@ It was introduced in **ECMAScript 5 (ES5)** and is activated using the directive
 ```javascript
 "use strict";
 ```
+
 ````
 
 ---
@@ -246,3 +246,4 @@ Always start every new JavaScript file with `"use strict";`
 ---
 
 > © 2025 — JavaScript Strict Mode Guide by **Mahesh Kumar** > _Clean Code. Fewer Bugs. Faster Apps._
+````
