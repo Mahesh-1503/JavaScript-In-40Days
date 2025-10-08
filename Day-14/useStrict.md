@@ -1,6 +1,3 @@
-
----
-
 ````markdown
 # ⚡ JavaScript Strict Mode — Complete Guide
 
