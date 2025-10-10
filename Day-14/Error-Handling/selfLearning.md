@@ -340,11 +340,11 @@ try {
 
 ## 🏁 **Module 10: Master Summary**
 
-✅ Errors are **inevitable**; crashes are **optional**.
-✅ Use `try...catch...finally` to **control flow** under failure.
-✅ Use `throw` and **custom errors** for clarity.
-✅ **Never ignore** errors — handle or log them.
-✅ **Always clean up** in `finally`.
+- ✅ Errors are **inevitable**; crashes are **optional**.
+- ✅ Use `try...catch...finally` to **control flow** under failure.
+- ✅ Use `throw` and **custom errors** for clarity.
+- ✅ **Never ignore** errors — handle or log them.
+- ✅ **Always clean up** in `finally`.
 
 ---
 
@@ -362,3 +362,4 @@ try {
 - Login validation system
 - File upload handler
 - Simple e-commerce checkout validator
+- Bank account transaction system
