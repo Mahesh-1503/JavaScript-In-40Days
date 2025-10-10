@@ -1,15 +1,11 @@
-**“JavaScript Error Handling — From Beginner to Expert.”**
+# 💼 **JavaScript Error Handling — Interactive Self-Learning Workbook**
 
-It’s structured for _hands-on mastery_:
-✅ Concepts → 🧠 Think → 💻 Try → ✍️ Reflect → ✅ Verify
-
----
-
-# 💼 JavaScript Error Handling — Interactive Self-Learning Workbook
+> _Structure:_
+> ✅ **Concepts** → 🧠 **Think** → 💻 **Try** → ✍️ **Reflect** → ✅ **Verify**
 
 ---
 
-## 🧭 Module 1: Understanding Errors
+## 🧭 **Module 1: Understanding Errors**
 
 ### 🧠 Concept
 
@@ -28,10 +24,10 @@ There are **two main types**:
 console.log("Hello"
 ```
 
-✍️ What happens when you run this code?
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+✍️ **What happens when you run this code?**
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
-✅ Now fix it:
+✅ **Now fix it:**
 
 ```js
 console.log("Hello");
@@ -39,7 +35,7 @@ console.log("Hello");
 
 🧩 **Reflection:**
 What’s the difference between syntax and runtime errors?
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
@@ -47,11 +43,11 @@ What’s the difference between syntax and runtime errors?
 
 Trigger one example each for:
 
-- ReferenceError
-- TypeError
-- RangeError
+- **ReferenceError**
+- **TypeError**
+- **RangeError**
 
-✍️ Write your snippets below:
+✍️ **Write your snippets below:**
 
 ```js
 // ReferenceError:
@@ -66,11 +62,11 @@ _____________________________________________;
 
 ---
 
-## 🔒 Module 2: The `try...catch` Foundation
+## 🔒 **Module 2: The `try...catch` Foundation**
 
 ### 🧠 Concept
 
-The `try` block lets you _attempt risky code_, and `catch` handles what goes wrong.
+Use `try` to _attempt risky code_, and `catch` to _handle what goes wrong_.
 
 ```js
 try {
@@ -94,19 +90,19 @@ try {
 }
 ```
 
-✍️ What does `error.name` and `error.message` show?
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+✍️ **What does `error.name` and `error.message` show?**
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
 ### 🧠 Think
 
 Why is it better to _log_ an error instead of ignoring it?
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
-## 💼 Module 3: Real-World Defensive Coding
+## 💼 **Module 3: Real-World Defensive Coding**
 
 ### ✅ Task 1 — Prevent Division by Zero
 
@@ -122,18 +118,19 @@ function divide(a, b) {
 }
 ```
 
-💡 Add your own validation:
+💡 **Add your own validation:**
 If `b === 0`, throw an error.
-✍️ Write it below:
+
+✍️ **Write it below:**
 
 ```js
 _____________________________________________;
 ```
 
-Run for:
+**Run for:**
 
-- divide(10, 2)
-- divide(10, 0)
+- `divide(10, 2)`
+- `divide(10, 0)`
 
 ---
 
@@ -149,10 +146,10 @@ try {
 }
 ```
 
-🧠 Why does this fail?
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+🧠 **Why does this fail?**
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
-✅ Now fix it using **optional chaining** (`?.`):
+✅ **Now fix it using optional chaining (`?.`):**
 
 ```js
 console.log(user.address?.city ?? "Unknown");
@@ -164,7 +161,7 @@ console.log(user.address?.city ?? "Unknown");
 
 Write a function `validateAge(age)` that throws an error if age is not a number.
 
-✍️ Write your code:
+✍️ **Your Code:**
 
 ```js
 function validateAge(age) {
@@ -176,14 +173,14 @@ function validateAge(age) {
 }
 ```
 
-🧩 Test with:
+🧩 **Test With:**
 
 - `validateAge(30)`
 - `validateAge("abc")`
 
 ---
 
-## 🚨 Module 4: Throwing and Rethrowing Errors
+## 🚨 **Module 4: Throwing and Rethrowing Errors**
 
 ### 🧠 Concept
 
@@ -205,16 +202,16 @@ function checkEmail(email) {
 }
 ```
 
-✍️ Predict what happens if you call `checkEmail("abc.com")` inside another `try...catch`:
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+✍️ **Predict what happens if you call `checkEmail("abc.com")` inside another `try...catch`:**
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
-## 🔄 Module 5: Using `finally`
+## 🔄 **Module 5: Using `finally`**
 
 ### 🧠 Concept
 
-`finally` runs **every time** — whether error occurs or not.
+`finally` runs **every time** — whether an error occurs or not.
 
 ---
 
@@ -236,16 +233,16 @@ process("data");
 process(null);
 ```
 
-✍️ What difference do you notice in outputs?
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+✍️ **What difference do you notice in outputs?**
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
-🧠 When might you use `finally` in real projects?
+🧠 **When might you use `finally` in real projects?**
 (e.g., closing files, stopping timers)
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
-## 🧱 Module 6: Creating Custom Errors
+## 🧱 **Module 6: Creating Custom Errors**
 
 ### 💻 Exercise
 
@@ -260,7 +257,7 @@ class BankError extends Error {
 }
 ```
 
-✍️ Now use it:
+✍️ **Use It:**
 
 ```js
 function withdraw(balance, amount) {
@@ -269,7 +266,7 @@ function withdraw(balance, amount) {
 }
 ```
 
-✅ Test:
+✅ **Test:**
 
 ```js
 try {
@@ -279,13 +276,13 @@ try {
 }
 ```
 
-🧩 Reflect:
+🧩 **Reflect:**
 Why create your own error types?
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
-## 🧮 Module 7: Bonus — Safe Defaults (`?=`)
+## 🧮 **Module 7: Bonus — Safe Defaults (`?=`)**
 
 Try this modern operator:
 
@@ -299,42 +296,40 @@ y ?= 20;
 console.log(x, y);
 ```
 
-✍️ Predict and explain the output:
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+✍️ **Predict and explain the output:**
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
-When could this be useful?
-➡️ **\*\*\*\***\*\*\*\***\*\*\*\***\_\_\_\_**\*\*\*\***\*\*\*\***\*\*\*\***
+🧠 **When could this be useful?**
+➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
-## 🧠 Module 8: Debugging and Expert Habits
+## 🧠 **Module 8: Debugging and Expert Habits**
 
-### ✅ Checklist
-
-Mark each when you master it:
+### ✅ Mastery Checklist
 
 | Skill                                     | Mastered? |
-| ----------------------------------------- | --------- |
-| Read and interpret stack traces           | ☐         |
-| Identify and fix syntax vs runtime errors | ☐         |
-| Use `try...catch` efficiently             | ☐         |
-| Use `finally` for cleanup                 | ☐         |
-| Throw custom errors                       | ☐         |
-| Validate inputs early                     | ☐         |
-| Avoid empty catch blocks                  | ☐         |
-| Handle async errors (next level)          | ☐         |
+| ----------------------------------------- | :-------: |
+| Read and interpret stack traces           |     ☐     |
+| Identify and fix syntax vs runtime errors |     ☐     |
+| Use `try...catch` efficiently             |     ☐     |
+| Use `finally` for cleanup                 |     ☐     |
+| Throw custom errors                       |     ☐     |
+| Validate inputs early                     |     ☐     |
+| Avoid empty catch blocks                  |     ☐     |
+| Handle async errors (next level)          |     ☐     |
 
 ---
 
-## 🧩 Module 9: Challenge Projects
+## 🧩 **Module 9: Challenge Projects**
 
-1. 🧮 Build a **Calculator** that prevents invalid operations.
-2. 🌐 Create `fetchData(url)` that handles network errors with `try...catch`.
-3. 🏦 Simulate a **bank withdrawal system** using your `BankError`.
-4. 🔁 Use `try...finally` to log “Program completed” always.
-5. 🔐 Build a `loginUser()` that rethrows server errors for UI handling.
+1. 🧮 **Calculator** — prevents invalid operations
+2. 🌐 **fetchData(url)** — handles network errors with `try...catch`
+3. 🏦 **Bank withdrawal system** — using your `BankError`
+4. 🔁 Use `try...finally` to log “Program completed” always
+5. 🔐 **loginUser()** — rethrow server errors for UI handling
 
-✍️ Use the space below to outline your solution ideas:
+✍️ **Plan Your Solution:**
 
 ```js
 // Project Name: _______________________________
@@ -354,7 +349,7 @@ try {
 
 ---
 
-## 🏁 Module 10: Master Summary
+## 🏁 **Module 10: Master Summary**
 
 ✅ Errors are **inevitable**; crashes are **optional**.
 ✅ Use `try...catch...finally` to **control flow** under failure.
@@ -364,16 +359,16 @@ try {
 
 ---
 
-## 🧗 Graduation Task
+## 🧗 **Graduation Task**
 
-Write a **mini project** (any theme) that includes:
+🎯 **Write a mini project** that includes:
 
-- At least 3 custom validation checks
-- One custom error class
-- A `finally` block for cleanup
-- Proper rethrowing logic
+- ✅ At least **3 custom validation checks**
+- ✅ One **custom error class**
+- ✅ A **finally** block for cleanup
+- ✅ Proper **rethrowing logic**
 
-🎯 Example ideas:
+💡 **Example Ideas:**
 
 - Login validation system
 - File upload handler
