@@ -25,7 +25,6 @@ console.log("Hello"
 ```
 
 ✍️ **What happens when you run this code?**
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ✅ **Now fix it:**
 
@@ -35,7 +34,6 @@ console.log("Hello");
 
 🧩 **Reflection:**
 What’s the difference between syntax and runtime errors?
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
@@ -91,14 +89,12 @@ try {
 ```
 
 ✍️ **What does `error.name` and `error.message` show?**
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
 ### 🧠 Think
 
 Why is it better to _log_ an error instead of ignoring it?
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
@@ -147,7 +143,6 @@ try {
 ```
 
 🧠 **Why does this fail?**
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ✅ **Now fix it using optional chaining (`?.`):**
 
@@ -203,7 +198,6 @@ function checkEmail(email) {
 ```
 
 ✍️ **Predict what happens if you call `checkEmail("abc.com")` inside another `try...catch`:**
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
@@ -234,11 +228,9 @@ process(null);
 ```
 
 ✍️ **What difference do you notice in outputs?**
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 🧠 **When might you use `finally` in real projects?**
 (e.g., closing files, stopping timers)
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
@@ -278,7 +270,6 @@ try {
 
 🧩 **Reflect:**
 Why create your own error types?
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
@@ -297,10 +288,8 @@ console.log(x, y);
 ```
 
 ✍️ **Predict and explain the output:**
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 🧠 **When could this be useful?**
-➡️ **\*\***\*\***\*\***\_\_**\*\***\*\***\*\***
 
 ---
 
