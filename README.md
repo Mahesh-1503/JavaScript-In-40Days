@@ -24,3 +24,5 @@ A 40-day journey to master JavaScript — from fundamentals to advanced concepts
 1. [ReactJs Introduction](REACT/1.reactIntroduction.md)
 2. [ReactJs Setup Guide](REACT/2.reactSetup.md)
 3. [ReactJs JSX](REACT/3.JSX.md)
+4. [ReactJs Components](REACT/01-components/)
+5. [ReactJs Props](REACT/02-props/)
