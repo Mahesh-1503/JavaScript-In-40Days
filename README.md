@@ -26,3 +26,4 @@ A 40-day journey to master JavaScript — from fundamentals to advanced concepts
 3. [ReactJs JSX](REACT/3.JSX.md)
 4. [ReactJs Components](REACT/01-components/)
 5. [ReactJs Props](REACT/02-props/)
+6. [ReactJs Styles](REACT/03-Styles/)
