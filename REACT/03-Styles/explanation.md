@@ -68,3 +68,31 @@ This method is an extension of External CSS that automatically scopes class name
 - **Naming Convention:** Requires a specific file naming convention (e.g., `.module.css`).
 - **Learning Curve:** Slightly different syntax for importing and applying styles compared to standard CSS imports.
 - **Manual Global Classes:** Defining _truly_ global styles (like resets) requires an explicit `:global()` wrapper or a separate, non-module stylesheet.
+
+## 4. Styled Components
+
+This method involves using a library like `styled-components` to create **composable, reusable, and encapsulated styles**.
+
+| Feature     | Description                                                                                                      |
+| :---------- | :--------------------------------------------------------------------------------------------------------------- |
+| **Library** | Utilizes a **library** (e.g., `styled-components`) to create styles that are **encapsulated** within components. |
+
+|
+| **Syntax** | Uses **JSX syntax** to define styles (e.g., `<Button>`), making it **intuitive** for React developers. |
+| **Encapsulation** | Styles are **scoped** to the component, preventing conflicts with other styles. |
+|
+| **Reusability** | Styles can be **reused** across multiple components by creating **composable components**. |
+| **Performance** | Optimized for **performance** by **minimizing re-renders** and **eliminating unnecessary styles**. |
+
+### Pros 👍
+
+- **Encapsulation:** Styles are scoped to individual components, preventing global conflicts.
+- **Composability:** Styles can be easily composed and reused across components.
+- **Performance:** Optimized for performance, minimizing unnecessary re-renders and styles.
+- **Flexibility:** Supports advanced CSS features like animations, transitions, and media queries.
+
+### Cons 👎
+
+- **Learning Curve:** Requires learning a new syntax and library, which can be a barrier for some developers.
+- **Tooling:** May require additional tooling and configuration to integrate with existing workflows.
+- **Debugging:** Debugging can be more challenging due to the encapsulated nature of styles.
