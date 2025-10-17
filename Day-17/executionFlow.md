@@ -275,3 +275,5 @@ Paste the example into your browser console and watch the order. If you change t
 [3]: https://www.geeksforgeeks.org/javascript/what-is-an-event-loop-in-javascript/?utm_source=chatgpt.com "Event Loop in JavaScript"
 [4]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model?utm_source=chatgpt.com "JavaScript execution model - MDN - Mozilla"
 [5]: https://en.wikipedia.org/wiki/Event_loop?utm_source=chatgpt.com "Event loop"
+[6]: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout?utm_source=chatgpt.com "setTimeout() - Web APIs | MDN"
+[7]: https://www.jsv9000.app/ "Visualize..."
