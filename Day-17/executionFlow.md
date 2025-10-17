@@ -268,7 +268,7 @@ Timeout callback
 
 Paste the example into your browser console and watch the order. If you change the `setTimeout(..., 0)` delay or add more `Promise.resolve().then(...)` lines you’ll see the same microtask-before-macrotask behavior.
 
-[7]: https://www.jsv9000.app/ "Visualize..."
+- To visualize visit==>[https://www.jsv9000.app/ ](https://www.jsv9000.app/)
 
 ---
 
