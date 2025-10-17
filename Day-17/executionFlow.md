@@ -268,6 +268,8 @@ Timeout callback
 
 Paste the example into your browser console and watch the order. If you change the `setTimeout(..., 0)` delay or add more `Promise.resolve().then(...)` lines you’ll see the same microtask-before-macrotask behavior.
 
+[7]: https://www.jsv9000.app/ "Visualize..."
+
 ---
 
 [1]: https://www.freecodecamp.org/news/execution-context-how-javascript-works-behind-the-scenes/?utm_source=chatgpt.com "JavaScript Execution Context – How JS Works Behind The ..."
@@ -276,4 +278,3 @@ Paste the example into your browser console and watch the order. If you change t
 [4]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model?utm_source=chatgpt.com "JavaScript execution model - MDN - Mozilla"
 [5]: https://en.wikipedia.org/wiki/Event_loop?utm_source=chatgpt.com "Event loop"
 [6]: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout?utm_source=chatgpt.com "setTimeout() - Web APIs | MDN"
-[7]: https://www.jsv9000.app/ "Visualize..."
