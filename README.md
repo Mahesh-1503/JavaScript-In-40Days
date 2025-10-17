@@ -18,6 +18,7 @@ A 40-day journey to master JavaScript — from fundamentals to advanced concepts
 14. [Day 14](Day-14/)
 15. [Day 15](Day-15/)
 16. [Day 16](Day-16/)
+17. [Day 17](Day-17/)
 
 # ReactJs Guides 👇
 
