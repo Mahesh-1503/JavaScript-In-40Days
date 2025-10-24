@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>__ proto__</h1>
+
+    <script>
+        // Base object
+        const person = {
+            greet() {
+                console.log(`Hello, my name is ${this.name}`);
+            },
+        };
+
+        // New object
+        const student = {
+            name: "Mahesh",
+            course: "JavaScript",
+        };
+
+        // Setting prototype manually
+        student.__proto__ = person;
+
+        // Accessing method from prototype
+        //student.greet(); // ✅ Output: Hello, my name is Mahesh
+    </script>
+</body>
+
+</html>
