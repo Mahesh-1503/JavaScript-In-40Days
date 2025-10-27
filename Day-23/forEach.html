@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forEach</title>
+</head>
+
+<body>
+
+    <h1>for..........Each</h1>
+    <script>
+        //forEach method
+        const numbers = [1, 2, 3, 4, 5];
+        numbers.map((number, index, array) =>console.log(number * 2)); // 2, 4, 6, 8, 10
+        //console.log(result); // undefined
+        //Example with value index and array
+        numbers.forEach((number, index, array) => {
+            console.log(`Value: ${number}, Index: ${index}, Array: ${array}`);
+        });
+    </script>
+</body>
+
+</html>

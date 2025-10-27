@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reduce</title>
+</head>
+<body>
+    <h1>reduce</h1>
+    <script>
+        //reduce method : The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+        const numbers = ['apple', 'banana', 'cherry'];
+        const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue);
+        console.log(sum); // 15
+
+        //Example with value, index and array
+        const detailedSum = numbers.reduce((v1, v2, index, array) => {
+            //console.log(`Value: ${v1}, Current Value: ${v2}, Index: ${index}, Array: ${array}`);
+            return v1 + v2;
+        }, 0);// Initial value set to 0
+        console.log(detailedSum); // 15
+    </script>
+</body>
+</html>
