@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Users</title>
+    <style>
+        /* 🌿 Base Reset & Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2f3, #d9e4ec);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #2b5876;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 🧩 Users Container */
+        #users {
+            width: 100%;
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            padding: 25px 30px;
+            transition: 0.3s ease;
+        }
+
+        /* 👤 Each user row */
+        #users p {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #2b5876;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #users p:hover {
+            background: #eaf3f8;
+            transform: translateX(5px);
+        }
+
+        /* 💠 Footer */
+        footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: #2b5876;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>👥 User Directory</h1>
+    <div id="users">Loading users...</div>
+
+    <footer>Powered by <span>Fetch API</span> &mdash; JSONPlaceholder</footer>
+
+    <script>
+        async function loadUsers() {
+            try {
+                const res = await fetch("https://jsonplaceholder.typicode.com/users");
+                const users = await res.json();
+
+                document.getElementById("users").innerHTML =
+                    users
+                        .map(
+                            (u) => `
+              <p>👤 <strong>${u.name}</strong><br>
+              📧 ${u.email}<br>
+              🏙️ ${u.address.city}</p>`
+                        )
+                        .join("");
+            } catch (err) {
+                document.getElementById("users").innerHTML =
+                    "<p style='color:red;'>Failed to load users.</p>";
+            }
+        }
+
+        loadUsers();
+    </script>
+</body>
+
+</html>
