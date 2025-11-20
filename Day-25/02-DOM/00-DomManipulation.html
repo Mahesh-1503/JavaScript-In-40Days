@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="box">Original</div>
+    <script>
+        const newP = document.createElement("p");
+        newP.textContent = "Plain text";
+
+        const newP2 = document.createElement("p");
+        newP2.innerHTML = "<b>Bold text</b>";
+
+        const box = document.getElementById("box");
+        box.appendChild(newP);
+        box.prepend(newP2);
+
+        const note = document.createElement("span");
+        note.innerText = "Visible only text";
+        box.before(note);
+
+        const tail = document.createElement("span");
+        tail.textContent = "End note";
+        box.after(tail);
+    </script>
+</body>
+
+</html>
