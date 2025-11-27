@@ -27,11 +27,6 @@ A 40-day journey to master JavaScript — from fundamentals to advanced concepts
 23. [Day 23](Day-23/)
 24. [Day 24](Day-24/)
 25. [Day 25](Day-25/)
-26. [Day 26](Day-26/)
-27. [Day 27](Day-27/)
-28. [Day 28](Day-28/)
-29. [Day 29](Day-29/)
-30. [Day 30](Day-30/)
 
 # ReactJs Guides 👇
 
