@@ -36,3 +36,5 @@ A 40-day journey to master JavaScript — from fundamentals to advanced concepts
 4. [ReactJs Components](REACT/01-components/)
 5. [ReactJs Props](REACT/02-props/)
 6. [ReactJs Styles](REACT/03-Styles/)
+7. [Local and Session Storage](REACT/04-localAndSessionStorage/)
+   - [Notes](REACT/04-localAndSessionStorage/notes.md)
