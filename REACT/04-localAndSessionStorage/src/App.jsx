@@ -1,8 +1,8 @@
 import "./App.css";
 
 const App = () => {
-  //localStorage.setItem("name", "Dolly");
-  //sessionStorage.setItem("name", "Mahesh");
+  localStorage.setItem("name", "Dolly");
+  sessionStorage.setItem("name", "Mahesh");
 
   return (
     <div className="app">
