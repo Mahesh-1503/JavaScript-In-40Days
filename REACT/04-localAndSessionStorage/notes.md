@@ -12,11 +12,11 @@ Local Storage stores data in your browser. The data stays even after you close o
 
 ### Key points
 
-• Size is large. About 5 to 10 MB depending on browser
-• Works across all tabs of the same site
-• Data stays until you delete it
-• Browser does not send it to the server
-• Useful for settings, themes, cached content, offline mode
+- Size is large. About 5 to 10 MB depending on browser
+- Works across all tabs of the same site
+- Data stays until you delete it
+- Browser does not send it to the server
+- Useful for settings, themes, cached content, offline mode
 
 ### Quick example
 
@@ -29,11 +29,11 @@ localStorage.clear();
 
 ### When to use
 
-• Save user settings
-• Save recent items
-• Save theme preference
-• Save cart data for logged out users
-• Save cached API data
+- Save user settings
+- Save recent items
+- Save theme preference
+- Save cart data for logged out users
+- Save cached API data
 
 ---
 
@@ -47,11 +47,11 @@ localStorage.clear();
 
 ### How to proceed
 
-• Use `localStorage.setItem()` to store data
-• Use `localStorage.getItem()` to read
-• Test by refreshing page
-• Try storing objects using `JSON.stringify` and `JSON.parse`
-• Bonus: build a “Clear data” button
+- Use `localStorage.setItem()` to store data
+- Use `localStorage.getItem()` to read
+- Test by refreshing page
+- Try storing objects using `JSON.stringify` and `JSON.parse`
+- Bonus: build a “Clear data” button
 
 ---
 
@@ -63,11 +63,11 @@ Session Storage stores data only for the current tab. Closing the tab removes da
 
 ### Key points
 
-• Size about 5 MB
-• Works only in one tab
-• Data clears after closing tab
-• Browser does not send it to server
-• Good for temporary data
+- Size about 5 MB
+- Works only in one tab
+- Data clears after closing tab
+- Browser does not send it to server
+- Good for temporary data
 
 ### Quick example
 
@@ -80,10 +80,10 @@ sessionStorage.clear();
 
 ### When to use
 
-• Keep form data while navigating pages
-• Protect sensitive temporary data
-• Store session based values
-• Store step progress in multi step forms
+- Keep form data while navigating pages
+- Protect sensitive temporary data
+- Store session based values
+- Store step progress in multi step forms
 
 ---
 
@@ -97,11 +97,11 @@ sessionStorage.clear();
 
 ### How to proceed
 
-• Store a value with `setItem`
-• Try using it across same tab
-• Open a second tab and see difference
-• Close tab and test if data disappears
-• Build variable cleanup logic
+- Store a value with `setItem`
+- Try using it across same tab
+- Open a second tab and see difference
+- Close tab and test if data disappears
+- Build variable cleanup logic
 
 ---
 
@@ -113,11 +113,11 @@ Cookies store small data that browser sends to server automatically on every req
 
 ### Key points
 
-• Size is small. About 4 KB
-• Works across all tabs
-• You set an expiry date
-• Sent to server on every request
-• Used for login tokens, analytics, tracking, sessions
+- Size is small. About 4 KB
+- Works across all tabs
+- You set an expiry date
+- Sent to server on every request
+- Used for login tokens, analytics, tracking, sessions
 
 ### Quick example
 
@@ -133,11 +133,11 @@ document.cookie = "name=; expires=Thu, 1 Jan 1970 00:00:00 UTC; path=/";
 
 ### When to use
 
-• Remember logged in state
-• Store authentication token
-• Store short information for server
-• Session management
-• Domain based controls
+- Remember logged in state
+- Store authentication token
+- Store short information for server
+- Session management
+- Domain based controls
 
 ---
 
@@ -151,24 +151,24 @@ document.cookie = "name=; expires=Thu, 1 Jan 1970 00:00:00 UTC; path=/";
 
 ### How to proceed
 
-• Set cookie using `document.cookie`
-• Use different expiry dates
-• Parse cookie string by splitting at `;`
-• Test deletion by setting past date
-• Inspect cookies in browser DevTools
+- Set cookie using `document.cookie`
+- Use different expiry dates
+- Parse cookie string by splitting at `;`
+- Test deletion by setting past date
+- Inspect cookies in browser DevTools
 
 ---
 
 # Simple comparison summary
 
-• Local Storage
-Use for long term data in browser.
-Large storage. Not sent to server.
+- Local Storage
+  Use for long term data in browser.
+  Large storage. Not sent to server.
 
-• Session Storage
-Use for temporary data.
-Removed when tab closes.
+- Session Storage
+  Use for temporary data.
+  Removed when tab closes.
 
-• Cookies
-Use for authentication and server communication.
-Small storage. Sent to server.
+- Cookies
+  Use for authentication and server communication.
+  Small storage. Sent to server.
