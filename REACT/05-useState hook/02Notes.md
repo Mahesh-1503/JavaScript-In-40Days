@@ -1,7 +1,8 @@
-```import React, { useState } from 'react';
+```javascript
+import React, { useState } from "react";
 
 function UserInputTracker() {
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
 
   const handleInputChange = (event) => {
     setInputText(event.target.value);
@@ -23,10 +24,11 @@ function UserInputTracker() {
 export default UserInputTracker;
 ```
 
-```import React, { useState } from 'react';
+```javascript
+import React, { useState } from "react";
 
 function UserInputTracker() {
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
 
   const handleInputChange = (event) => {
     // 1. Get the raw value the user typed
