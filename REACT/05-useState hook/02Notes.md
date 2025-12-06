@@ -102,3 +102,39 @@ function UserInputTracker() {
 
 export default UserInputTracker;
 ```
+
+### CONDITIONAL RENDERING CODE
+
+```javascript
+import { useState } from "react";
+
+function Counter() {
+  const [score, setScore] = useState(0);
+
+  return (
+    <div>
+      <h1>Current Score: {score}</h1>
+
+      {/* Conditional text */}
+      <p>{score > 0 ? "You have started scoring" : "No score yet"}</p>
+
+      <button onClick={() => setScore(score + 1)}>Add 1</button>
+      <button onClick={() => setScore(0)}>Reset</button>
+    </div>
+  );
+}
+```
+
+```javascript
+// Show Reset button only if score > 0
+{
+  score > 0 ? <button onClick={() => setScore(0)}>Reset</button> : null;
+}
+```
+
+```javascript
+//Change button label based on score
+<button onClick={() => setScore(score + 1)}>
+  {score > 10 ? "High Score" : "Add 1"}
+</button>
+```
