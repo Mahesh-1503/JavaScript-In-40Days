@@ -68,9 +68,23 @@ function createLikeTracker() {
     return `Post Likes: ${likeCount}`;
   };
 }
-const likePost = createLikeTracker();
-console.log(likePost()); // "Post Likes: 1"
-console.log(likePost()); // "Post Likes: 2"
+
+// === CALLING & EXECUTING THIS ===
+const likePost1 = createLikeTracker(); // Creates isolated instance 1
+const likePost2 = createLikeTracker(); // Creates isolated instance 2
+
+console.log(likePost1()); // Output: "Post Likes: 1"
+console.log(likePost1()); // Output: "Post Likes: 2"
+console.log(likePost2()); // Output: "Post Likes: 1" (Separate state!)
+
+/*
+  EXECUTION TRACE:
+  1. We execute createLikeTracker(). This allocates local variable 'likeCount = 0' in the environment frame.
+  2. It returns an anonymous function that increments 'likeCount' and returns the string.
+  3. This function is stored in 'likePost1'. The execution scope of createLikeTracker exits, but the 'likeCount' memory stays active because 'likePost1' points to it.
+  4. When likePost1() is called, it increments its closed-over 'likeCount' (0 -> 1 -> 2).
+  5. When createLikeTracker() is called again for 'likePost2', it creates a completely fresh parent scope with its own 'likeCount = 0'.
+*/
 ```
 
 ### 2. Instagram Search Debouncer (Delaying API Calls)
@@ -87,8 +101,25 @@ function debounceSearch(callback, delay) {
   };
 }
 
+// === CALLING & EXECUTING THIS ===
 const triggerSearchAPI = (query) => console.log(`Searching for: ${query}`);
 const handleSearchInput = debounceSearch(triggerSearchAPI, 300);
+
+// Simulate rapid user typing (keystrokes at 0ms, 100ms, 200ms)
+handleSearchInput("a");   // 1. Clears nothing. Sets timeout for 300ms.
+handleSearchInput("ap");  // 2. Clears previous timeout. Sets new timeout.
+handleSearchInput("app"); // 3. Clears previous timeout. Sets final timeout.
+
+// Result: Only "Searching for: app" is logged after a 300ms pause!
+
+/*
+  EXECUTION TRACE:
+  1. debounceSearch(triggerSearchAPI, 300) runs, allocating a private 'timeoutId' variable in parent scope.
+  2. It returns a closure function and binds it to 'handleSearchInput'.
+  3. When 'handleSearchInput("a")' runs, it sets a timeout callback to run triggerSearchAPI("a") in 300ms. The ID is stored in 'timeoutId'.
+  4. When 'handleSearchInput("ap")' is called 100ms later, it calls 'clearTimeout(timeoutId)' which destroys the pending timer for "a". It then sets a new timer for "ap".
+  5. This pattern prevents spamming server search APIs while the user is actively typing.
+*/
 ```
 
 ### 3. Memoized Calculations Cacher (Performance Optimizer)
@@ -101,26 +132,52 @@ function createMemoizedCalculator() {
     if (cache.has(num)) {
       return `[CACHE-HIT] Result: ${cache.get(num)}`;
     }
-    // Simulate expensive calculation (e.g. factorial)
+    // Simulate expensive calculation (e.g. double number)
     const result = num * 2; 
     cache.set(num, result);
     return `[COMPUTE-RUN] Result: ${result}`;
   };
 }
+
+// === CALLING & EXECUTING THIS ===
 const calculate = createMemoizedCalculator();
+
+console.log(calculate(10)); // Output: "[COMPUTE-RUN] Result: 20"
+console.log(calculate(10)); // Output: "[CACHE-HIT] Result: 20" (Skips calculation!)
+console.log(calculate(5));  // Output: "[COMPUTE-RUN] Result: 10"
+
+/*
+  EXECUTION TRACE:
+  1. We execute createMemoizedCalculator() which instantiates a private ES6 Map object stored in 'cache'.
+  2. It returns a function that closes over the Map cache reference.
+  3. In the first call of calculate(10), cache.has(10) is false. It performs the calculation, stores {10 => 20} in the Map, and returns the result.
+  4. In the second call, cache.has(10) is true. It returns the value from the Map cache directly, bypassing CPU work.
+*/
 ```
 
 ### 4. Custom Private Settings Loader
 ```javascript
 function loadSecureClient(apiKey) {
-  // Returns a closure that can perform secure requests without exposing the raw API key
+  // Returns a closure object that can perform secure requests without exposing the raw API key
   return {
     fetchProfile: (profileId) => {
       return `Fetching profile ${profileId} using key: ${apiKey.slice(0, 4)}***`;
     }
   };
 }
+
+// === CALLING & EXECUTING THIS ===
 const client = loadSecureClient("pk_live_ab8991a");
+console.log(client.fetchProfile("user_77")); 
+// Output: "Fetching profile user_77 using key: pk_l***"
+
+/*
+  EXECUTION TRACE:
+  1. loadSecureClient is called with the API string.
+  2. It returns a configuration object containing the 'fetchProfile' function.
+  3. The return function closes over the parameter variable 'apiKey'.
+  4. The client object can fetch data, but other scripts cannot read 'apiKey' directly from the client object, securing token variables.
+*/
 ```
 
 ### 5. Multi-Click Double Action Guard (Toggle Locker)
@@ -132,12 +189,28 @@ function createDoubleActionGuard(actionFn, delay = 500) {
     const currentTime = Date.now();
     if (currentTime - lastClickTime < delay) {
       console.warn("Action blocked: Double click detected!");
-      return;
+      return "BLOCKED";
     }
     lastClickTime = currentTime;
     return actionFn(...args);
   };
 }
+
+// === CALLING & EXECUTING THIS ===
+const clickAlert = () => "Payment Dispatched";
+const safeSubmit = createDoubleActionGuard(clickAlert, 1000);
+
+console.log(safeSubmit()); // 1. Click at 0ms. Returns: "Payment Dispatched"
+console.log(safeSubmit()); // 2. Click at 100ms. Outputs: "Action blocked: Double click detected!"
+
+/*
+  EXECUTION TRACE:
+  1. We wrap clickAlert inside createDoubleActionGuard. The initial 'lastClickTime' is set to 0.
+  2. Click 1 occurs. currentTime is (for example) 1700000000000.
+  3. currentTime - 0 is greater than 1000ms. 'lastClickTime' is updated to 1700000000000. clickAlert() runs.
+  4. Click 2 occurs at 1700000000100 (100ms later).
+  5. 1700000000100 - 1700000000000 is 100, which is less than the 1000ms delay threshold. The guard blocks execution and prints a warning.
+*/
 ```
 
 ---

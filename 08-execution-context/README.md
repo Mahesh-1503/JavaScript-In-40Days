@@ -86,6 +86,18 @@ const apiGateway = "https://slack.com/api";
 function connectToSlack() {
   console.log(`Connecting via ${apiGateway}...`);
 }
+
+// === CALLING & EXECUTING THIS ===
+connectToSlack(); // Output: "Connecting via https://slack.com/api..."
+
+/*
+  EXECUTION TRACE:
+  1. JS scans the code: clientVersion, apiGateway, and connectToSlack function are allocated in Global Memory.
+  2. Code execution starts: clientVersion is set to "v4.1.0", apiGateway is set to "https://slack.com/api".
+  3. connectToSlack() is called. The engine pauses the GEC and pushes the connectToSlack FEC onto the Call Stack.
+  4. The code prints "Connecting via https://slack.com/api..." after looking up apiGateway in the scope chain.
+  5. The FEC pops off the Call Stack, and control returns to GEC.
+*/
 ```
 
 ### 2. Message Processor Call Chain (Call Stack push/pop)
@@ -100,8 +112,17 @@ function processIncomingMessage(payload) {
   console.log(`Message rendered: ${cleanMessage}`);
 }
 
-// Pushes processIncomingMessage() onto stack, pauses GEC
+// === CALLING & EXECUTING THIS ===
 processIncomingMessage({ text: "olleh" }); 
+
+/*
+  EXECUTION TRACE (Step-by-Step Stack Changes):
+  1. GEC pushes processIncomingMessage({ text: "olleh" }) onto the Call Stack.
+  2. Inside processIncomingMessage FEC, the decryptPayload("olleh") call is reached.
+  3. The engine pauses processIncomingMessage, and pushes decryptPayload FEC to the top of the stack.
+  4. decryptPayload calculates "hello", returns it, and pops off the Call Stack.
+  5. processIncomingMessage resumes, assigns "hello" to cleanMessage, logs "Message rendered: hello", and pops off the stack.
+*/
 ```
 
 ### 3. User Presence Tracker (FEC Lexical Boundary)
@@ -112,12 +133,23 @@ function trackUserStatus() {
   let status = "online"; // Stored in trackUserStatus FEC
   
   function printStatus() {
-    // Accesses status from outer parent scale, and currentUserId from global scope
+    // Accesses status from outer parent scope, and currentUserId from global scope
     console.log(`User ${currentUserId} is ${status}`); 
   }
   printStatus();
 }
-trackUserStatus();
+
+// === CALLING & EXECUTING THIS ===
+trackUserStatus(); // Output: "User u_9921 is online"
+
+/*
+  EXECUTION TRACE:
+  1. GEC loads. currentUserId = "u_9921" is allocated.
+  2. trackUserStatus() is called, creating its own context and local variable status = "online".
+  3. printStatus() is called inside trackUserStatus, pushing printStatus FEC to the stack.
+  4. printStatus looks for currentUserId locally (fails), searches parent trackUserStatus (fails), and finds it globally. It repeats this for status, finding it in the parent.
+  5. The message is printed, and both function frames pop off the stack sequentially.
+*/
 ```
 
 ### 4. Event Debouncer Context Preserver
@@ -129,6 +161,14 @@ function debounceMessageInput(action, delay) {
     timerId = setTimeout(() => action(...args), delay);
   };
 }
+
+// === CALLING & EXECUTING THIS ===
+const logInput = (val) => console.log(`Logged: ${val}`);
+const debouncedLog = debounceMessageInput(logInput, 500);
+
+debouncedLog("User typing a..."); // Sets timer
+debouncedLog("User typing ab..."); // Clears previous timer, resets
+// 500ms passes: logs "Logged: User typing ab..."
 ```
 
 ### 5. Chat History Fetcher with Context Limits
@@ -138,6 +178,10 @@ function fetchChannelHistory(channelId) {
   const endpoint = `/channels/${channelId}/messages?limit=${fetchLimit}`;
   return endpoint;
 }
+
+// === CALLING & EXECUTING THIS ===
+const url = fetchChannelHistory("general");
+console.log(url); // Output: "/channels/general/messages?limit=50"
 ```
 
 ---

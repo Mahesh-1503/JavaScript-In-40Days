@@ -38,6 +38,9 @@ Welcome to the ultimate learning roadmap to mastering **JavaScript** and **React
 | **23** | **Array Iterators** | 📂 [23-array-iterators-map-filter-reduce](23-array-iterators-map-filter-reduce/) | Transforming elements with `map`, filtering with `filter`, accumulating values with `reduce`. |
 | **24** | **APIs & Fetch** | 📂 [24-apis-and-fetch](24-apis-and-fetch/) | AJAX basics, `fetch()` method, handling responses, parse JSON, displaying dynamic user lists. |
 | **25** | **DOM & Cookies** | 📂 [25-dom-and-cookies](25-dom-and-cookies/) | Document Object Model selection/manipulation, Events listener/handling, Todo app, Cookies storage. |
+| **26** | **JavaScript Modules** | 📂 [26-javascript-modules-esm-commonjs](26-javascript-modules-esm-commonjs/) | Modular isolation, CommonJS exports vs modern ES Modules static analysis, live bindings, and tree-shaking. |
+| **27** | **Memory & Garbage Collection** | 📂 [27-memory-management-and-garbage-collection](27-memory-management-and-garbage-collection/) | Call Stack vs Heap, Mark-and-Sweep algorithms, closures scope retention, Map vs WeakMap, and profiling. |
+| **28** | **Dates & Browser Dialogs** | 📂 [28-javascript-dates-and-browser-dialogs](28-javascript-dates-and-browser-dialogs/) | Working with Dates, UNIX timestamps, internationalized formatting via Intl, and synchronous window dialog blocks. |
 
 ---
 
