@@ -9,7 +9,7 @@ Welcome to the ultimate learning roadmap to mastering **JavaScript** and **React
 
 ---
 
-## 📅 JavaScript Core Curriculum (Days 1–30)
+## 📅 JavaScript Core Curriculum (Days 1–31)
 
 | Day / Folder | Concept / Topic | Directory Link | Core Concepts Covered |
 | :---: | :--- | :---: | :--- |
