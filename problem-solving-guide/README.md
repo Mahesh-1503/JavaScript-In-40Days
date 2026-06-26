@@ -1,5 +1,8 @@
 # 🧠 The Master JavaScript & React Problem Solving Guide
 
+> [!TIP]
+> 📖 **[View the Problem Solutions Manual (SOLUTIONS.md)](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/problem-solving-guide/SOLUTIONS.md)**: A complete code reference guide with step-by-step logic and complexity analysis for core programming interview problems.
+
 Welcome to the **Master Problem Solving & Logic-Building Guide**. Learning syntax is only 20% of the journey; the other 80% is knowing how to translate a complex, ambiguous real-world requirement into clean, performant, and bug-free code.
 
 This guide provides a **4-Step Logic-Building Framework** used by senior engineers to solve coding challenges, followed by **205 curated programming problems** categorized by topic. Each problem includes a difficulty rating, a core logic hint, and a navigation link to the corresponding folder in this repository for learning and reference.

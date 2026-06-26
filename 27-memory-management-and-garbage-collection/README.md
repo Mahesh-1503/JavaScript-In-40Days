@@ -77,6 +77,15 @@ cache.set(user, "User Data");
 user = null; // The { id: 101 } object is now eligible for Garbage Collection!
 ```
 
+### 4. WeakSet vs. Set Memory Handling
+Standard ES6 `Set` stores **strong references** to its values:
+- If you add an object to a standard `Set`, the object remains in memory indefinitely, even if you clear all other external pointers to it. This prevents the Garbage Collector from cleaning it up.
+- **`WeakSet`** holds **weak references** to its value objects. If all other references to a stored object are deleted, the Garbage Collector can safely reclaim that object's memory. The object will also automatically disappear from the `WeakSet`.
+- **Key differences & constraints of `WeakSet`:**
+  1. **Objects Only:** A `WeakSet` can only store objects or symbols. It cannot store primitive types (like numbers, strings, or booleans).
+  2. **Non-Iterable:** A `WeakSet` is not iterable. You cannot use `for...of` loops, or access `.keys()`, `.values()`, or `.entries()`.
+  3. **No size property:** There is no `.size` property. You cannot query how many elements are inside a `WeakSet` without having direct references to the objects themselves to test using `.has()`.
+
 ---
 
 ## 5. Real Production Examples (Chrome Profiler diagnostics)
@@ -174,6 +183,44 @@ logSession(userSession);
 // Once user logs out and references are deleted
 userSession = null; 
 // The metadataStore automatically frees the loginTime object from memory.
+```
+
+### 6. Memory-Safe Request Processing Tracker (WeakSet)
+Tracks active HTTP request objects in flight. Once the network request finishes and is dereferenced by the router, the engine garbage collects the request object automatically, avoiding the memory leaks that would happen with a standard `Set`.
+
+```javascript
+// A standard Set would leak request objects if we forgot to call .delete(req) on completion
+const activeRequests = new WeakSet();
+
+function handleApiRequest(req) {
+  // Prevent double-processing the exact same request object
+  if (activeRequests.has(req)) {
+    console.log("[Request Gate] Rejected: Request is already being processed.");
+    return;
+  }
+
+  // Add the request object to the WeakSet (weak reference)
+  activeRequests.add(req);
+  console.log(`[Request Gate] Started processing request: ${req.url}`);
+
+  // Simulate network request processing
+  setTimeout(() => {
+    console.log(`[Request Gate] Finished processing request: ${req.url}`);
+    // No need to manually call activeRequests.delete(req) to prevent leaks!
+    // As soon as the router dereferences 'req' at the end of its scope,
+    // the V8 engine garbage collects it and frees up the memory.
+  }, 100);
+}
+
+// === CALLING & EXECUTING THIS ===
+let mockRequest = { url: "/api/v1/checkout", payload: { amount: 50 } };
+
+handleApiRequest(mockRequest);
+handleApiRequest(mockRequest); // Output: "[Request Gate] Rejected: Request is already..."
+
+// Once the router completes the lifecycle and drops the mockRequest variable:
+mockRequest = null; 
+// The request object is cleanly garbage collected!
 ```
 
 ---
