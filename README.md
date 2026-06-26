@@ -15,7 +15,8 @@ Welcome to the ultimate learning roadmap to mastering **JavaScript** and **React
 | :---: | :--- | :---: | :--- |
 | **01** | **Script Loading Behaviors** | 📂 [01-script-loading-behaviors](01-script-loading-behaviors/) | Synchronous execution, script position in HTML, `async` vs `defer` performance. |
 | **02** | **Variables & Data Types** | 📂 [02-variables-and-data-types](02-variables-and-data-types/) | Block-scoped (`let`, `const`) vs Function-scoped (`var`), primitives vs reference types. |
-| **03** | **Operators & Expressions** | 📂 [03-operators-and-expressions](03-operators-and-expressions/) | Arithmetic, assignment, strict vs loose comparison (`==` vs `===`), logical `&&`/`\|\|`/`??`, bitwise. |
+| **03** | **Operators & Expressions** | 📂 [03-operators-and-expressions](03-operators-and-expressions/) | Arithmetic, assignment, strict vs loose comparison (`==` vs `===`), logical `&&`/`\|\|`/`??`. |
+| **03b** | **Bitwise Operators & Manipulation** | 📂 [03b-bitwise-operators-and-bit-manipulation](03b-bitwise-operators-and-bit-manipulation/) | Binary representation, signed Int32/Two's complement, AND/OR/XOR/NOT logic, bit shifts, POSIX permission gates, RGB/Hex color masks, variable swaps, and parity checks. |
 | **04** | **Conditionals** | 📂 [04-conditionals](04-conditionals/) | Control flow using `if`, `else if`, `else`, ternary operators, and logical short-circuiting. |
 | **05** | **Loops & Iteration** | 📂 [05-loops](05-loops/) | `for` loops, `while` loops, nested loops, and generating console pyramid patterns. |
 | **06** | **Functions Basics** | 📂 [06-functions](06-functions/) | Function statements vs declarations vs expressions, parameter passing, return values. |
@@ -42,6 +43,7 @@ Welcome to the ultimate learning roadmap to mastering **JavaScript** and **React
 | **27** | **Memory & Garbage Collection** | 📂 [27-memory-management-and-garbage-collection](27-memory-management-and-garbage-collection/) | Call Stack vs Heap, Mark-and-Sweep algorithms, closures scope retention, Map vs WeakMap, and profiling. |
 | **28** | **Dates & Browser Dialogs** | 📂 [28-javascript-dates-and-browser-dialogs](28-javascript-dates-and-browser-dialogs/) | Working with Dates, UNIX timestamps, internationalized formatting via Intl, and synchronous window dialog blocks. |
 | **29** | **DOM Tips, Tricks & Web APIs** | 📂 [29-dom-tips-tricks-and-browser-apis](29-dom-tips-tricks-and-browser-apis/) | Advanced DOM performance (Reflows/Repaints, DocumentFragments), event delegation, and browser APIs (Intersection/Resize Observers, Geolocation, Clipboard). |
+| **30** | **Modern ES6+ Features** | 📂 [30-modern-es6-plus-features](30-modern-es6-plus-features/) | Comprehensive modern upgrades: let/const, template strings, exponents, library additions, classes, promises, destructuring, spread/rest, enhanced object literals, modules, generators. |
 
 ---
 
