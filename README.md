@@ -41,6 +41,7 @@ Welcome to the ultimate learning roadmap to mastering **JavaScript** and **React
 | **26** | **JavaScript Modules** | 📂 [26-javascript-modules-esm-commonjs](26-javascript-modules-esm-commonjs/) | Modular isolation, CommonJS exports vs modern ES Modules static analysis, live bindings, and tree-shaking. |
 | **27** | **Memory & Garbage Collection** | 📂 [27-memory-management-and-garbage-collection](27-memory-management-and-garbage-collection/) | Call Stack vs Heap, Mark-and-Sweep algorithms, closures scope retention, Map vs WeakMap, and profiling. |
 | **28** | **Dates & Browser Dialogs** | 📂 [28-javascript-dates-and-browser-dialogs](28-javascript-dates-and-browser-dialogs/) | Working with Dates, UNIX timestamps, internationalized formatting via Intl, and synchronous window dialog blocks. |
+| **29** | **DOM Tips, Tricks & Web APIs** | 📂 [29-dom-tips-tricks-and-browser-apis](29-dom-tips-tricks-and-browser-apis/) | Advanced DOM performance (Reflows/Repaints, DocumentFragments), event delegation, and browser APIs (Intersection/Resize Observers, Geolocation, Clipboard). |
 
 ---
 

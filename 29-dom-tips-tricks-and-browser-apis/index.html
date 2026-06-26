@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 29 Interactive DOM & Browser APIs Demo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      color: #333;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #1e293b;
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 10px;
+    }
+    .demo-section {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      margin-top: 0;
+      color: #0f172a;
+      font-size: 1.25rem;
+    }
+    button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #1d4ed8;
+    }
+    .card-list {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      background: #f8fafc;
+      border-radius: 6px;
+      border: 1px dashed #cbd5e1;
+      margin-top: 10px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      padding: 12px;
+      border-radius: 6px;
+      flex: 1;
+      text-align: center;
+    }
+    /* Intersection Observer boxes */
+    .scroll-container {
+      height: 200px;
+      overflow-y: scroll;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #fafafa;
+      padding: 10px;
+    }
+    .scroll-spacer {
+      height: 300px;
+      background: linear-gradient(to bottom, #f1f5f9, #cbd5e1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-style: italic;
+    }
+    .target-box {
+      padding: 20px;
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 2px solid #f87171;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+      transition: background-color 0.5s, color 0.5s, border-color 0.5s;
+    }
+    .target-box.visible {
+      background-color: #dcfce7;
+      color: #166534;
+      border-color: #4ade80;
+    }
+    /* Resize Observer demo */
+    .resizable-panel {
+      border: 1px solid #cbd5e1;
+      background: #fafafa;
+      padding: 15px;
+      border-radius: 6px;
+      overflow: hidden;
+      resize: horizontal; /* Enables manual user resizing in supported browsers */
+      min-width: 200px;
+      max-width: 100%;
+      width: 300px;
+    }
+    .resizable-panel.compact-view {
+      background: #fef3c7;
+      border-color: #f59e0b;
+    }
+    .badge {
+      background: #e2e8f0;
+      padding: 4px 8px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Day 29 DOM Tips, Tricks & Web APIs Demo</h1>
+  <p>Open this file in your browser to interact with modern browser APIs.</p>
+
+  <!-- 1. Event Delegation -->
+  <section class="demo-section">
+    <h2>1. Event Delegation & Dataset Actions</h2>
+    <p>A single click listener on the parent handles actions for all child buttons dynamically.</p>
+    <div id="cart-actions" style="margin-bottom: 10px;">
+      <button data-action="add" data-item="Kindle Reader">Add Kindle</button>
+      <button data-action="add" data-item="Stripe SDK Booklet">Add Stripe Book</button>
+      <button data-action="clear">Clear Cart</button>
+    </div>
+    <div id="cart-output" class="badge">Items in cart: 0</div>
+  </section>
+
+  <!-- 2. Clipboard API -->
+  <section class="demo-section">
+    <h2>2. Secure Clipboard Copy API</h2>
+    <p>Click below to securely copy the API Key using the Clipboard API.</p>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <code id="api-key">sk_live_51Nz8P3J3L9X0Qo1</code>
+      <button id="copy-btn">Copy Key</button>
+    </div>
+  </section>
+
+  <!-- 3. Intersection Observer -->
+  <section class="demo-section">
+    <h2>3. Intersection Observer (Scroll Detection)</h2>
+    <p>Scroll the container below. The target box changes color the moment it enters the viewport.</p>
+    <div class="scroll-container">
+      <div class="scroll-spacer">Scroll down to find the sensor box...</div>
+      <div id="sensor-box" class="target-box">I AM OUT OF VIEW</div>
+      <div class="scroll-spacer">Scroll back up...</div>
+    </div>
+  </section>
+
+  <!-- 4. Resize Observer -->
+  <section class="demo-section">
+    <h2>4. Resize Observer</h2>
+    <p>Resize this box using the handle in the bottom-right corner. The background shifts when passing the 250px boundary.</p>
+    <div id="resize-box" class="resizable-panel">
+      <p id="resize-metrics">Width: ---px</p>
+    </div>
+  </section>
+
+  <!-- 5. Computed Styles -->
+  <section class="demo-section">
+    <h2>5. window.getComputedStyle() Inspector</h2>
+    <p>We read the element's actual styles parsed by the browser, even if they aren't declared inline.</p>
+    <button id="check-style-btn">Read Container Font Size</button>
+    <p id="style-output" class="badge" style="margin-top: 10px;">Size: --</p>
+  </section>
+
+  <script>
+    // 1. Event Delegation
+    const cartContainer = document.getElementById('cart-actions');
+    const cartOutput = document.getElementById('cart-output');
+    let cartCount = 0;
+
+    cartContainer.addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+      if (!button) return;
+
+      const action = button.dataset.action;
+      const item = button.dataset.item;
+
+      if (action === 'add') {
+        cartCount++;
+        cartOutput.textContent = `Items in cart: ${cartCount} (Added ${item})`;
+      } else if (action === 'clear') {
+        cartCount = 0;
+        cartOutput.textContent = `Items in cart: 0`;
+      }
+    });
+
+    // 2. Clipboard API
+    const copyBtn = document.getElementById('copy-btn');
+    const apiKey = document.getElementById('api-key');
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(apiKey.textContent);
+        copyBtn.textContent = "Copied! 📋";
+        setTimeout(() => {
+          copyBtn.textContent = "Copy Key";
+        }, 1500);
+      } catch (err) {
+        copyBtn.textContent = "Failed ❌";
+      }
+    });
+
+    // 3. Intersection Observer
+    const sensorBox = document.getElementById('sensor-box');
+    const scrollContainer = document.querySelector('.scroll-container');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          sensorBox.textContent = "I AM VISIBLE IN VIEWPORT! 🎉";
+          sensorBox.classList.add('visible');
+        } else {
+          sensorBox.textContent = "I AM OUT OF VIEW";
+          sensorBox.classList.remove('visible');
+        }
+      });
+    }, {
+      root: scrollContainer, // Check intersection relative to this scroll box container
+      threshold: 0.5 // Require at least 50% visibility
+    });
+
+    observer.observe(sensorBox);
+
+    // 4. Resize Observer
+    const resizeBox = document.getElementById('resize-box');
+    const resizeMetrics = document.getElementById('resize-metrics');
+
+    const resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        const { width } = entry.contentRect;
+        resizeMetrics.textContent = `Width: ${Math.round(width)}px`;
+        
+        if (width < 250) {
+          resizeBox.classList.add('compact-view');
+        } else {
+          resizeBox.classList.remove('compact-view');
+        }
+      }
+    });
+
+    resizeObserver.observe(resizeBox);
+
+    // 5. Computed Styles
+    const checkStyleBtn = document.getElementById('check-style-btn');
+    const styleOutput = document.getElementById('style-output');
+    const demoSection = document.querySelector('.demo-section');
+
+    checkStyleBtn.addEventListener('click', () => {
+      const computed = window.getComputedStyle(demoSection);
+      styleOutput.textContent = `Container Font Size: ${computed.fontSize} | Background: ${computed.backgroundColor}`;
+    });
+  </script>
+</body>
+</html>
