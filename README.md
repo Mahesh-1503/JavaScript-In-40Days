@@ -56,6 +56,11 @@ Our React curriculum focuses on building modern, performant Single Page Applicat
    - 📄 [00-list-and-keys.md](REACT/08-usestate-hook/00-list-and-keys.md): Managing lists, list update triggers, and standard unique keys references.
    - 📄 [01-notes.md](REACT/08-usestate-hook/01-notes.md): Practical usage examples of `useState` triggers.
    - 📄 [02-notes.md](REACT/08-usestate-hook/02-notes.md): Advanced state manipulation patterns.
+9. 📂 **[ReactJS useEffect hook](REACT/09-useeffect-hook.md)**: Managing side effects, asynchronous event listeners, intervals, and media streams lifecycles.
+10. 📂 **[ReactJS Context API](REACT/10-context-api.md)**: Handling global state broadcast frameworks, provider scopes, and avoiding prop drilling.
+11. 📂 **[ReactJS Custom Hooks](REACT/11-custom-hooks.md)**: Stateful logic reuse patterns, hook encapsulations, and window resize listeners.
+12. 📂 **[ReactJS Redux Toolkit](REACT/12-redux-toolkit.md)**: Managing global state mixers, slice reducers, selectors, and createAsyncThunk middleware.
+13. 📂 **[Responsive Design in React](REACT/13-responsive-design.md)**: Writing mobile-first styles, implementing CSS grid/flexbox, responsive matchMedia hooks, and preventing layout shifts (CLS).
 
 ---
 
