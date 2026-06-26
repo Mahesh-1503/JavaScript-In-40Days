@@ -44,6 +44,7 @@ Welcome to the ultimate learning roadmap to mastering **JavaScript** and **React
 | **28** | **Dates & Browser Dialogs** | 📂 [28-javascript-dates-and-browser-dialogs](28-javascript-dates-and-browser-dialogs/) | Working with Dates, UNIX timestamps, internationalized formatting via Intl, and synchronous window dialog blocks. |
 | **29** | **DOM Tips, Tricks & Web APIs** | 📂 [29-dom-tips-tricks-and-browser-apis](29-dom-tips-tricks-and-browser-apis/) | Advanced DOM performance (Reflows/Repaints, DocumentFragments), event delegation, and browser APIs (Intersection/Resize Observers, Geolocation, Clipboard). |
 | **30** | **Modern ES6+ Features** | 📂 [30-modern-es6-plus-features](30-modern-es6-plus-features/) | Comprehensive modern upgrades: let/const, template strings, exponents, library additions, classes, promises, destructuring, spread/rest, enhanced object literals, modules, generators. |
+| **31** | **Browser DevTools & Debugging** | 📂 [31-browser-developer-tools-and-debugging](31-browser-developer-tools-and-debugging/) | Master browser developer tools (Elements, Console, Sources, Network, Application panels), custom logging, breakpoints, call stacks, scope variables, offline/network throttling, and profiling. |
 
 ---
 
