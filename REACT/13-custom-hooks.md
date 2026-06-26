@@ -1,4 +1,4 @@
-# Module 11: Stateful Logic Reuse (Robinhood Live Stock Ticker & useWindowSize)
+# Module 13: Stateful Logic Reuse (Robinhood Live Stock Ticker & useWindowSize)
 
 React components manage state and trigger side effects locally. However, when multiple components need to reuse the *same stateful logic* (such as listening to live WebSocket price feeds, tracking network connectivity, or monitoring responsive window dimensions), copying and pasting code creates duplication. Master **Custom Hooks** to extract, encapsulate, and share stateful logic cleanly across your application.
 

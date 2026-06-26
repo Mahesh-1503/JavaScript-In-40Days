@@ -1,6 +1,6 @@
-# ⚡ Module 18: Performance Optimization & Lazy Loading (Dashboard Telemetry Hub)
+# ⚡ Module 19: Performance Optimization & Lazy Loading (Dashboard Telemetry Hub)
 
-Welcome to Module 18! In this module, we will learn how to optimize React application speed. We will study **Performance Hooks** (`useMemo`, `useCallback`, `React.memo`), **DOM References** (`useRef`), and **Code Splitting** (`React.lazy()`, `Suspense`) inside a real-world **Dashboard Telemetry Hub** context.
+Welcome to Module 19! In this module, we will learn how to optimize React application speed. We will study **Performance Hooks** (`useMemo`, `useCallback`, `React.memo`), **DOM References** (`useRef`), and **Code Splitting** (`React.lazy()`, `Suspense`) inside a real-world **Dashboard Telemetry Hub** context.
 
 ---
 

@@ -1,6 +1,6 @@
-# 🛠️ Module 20: Real-World React Consolidation Projects
+# 🛠️ Module 21: Real-World React Consolidation Projects
 
-Welcome to Module 20! In this module, we will apply everything we have learned across the JavaScript and React curriculum. You will find step-by-step specifications for **3 real-world consolidation projects** designed to help you build a professional portfolio.
+Welcome to Module 21! In this module, we will apply everything we have learned across the JavaScript and React curriculum. You will find step-by-step specifications for **3 real-world consolidation projects** designed to help you build a professional portfolio.
 
 ---
 

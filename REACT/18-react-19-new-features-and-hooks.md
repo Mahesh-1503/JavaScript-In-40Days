@@ -1,6 +1,6 @@
-# 🚀 Module 21: React 19 New Features, Hooks & Styling Integrations
+# 🚀 Module 18: React 19 New Features, Hooks & Styling Integrations
 
-Welcome to Module 21! In this module, we will explore the cutting-edge features introduced in **React 19** (including advanced form actions, async transition states, new built-in hooks, ref-passing updates, and asset loading) and learn exactly how to set up React projects with popular CSS frameworks like **Tailwind CSS** (v3 & v4) and **Bootstrap**.
+Welcome to Module 18! In this module, we will explore the cutting-edge features introduced in **React 19** (including advanced form actions, async transition states, new built-in hooks, ref-passing updates, and asset loading) and learn exactly how to set up React projects with popular CSS frameworks like **Tailwind CSS** (v3 & v4) and **Bootstrap**.
 
 ---
 

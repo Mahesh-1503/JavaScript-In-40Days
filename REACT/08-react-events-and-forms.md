@@ -1,6 +1,6 @@
-# 🎛️ Module 14: React DOM Events & Forms (User Authentication Gateway)
+# 🎛️ Module 08: React DOM Events & Forms (User Authentication Gateway)
 
-Welcome to Module 14! In this module, we will learn how to handle user interactions in React. We will study **DOM Events** (clicks, keyboard input) and **Form Handling** (controlled vs. uncontrolled components, form submissions, and data validation) inside a real-world **User Authentication Gateway** context.
+Welcome to Module 08! In this module, we will learn how to handle user interactions in React. We will study **DOM Events** (clicks, keyboard input) and **Form Handling** (controlled vs. uncontrolled components, form submissions, and data validation) inside a real-world **User Authentication Gateway** context.
 
 ---
 

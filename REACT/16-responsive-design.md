@@ -1,4 +1,4 @@
-# Module 13: Responsive Web Design in React (Airbnb Grid System)
+# Module 16: Responsive Web Design in React (Airbnb Grid System)
 
 Modern web applications must deliver seamless user experiences across a wide range of devices—from small mobile screens and tablets to ultra-wide desktop monitors. Mastering Responsive Web Design (RWD) in React involves writing mobile-first styles, leveraging CSS Grid and Flexbox, tracking breakpoints using React hooks, and optimizing layouts to prevent Cumulative Layout Shift (CLS).
 

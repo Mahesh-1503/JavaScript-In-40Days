@@ -1,4 +1,4 @@
-# Module 12: Advanced Global State Management (Spotify Audio Mixer Store)
+# Module 14: Advanced Global State Management (Spotify Audio Mixer Store)
 
 As React applications grow to support large-scale features, managing state across disconnected components using props or the Context API becomes inefficient. When state updates are high-frequency, complex, or require async processing pipelines, professional teams utilize **Redux Toolkit (RTK)** to build a central, predictable state console.
 

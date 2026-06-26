@@ -1,4 +1,4 @@
-# Module 07: Browser Storage & State Hydration (Trello Board Persister)
+# Module 11: Browser Storage & State Hydration (Trello Board Persister)
 
 Web applications must often preserve user configurations, workspace layouts, or unsaved drafts across page refreshes and browser sessions. Master the browser storage APIs (Local Storage, Session Storage, Cookies) and learn how to serialize, store, and hydrate React component state.
 

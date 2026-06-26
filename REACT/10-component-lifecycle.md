@@ -1,6 +1,6 @@
-# 🔄 Module 15: React Component Lifecycle (Live Connection Monitor)
+# 🔄 Module 10: React Component Lifecycle (Live Connection Monitor)
 
-Welcome to Module 15! In this module, we will learn how components mount, update, and unmount. We will study **Component Lifecycles**—comparing legacy class lifecycle methods to modern functional hooks—inside a real-world **Live Web Socket Connection Monitor** context.
+Welcome to Module 10! In this module, we will learn how components mount, update, and unmount. We will study **Component Lifecycles**—comparing legacy class lifecycle methods to modern functional hooks—inside a real-world **Live Web Socket Connection Monitor** context.
 
 ---
 

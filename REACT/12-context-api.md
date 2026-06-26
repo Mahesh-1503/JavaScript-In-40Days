@@ -1,4 +1,4 @@
-# Module 10: Global State Management (Netflix Auth & Profile Context)
+# Module 12: Global State Management (Netflix Auth & Profile Context)
 
 In complex React applications, multiple components across different layout branches must share the same data (such as active user sessions, themes, or localized configurations). Master **React Context API** to eliminate prop drilling, broadcast global state, and structure performant user interfaces.
 

@@ -57,24 +57,24 @@ Our React curriculum focuses on building modern, performant Single Page Applicat
 4. 📂 **[ReactJS Components](REACT/04-components/)**: Developing functional components, rendering components recursively, and project configuration.
 5. 📂 **[ReactJS Props](REACT/05-props/)**: Passing props down the component tree, structuring card components, dynamic properties.
 6. 📂 **[ReactJS Styles](REACT/06-styles/)**: Styling components using inline CSS, external stylesheets, CSS modules, and CSS variables.
-7. 📂 **[Local & Session Storage](REACT/07-local-and-session-storage/)**: Storing user states persistently across browser refreshes and tab sessions.
-8. 📂 **[ReactJS useState hook](REACT/08-usestate-hook/)**: React state hook management.
-   - 📄 [00-list-and-keys.md](REACT/08-usestate-hook/00-list-and-keys.md): Managing lists, list update triggers, and standard unique keys references.
-   - 📄 [01-notes.md](REACT/08-usestate-hook/01-notes.md): Practical usage examples of `useState` triggers.
-   - 📄 [02-notes.md](REACT/08-usestate-hook/02-notes.md): Advanced state manipulation patterns.
+7. 📂 **[ReactJS useState hook](REACT/07-usestate-hook/)**: React state hook management.
+   - 📄 [00-list-and-keys.md](REACT/07-usestate-hook/00-list-and-keys.md): Managing lists, list update triggers, and standard unique keys references.
+   - 📄 [01-notes.md](REACT/07-usestate-hook/01-notes.md): Practical usage examples of `useState` triggers.
+   - 📄 [02-notes.md](REACT/07-usestate-hook/02-notes.md): Advanced state manipulation patterns.
+8. 📂 **[React DOM Events & Forms](REACT/08-react-events-and-forms.md)**: Handling DOM Events (clicks, keyboard input), controlled vs uncontrolled components, form validation, and `onSubmit`.
 9. 📂 **[ReactJS useEffect hook](REACT/09-useeffect-hook.md)**: Managing side effects, asynchronous event listeners, intervals, and media streams lifecycles.
-10. 📂 **[ReactJS Context API](REACT/10-context-api.md)**: Handling global state broadcast frameworks, provider scopes, and avoiding prop drilling.
-11. 📂 **[ReactJS Custom Hooks](REACT/11-custom-hooks.md)**: Stateful logic reuse patterns, hook encapsulations, and window resize listeners.
-12. 📂 **[ReactJS Redux Toolkit](REACT/12-redux-toolkit.md)**: Managing global state mixers, slice reducers, selectors, and createAsyncThunk middleware.
-13. 📂 **[Responsive Design in React](REACT/13-responsive-design.md)**: Writing mobile-first styles, implementing CSS grid/flexbox, responsive matchMedia hooks, and preventing layout shifts (CLS).
-14. 📂 **[React DOM Events & Forms](REACT/14-react-events-and-forms.md)**: Handling DOM Events (clicks, keyboard input), controlled vs uncontrolled components, form validation, and `onSubmit`.
-15. 📂 **[React Component Lifecycle](REACT/15-component-lifecycle.md)**: Understanding mounting, updating, and unmounting phases, comparing class lifecycle methods to functional `useEffect` hook equivalents.
-16. 📂 **[React Routing](REACT/16-react-router.md)**: Single Page Applications navigation with react-router-dom, nested routes, layout pages, dynamic URL parameters, and programmatic redirects.
+10. 📂 **[React Component Lifecycle](REACT/10-component-lifecycle.md)**: Understanding mounting, updating, and unmounting phases, comparing class lifecycle methods to functional `useEffect` hook equivalents.
+11. 📂 **[Local & Session Storage](REACT/11-local-and-session-storage/)**: Storing user states persistently across browser refreshes and tab sessions.
+12. 📂 **[ReactJS Context API](REACT/12-context-api.md)**: Handling global state broadcast frameworks, provider scopes, and avoiding prop drilling.
+13. 📂 **[ReactJS Custom Hooks](REACT/13-custom-hooks.md)**: Stateful logic reuse patterns, hook encapsulations, and window resize listeners.
+14. 📂 **[ReactJS Redux Toolkit](REACT/14-redux-toolkit.md)**: Managing global state mixers, slice reducers, selectors, and createAsyncThunk middleware.
+15. 📂 **[React Routing](REACT/15-react-router.md)**: Single Page Applications navigation with react-router-dom, nested routes, layout pages, dynamic URL parameters, and programmatic redirects.
+16. 📂 **[Responsive Design in React](REACT/16-responsive-design.md)**: Writing mobile-first styles, implementing CSS grid/flexbox, responsive matchMedia hooks, and preventing layout shifts (CLS).
 17. 📂 **[Styling & Animation Packages](REACT/17-styling-and-animation-packages.md)**: Comparing UI libraries (Material UI, React-Bootstrap), utility CSS styling (Tailwind CSS), and Framer Motion micro-animations.
-18. 📂 **[Performance & Lazy Loading](REACT/18-lazy-loading-and-performance.md)**: Dynamic code splitting with React.lazy and Suspense, rendering memoizations (useMemo, useCallback, React.memo), and mutable states (useRef).
-19. 📂 **[React Interview Prep](REACT/19-react-interview-questions.md)**: Curated React technical interview questions and live coding preparation guidelines for Junior, Mid, and Senior-level developers.
-20. 📂 **[Real-World React Projects](REACT/20-real-world-projects.md)**: Complete specifications and step-by-step development blueprints for three portfolio-grade consolidation projects.
-21. 📂 **[React 19 Hooks & Styling Integrations](REACT/21-react-19-new-features-and-hooks.md)**: Master the latest React 19 features (Actions, useActionState, useFormStatus, useOptimistic, use API, ref prop) and step-by-step Tailwind CSS (v3/v4) and Bootstrap configurations.
+18. 📂 **[React 19 Hooks & Styling Integrations](REACT/18-react-19-new-features-and-hooks.md)**: Master the latest React 19 features (Actions, useActionState, useFormStatus, useOptimistic, use API, ref prop) and step-by-step Tailwind CSS (v3/v4) and Bootstrap configurations.
+19. 📂 **[Performance & Lazy Loading](REACT/19-lazy-loading-and-performance.md)**: Dynamic code splitting with React.lazy and Suspense, rendering memoizations (useMemo, useCallback, React.memo), and mutable states (useRef).
+20. 📂 **[React Interview Prep](REACT/20-react-interview-questions.md)**: Curated React technical interview questions and live coding preparation guidelines for Junior, Mid, and Senior-level developers.
+21. 📂 **[Real-World React Projects](REACT/21-real-world-projects.md)**: Complete specifications and step-by-step development blueprints for three portfolio-grade consolidation projects.
 
 ---
 

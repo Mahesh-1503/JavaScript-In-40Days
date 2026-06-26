@@ -1,4 +1,4 @@
-# Module 08: React State Management & Lists (Slack Interactive Messaging)
+# Module 07: React State Management & Lists (Slack Interactive Messaging)
 
 React components are dynamic engines that change their user interface based on user interactions. This interactive behavior is powered by **State**—a component's local memory. Master the core React state engine (the `useState` hook), state updater batching, list rendering, and state immutability.
 
