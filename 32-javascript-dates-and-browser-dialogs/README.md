@@ -1,4 +1,4 @@
-# Day 28: JavaScript Dates & Browser Dialogs (WhatsApp Message Scheduler)
+# Day 32: JavaScript Dates & Browser Dialogs (WhatsApp Message Scheduler)
 
 Real-world applications must frequently work with time metrics—such as timestamps, time zones, formatting locales, and scheduling. Additionally, browsers expose native utility dialogs (`alert()`, `prompt()`, `confirm()`). Master the `Date` object, temporal arithmetic, and the execution details of browser modal dialogs.
 
@@ -71,6 +71,132 @@ Native dialogs (`alert`, `prompt`, `confirm`) are **synchronous**. During a dial
 - CSS transitions and animations freeze.
 - Event loop microtasks (like API requests) cannot resolve.
 - **Production Standard:** Native dialogs are avoided in modern web applications. Instead, developers build custom, accessible layout overlays (Modals) using HTML/CSS, which behave asynchronously without blocking the browser thread.
+
+---
+
+## 4.5. Taking Specific Data Types as Input via Dialogs
+
+When capturing user inputs via browser dialogs, you face a major JavaScript engine constraint: **`prompt()` always returns a string value** (or `null` if cancelled). 
+If the user types the number `25`, `prompt()` returns the string `"25"`. If you try to calculate `input + 10`, JavaScript will concatenate the string and return `"2510"` instead of `35`!
+
+To safely process inputs, you must implement a parsing and validation pipeline:
+
+```text
+               ================ INPUT CAPTURE & VALIDATION FLOW ================
+
+                   [ prompt(message) ]
+                            │
+              ┌─────────────┴─────────────┐
+              ▼ (User clicked Cancel)     ▼ (User typed and clicked OK)
+          [ null ]                    [ String (e.g. "25" or "abc") ]
+              │                                   │
+              ▼                                   ▼
+      Use fallback / Exit                  [ Casting Filter ]
+                                      (Number, Boolean, Date, JSON)
+                                                  │
+                                                  ▼
+                                          [ Validation Gate ]
+                                       (Is NaN? / Is valid Date?)
+                                      ┌───────────┴───────────┐
+                                      ▼ (Invalid)             ▼ (Valid)
+                                 Show Error & Retry        Return Casted Type
+```
+
+Here is how you parse, sanitize, and validate different data types from raw user dialogs:
+
+### 1. Parsing Integers & Decimal Numbers
+To parse numbers, use `Number.parseInt()` (with base-10 radix) or `Number.parseFloat()`. Always validate the outputs using `Number.isNaN()` and `Number.isFinite()`.
+
+```javascript
+function promptForNumber(message, isInteger = true, defaultValue = 0) {
+  const rawInput = prompt(message);
+
+  // 1. Handle Cancel Case
+  if (rawInput === null) return defaultValue;
+
+  // 2. Trim whitespace
+  const sanitized = rawInput.trim();
+
+  // 3. Cast based on type
+  const parsed = isInteger 
+    ? Number.parseInt(sanitized, 10) 
+    : Number.parseFloat(sanitized);
+
+  // 4. Validate output
+  if (Number.isNaN(parsed) || !Number.isFinite(parsed)) {
+    alert("Error: Invalid numeric input! Returning fallback value.");
+    return defaultValue;
+  }
+
+  return parsed;
+}
+
+// Usage
+const age = promptForNumber("Enter your age (integer):", true, 18);
+const price = promptForNumber("Enter product price (decimal):", false, 9.99);
+```
+
+### 2. Parsing Booleans
+*   **Direct Option:** Use the native `confirm()` dialog. It naturally returning a boolean (`true`/`false`) without requiring string conversion.
+*   **Text Option:** If the user must type a value (like `"yes"` or `"no"`), sanitize and check against matching strings:
+
+```javascript
+function promptForBoolean(message, defaultBoolean = false) {
+  const rawInput = prompt(message);
+  if (rawInput === null) return defaultBoolean;
+
+  const sanitized = rawInput.trim().toLowerCase();
+  
+  const trueValues = ["true", "yes", "y", "1"];
+  const falseValues = ["false", "no", "n", "0"];
+
+  if (trueValues.includes(sanitized)) return true;
+  if (falseValues.includes(sanitized)) return false;
+
+  alert("Unrecognized boolean format. Using fallback.");
+  return defaultBoolean;
+}
+```
+
+### 3. Parsing Date Objects
+To parse inputs into valid Javascript date objects, pass the string directly into `new Date()`. You must validate it by checking if the resulting millisecond index is finite using `Number.isNaN(date.getTime())`.
+
+```javascript
+function promptForDate(message, defaultDate = new Date()) {
+  const rawInput = prompt(message);
+  if (rawInput === null) return defaultDate;
+
+  const parsedDate = new Date(rawInput.trim());
+
+  // Check if date parse was successful
+  if (Number.isNaN(parsedDate.getTime())) {
+    alert("Error: Invalid date format! Using current date fallback.");
+    return defaultDate;
+  }
+
+  return parsedDate;
+}
+
+// Usage
+const scheduledDate = promptForDate("Enter message delivery date (YYYY-MM-DD):");
+```
+
+### 4. Parsing Structured Data (JSON)
+For complex database configurations, parse user input strings using `JSON.parse()` wrapped inside a `try-catch` block:
+
+```javascript
+function promptForJSON(message, defaultObject = {}) {
+  const rawInput = prompt(message);
+  if (rawInput === null) return defaultObject;
+
+  try {
+    return JSON.parse(rawInput.trim());
+  } catch (error) {
+    alert(`Invalid JSON format: ${error.message}. Returning fallback.`);
+    return defaultObject;
+  }
+}
+```
 
 ---
 
