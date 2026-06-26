@@ -9,42 +9,43 @@ Welcome to the ultimate learning roadmap to mastering **JavaScript** and **React
 
 ---
 
-## 📅 JavaScript Core Curriculum (Days 1–31)
+## 📅 JavaScript Core Curriculum (Days 1–33)
 
 | Day / Folder | Concept / Topic | Directory Link | Core Concepts Covered |
 | :---: | :--- | :---: | :--- |
 | **01** | **Script Loading Behaviors** | 📂 [01-script-loading-behaviors](01-script-loading-behaviors/) | Synchronous execution, script position in HTML, `async` vs `defer` performance. |
 | **02** | **Variables & Data Types** | 📂 [02-variables-and-data-types](02-variables-and-data-types/) | Block-scoped (`let`, `const`) vs Function-scoped (`var`), primitives vs reference types. |
 | **03** | **Operators & Expressions** | 📂 [03-operators-and-expressions](03-operators-and-expressions/) | Arithmetic, assignment, strict vs loose comparison (`==` vs `===`), logical `&&`/`\|\|`/`??`. |
-| **03b** | **Bitwise Operators & Manipulation** | 📂 [03b-bitwise-operators-and-bit-manipulation](03b-bitwise-operators-and-bit-manipulation/) | Binary representation, signed Int32/Two's complement, AND/OR/XOR/NOT logic, bit shifts, POSIX permission gates, RGB/Hex color masks, variable swaps, and parity checks. |
-| **04** | **Conditionals** | 📂 [04-conditionals](04-conditionals/) | Control flow using `if`, `else if`, `else`, ternary operators, and logical short-circuiting. |
-| **05** | **Loops & Iteration** | 📂 [05-loops](05-loops/) | `for` loops, `while` loops, nested loops, and generating console pyramid patterns. |
-| **06** | **Functions Basics** | 📂 [06-functions](06-functions/) | Function statements vs declarations vs expressions, parameter passing, return values. |
-| **07** | **Mini Projects** | 📂 [07-mini-projects](07-mini-projects/) | **Rock, Paper, Scissors** game and **Secret Number Guessing** game with attempt counters. |
-| **08** | **Execution Context** | 📂 [08-execution-context](08-execution-context/) | How JS runs under the hood, Creation phase, Execution phase, Call Stack operations. |
-| **09** | **Hoisting** | 📂 [09-hoisting](09-hoisting/) | Variable hoisting (`var` vs `let`/`const` Temporal Dead Zone) and Function hoisting. |
-| **10** | **Scopes & Scope Chaining** | 📂 [10-scopes-and-scope-chaining](10-scopes-and-scope-chaining/) | Global scope, Function/Local scope, Block scope, lexical environment, scope chaining. |
-| **11** | **Closures** | 📂 [11-closures](11-closures/) | Definitions, inner functions retaining outer variables, lexical binding, and closure use cases. |
-| **12** | **Objects in JavaScript** | 📂 [12-objects](12-objects/) | Constructor/Factory functions, Object methods (`keys`, `values`, `entries`), references, shallow vs deep copying, destructuring, optional chaining. |
-| **13** | **`this` Keyword & Explicit Binding**| 📂 [13-this-keyword-and-explicit-binding](13-this-keyword-and-explicit-binding/) | Meaning of `this`, dynamic invocation contexts, explicit binding methods (`call`, `apply`, `bind`). |
-| **14** | **Strict Mode & Error Handling** | 📂 [14-strict-mode-and-error-handling](14-strict-mode-and-error-handling/) | `"use strict"` behavior, types of errors, runtime protection, `try-catch-finally` mechanisms. |
-| **15** | **Arrays & Methods** | 📂 [15-arrays](15-arrays/) | Indexing, cloning (`slice`), nested arrays, advanced methods (`concat`, `reverse`),Grouping, modern ES methods. |
-| **16** | **setTimeout & Advanced Closures** | 📂 [16-advanced-functions-and-settimeout](16-advanced-functions-and-settimeout/) | Asynchronous timers (`setTimeout`), First-class functions, block-scoped loops (`let`) vs `var` closure fixes. |
-| **17** | **Sync vs Async JavaScript** | 📂 [17-sync-vs-async-javascript](17-sync-vs-async-javascript/) | Single-threaded engine model, blocking synchronous code vs non-blocking async execution. |
-| **18** | **Callbacks & Callback Hell** | 📂 [18-callbacks-and-callback-hell](18-callbacks-and-callback-hell/) | Callback parameters, nested tasks, callback hell (pyramid of doom), Inversion of Control. |
-| **19** | **Promises** | 📂 [19-promises](19-promises/) | Promise instantiation, pending/fulfilled/rejected states, consuming with `.then()/.catch()`, promise chaining. |
-| **20** | **Async / Await** | 📂 [20-async-await](20-async-await/) | Syntax sugar for consuming promises, synchronous-looking syntax, error handling with `try-catch`. |
-| **21** | **OOP & Prototypes** | 📂 [21-oop-and-prototypes](21-oop-and-prototypes/) | Prototypal inheritance, accessing `__proto__`, constructor prototypes, object creation patterns. |
-| **22** | **Looping Objects & Arrays** | 📂 [22-for-in-for-of-foreach](22-for-in-for-of-foreach/) | Comparative study of `for...in` (object keys), `for...of` (iterable values), and `forEach()`. |
-| **23** | **Array Iterators** | 📂 [23-array-iterators-map-filter-reduce](23-array-iterators-map-filter-reduce/) | Transforming elements with `map`, filtering with `filter`, accumulating values with `reduce`. |
-| **24** | **APIs & Fetch** | 📂 [24-apis-and-fetch](24-apis-and-fetch/) | AJAX basics, `fetch()` method, handling responses, parse JSON, displaying dynamic user lists. |
-| **25** | **DOM & Cookies** | 📂 [25-dom-and-cookies](25-dom-and-cookies/) | Document Object Model selection/manipulation, Events listener/handling, Todo app, Cookies storage. |
-| **26** | **JavaScript Modules** | 📂 [26-javascript-modules-esm-commonjs](26-javascript-modules-esm-commonjs/) | Modular isolation, CommonJS exports vs modern ES Modules static analysis, live bindings, and tree-shaking. |
-| **27** | **Memory & Garbage Collection** | 📂 [27-memory-management-and-garbage-collection](27-memory-management-and-garbage-collection/) | Call Stack vs Heap, Mark-and-Sweep algorithms, closures scope retention, Map vs WeakMap, and profiling. |
-| **28** | **Dates & Browser Dialogs** | 📂 [28-javascript-dates-and-browser-dialogs](28-javascript-dates-and-browser-dialogs/) | Working with Dates, UNIX timestamps, internationalized formatting via Intl, and synchronous window dialog blocks. |
-| **29** | **DOM Tips, Tricks & Web APIs** | 📂 [29-dom-tips-tricks-and-browser-apis](29-dom-tips-tricks-and-browser-apis/) | Advanced DOM performance (Reflows/Repaints, DocumentFragments), event delegation, and browser APIs (Intersection/Resize Observers, Geolocation, Clipboard). |
-| **30** | **Modern ES6+ Features** | 📂 [30-modern-es6-plus-features](30-modern-es6-plus-features/) | Comprehensive modern upgrades: let/const, template strings, exponents, library additions, classes, promises, destructuring, spread/rest, enhanced object literals, modules, generators. |
-| **31** | **Browser DevTools & Debugging** | 📂 [31-browser-developer-tools-and-debugging](31-browser-developer-tools-and-debugging/) | Master browser developer tools (Elements, Console, Sources, Network, Application panels), custom logging, breakpoints, call stacks, scope variables, offline/network throttling, and profiling. |
+| **04** | **Bitwise Operators & Manipulation** | 📂 [04-bitwise-operators-and-bit-manipulation](04-bitwise-operators-and-bit-manipulation/) | Binary representation, signed Int32/Two's complement, AND/OR/XOR/NOT logic, bit shifts, POSIX permission gates, RGB/Hex color masks, variable swaps, and parity checks. |
+| **05** | **Conditionals** | 📂 [05-conditionals](05-conditionals/) | Control flow using `if`, `else if`, `else`, ternary operators, and logical short-circuiting. |
+| **06** | **Loops & Iteration** | 📂 [06-loops](06-loops/) | `for` loops, `while` loops, nested loops, and generating console pyramid patterns. |
+| **07** | **Functions Basics** | 📂 [07-functions](07-functions/) | Function statements vs declarations vs expressions, parameter passing, return values. |
+| **08** | **Mini Projects** | 📂 [08-mini-projects](08-mini-projects/) | **Rock, Paper, Scissors** game and **Secret Number Guessing** game with attempt counters. |
+| **09** | **Execution Context** | 📂 [09-execution-context](09-execution-context/) | How JS runs under the hood, Creation phase, Execution phase, Call Stack operations. |
+| **10** | **Hoisting** | 📂 [10-hoisting](10-hoisting/) | Variable hoisting (`var` vs `let`/`const` Temporal Dead Zone) and Function hoisting. |
+| **11** | **Scopes & Scope Chaining** | 📂 [11-scopes-and-scope-chaining](11-scopes-and-scope-chaining/) | Global scope, Function/Local scope, Block scope, lexical environment, scope chaining. |
+| **12** | **Closures** | 📂 [12-closures](12-closures/) | Definitions, inner functions retaining outer variables, lexical binding, and closure use cases. |
+| **13** | **Objects in JavaScript** | 📂 [13-objects](13-objects/) | Constructor/Factory functions, Object methods (`keys`, `values`, `entries`), references, shallow vs deep copying, destructuring, optional chaining. |
+| **14** | **`this` Keyword & Explicit Binding**| 📂 [14-this-keyword-and-explicit-binding](14-this-keyword-and-explicit-binding/) | Meaning of `this`, dynamic invocation contexts, explicit binding methods (`call`, `apply`, `bind`). |
+| **15** | **Strict Mode & Error Handling** | 📂 [15-strict-mode-and-error-handling](15-strict-mode-and-error-handling/) | `"use strict"` behavior, types of errors, runtime protection, `try-catch-finally` mechanisms. |
+| **16** | **Arrays & Methods** | 📂 [16-arrays](16-arrays/) | Indexing, cloning (`slice`), nested arrays, advanced methods (`concat`, `reverse`), Grouping, modern ES methods. |
+| **17** | **Looping Objects & Arrays** | 📂 [17-for-in-for-of-foreach](17-for-in-for-of-foreach/) | Comparative study of `for...in` (object keys), `for...of` (iterable values), and `forEach()`. |
+| **18** | **Array Iterators** | 📂 [18-array-iterators-map-filter-reduce](18-array-iterators-map-filter-reduce/) | Transforming elements with `map`, filtering with `filter`, accumulating values with `reduce`. |
+| **19** | **setTimeout & Advanced Closures** | 📂 [19-advanced-functions-and-settimeout](19-advanced-functions-and-settimeout/) | Asynchronous timers (`setTimeout`), First-class functions, block-scoped loops (`let`) vs `var` closure fixes. |
+| **20** | **Sync vs Async JavaScript** | 📂 [20-sync-vs-async-javascript](20-sync-vs-async-javascript/) | Single-threaded engine model, blocking synchronous code vs non-blocking async execution. |
+| **21** | **Callbacks & Callback Hell** | 📂 [21-callbacks-and-callback-hell](21-callbacks-and-callback-hell/) | Callback parameters, nested tasks, callback hell (pyramid of doom), Inversion of Control. |
+| **22** | **Promises** | 📂 [22-promises](22-promises/) | Promise instantiation, pending/fulfilled/rejected states, consuming with `.then()/.catch()`, promise chaining. |
+| **23** | **Async / Await** | 📂 [23-async-await](23-async-await/) | Syntax sugar for consuming promises, synchronous-looking syntax, error handling with `try-catch`. |
+| **24** | **OOP & Prototypes** | 📂 [24-oop-and-prototypes](24-oop-and-prototypes/) | Prototypal inheritance, accessing `__proto__`, constructor prototypes, object creation patterns. |
+| **25** | **APIs & Fetch** | 📂 [25-apis-and-fetch](25-apis-and-fetch/) | AJAX basics, `fetch()` method, handling responses, parse JSON, displaying dynamic user lists. |
+| **26** | **DOM & Cookies** | 📂 [26-dom-and-cookies](26-dom-and-cookies/) | Document Object Model selection/manipulation, Events listener/handling, Todo app, Cookies storage. |
+| **27** | **DOM Tips, Tricks & Web APIs** | 📂 [27-dom-tips-tricks-and-browser-apis](27-dom-tips-tricks-and-browser-apis/) | Advanced DOM performance (Reflows/Repaints, DocumentFragments), event delegation, and browser APIs (Intersection/Resize Observers, Geolocation, Clipboard). |
+| **28** | **Browser DevTools & Debugging** | 📂 [28-browser-developer-tools-and-debugging](28-browser-developer-tools-and-debugging/) | Master browser developer tools (Elements, Console, Sources, Network, Application panels), custom logging, breakpoints, call stacks, scope variables, offline/network throttling, and profiling. |
+| **29** | **JS Performance Optimizations** | 📂 [29-javascript-performance-debouncing-throttling-memoization](29-javascript-performance-debouncing-throttling-memoization/) | Debouncing and throttling execution limits, closure-based timer systems, custom key-serialized memoization caching, and recursive algorithm optimization. |
+| **30** | **JavaScript Modules** | 📂 [30-javascript-modules-esm-commonjs](30-javascript-modules-esm-commonjs/) | Modular isolation, CommonJS exports vs modern ES Modules static analysis, live bindings, and tree-shaking. |
+| **31** | **Memory & Garbage Collection** | 📂 [31-memory-management-and-garbage-collection](31-memory-management-and-garbage-collection/) | Call Stack vs Heap, Mark-and-Sweep algorithms, closures scope retention, Map vs WeakMap, and profiling. |
+| **32** | **Dates & Browser Dialogs** | 📂 [32-javascript-dates-and-browser-dialogs](32-javascript-dates-and-browser-dialogs/) | Working with Dates, UNIX timestamps, internationalized formatting via Intl, and synchronous window dialog blocks. |
+| **33** | **Modern ES6+ Features** | 📂 [33-modern-es6-plus-features](33-modern-es6-plus-features/) | Comprehensive modern upgrades: let/const, template strings, exponents, library additions, classes, promises, destructuring, spread/rest, enhanced object literals, modules, generators. |
 
 ---
 
