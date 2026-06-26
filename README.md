@@ -70,6 +70,12 @@ Our React curriculum focuses on building modern, performant Single Page Applicat
 
 ---
 
+## 🧠 Coding Interview & Logic Building Hub
+
+* 📂 **[205+ Problem Solving & Logic-Building Guide](problem-solving-guide/)**: A dedicated master guide containing a 4-step logic-building framework and 205 curated programming challenges (spanning Easy, Medium, and Hard difficulties). Each problem maps directly to a target learning folder in this repository to help you master concepts and pass coding interviews.
+
+---
+
 ## 🛠️ Getting Started & Usage
 
 ### Running JavaScript files (Node.js)
