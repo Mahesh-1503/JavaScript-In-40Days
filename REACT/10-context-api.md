@@ -57,6 +57,66 @@ How React Context solves nested property dependencies:
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before diving into complex authentication pipelines, let's look at the absolute simplest, bare-minimum setup that uses React Context: a **Global Theme Switcher**.
+
+### The Code
+```jsx
+import React, { createContext, useContext, useState } from 'react';
+
+// 1. Create the Context (The "Radio Broadcast Station")
+const ThemeContext = createContext('light');
+
+export function ThemeApp() {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
+
+  return (
+    // 2. Provide the value to all children below (The "Broadcaster")
+    <ThemeContext.Provider value={theme}>
+      <div style={{ 
+        background: theme === 'light' ? '#ffffff' : '#1e1e1e', 
+        color: theme === 'light' ? '#000000' : '#ffffff',
+        padding: '20px'
+      }}>
+        <p>Current Theme: {theme}</p>
+        <ThemeButton onToggle={toggleTheme} />
+      </div>
+    </ThemeContext.Provider>
+  );
+}
+
+function ThemeButton({ onToggle }) {
+  // 3. Consume the value directly (The "Radio Receiver")
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button onClick={onToggle}>
+      Switch Theme (Current: {theme})
+    </button>
+  );
+}
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`const ThemeContext = createContext('light');`**
+   - We create a new Context object using `createContext`.
+   - The argument `'light'` is the **Default Value**. If a child component tries to use this context but is not inside a Provider, it gets `'light'`.
+2. **`<ThemeContext.Provider value={theme}>`**
+   - Every context comes with a `Provider` component. We wrap our layout in it.
+   - The `value` prop is crucial: this is the data that will be broadcasted to all nested child components. Whenever the state `theme` changes, this provider broadcasts the new value.
+3. **`const theme = useContext(ThemeContext);`**
+   - Inside the nested child component (`ThemeButton`), we call the `useContext` hook and pass the `ThemeContext` we created at the top.
+   - React will look up the component tree to find the nearest `<ThemeContext.Provider>` and return its current `value`.
+   - The beauty here is that we did not pass the `theme` variable as a prop to `<ThemeButton />`! It retrieved it directly from the context.
+
+---
+
 ## 4. Deep Explanation (Fiber Trees & Render Bottlenecks)
 
 ### 1. Context Resolution in the Fiber Tree

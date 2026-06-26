@@ -65,6 +65,66 @@ _jsxs("div", {
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before rendering a dynamic Spotify artist catalog grid, let's look at the core syntax rules of JSX using a simple **Product Specifications Card**.
+
+### The Code
+```jsx
+import React from 'react';
+
+export function ProductSpec() {
+  const name = "Quantum Speaker";
+  const price = 149.99;
+  const inStock = true;
+  const specs = ["360 Audio", "Bluetooth 5.2", "Waterproof (IPX7)"];
+
+  return (
+    // 1. Fragment: Groups sibling elements without rendering a wrapper <div> in the HTML
+    <>
+      <h2 style={{ color: inStock ? '#1db954' : '#d32f2f' }}>
+        {name} {/* 2. Variable portal: evaluates name */}
+      </h2>
+
+      <p>Price: ${price}</p>
+
+      {/* 3. Conditional Rendering: displays tag depending on availability */}
+      {inStock ? (
+        <span className="badge-available">Available Today</span>
+      ) : (
+        <span className="badge-unavailable">Out of Stock</span>
+      )}
+
+      <h3>Key Features:</h3>
+      <ul>
+        {/* 4. List Rendering: loops over items and projects them into list elements */}
+        {specs.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`return ( <> ... </> );`**
+   - In React, components can only return a single root node. If we had returned `<h2>` and `<p>` without a wrapper, the compiler would throw an error.
+   - We use a **Fragment** (`<>` and `</>`) to wrap them. It acts as a invisible container that disappears once compiled, preventing DOM clutter.
+2. **`style={{ color: inStock ? '#1db954' : '#d32f2f' }}`**
+   - Inline styles in JSX must be wrapped inside double curly braces `{{ ... }}`.
+   - The first brace opens the JavaScript portal. The second brace defines a JavaScript object containing CSS key-value pairs.
+3. **`{name}`**
+   - Single curly braces `{}` are portals. Any JavaScript variable or expression inside them gets evaluated. In this case, React outputs the string `"Quantum Speaker"`.
+4. **`inStock ? ( <span>...</span> ) : ( <span>...</span> )`**
+   - You cannot write `if/else` statements inside JSX. Instead, we use the **Ternary Operator** (`condition ? true : false`) to conditionally render layout trees.
+5. **`specs.map((item, index) => ( <li key={index}>{item}</li> ))`**
+   - To render arrays in JSX, we loop through them using `.map()`, which returns a new array of JSX components.
+   - **`key={index}`:** React requires every item in a mapped list to have a unique `key` prop. This allows React's diffing engine to track, add, or delete list items without repainting the entire viewport.
+
+---
+
 ## 4. Deep Explanation (Compilation, Strict Rules, & The Runtime)
 
 ### 1. The Compilation Shift (React 17+ JSX Transform)

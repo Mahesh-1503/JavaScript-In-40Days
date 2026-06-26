@@ -52,6 +52,60 @@ Loops let you repeat a block of code multiple times without rewriting it.
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before iterating Zomato restaurant grids and Paginated Search databases, let's look at the basic syntax of JavaScript loops.
+
+### The Code
+```javascript
+// 1. The classic "for" loop (Counted Loop)
+for (let i = 1; i <= 5; i++) {
+  console.log("Count is:", i);
+}
+
+// 2. The classic "while" loop (Condition-Based Loop)
+let count = 3;
+while (count > 0) {
+  console.log("Counting down:", count);
+  count--; // CRUCIAL: Decrement count so the loop eventually ends!
+}
+
+// 3. The "for...of" loop (Simplest way to loop through arrays)
+const shoppingList = ["milk", "eggs", "bread"];
+for (const item of shoppingList) {
+  console.log("Shopping item:", item);
+}
+
+// 4. Using "continue" and "break" inside loops
+for (let num = 1; num <= 5; num++) {
+  if (num === 2) {
+    continue; // Skip the rest of this iteration (skips printing 2)
+  }
+  if (num === 4) {
+    break; // Exits the loop completely (stops after printing 3)
+  }
+  console.log("Filtered number:", num); // Outputs 1, then 3
+}
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`for (let i = 1; i <= 5; i++) { ... }`**
+   - **Initialization (`let i = 1`):** Creates a counter variable `i` starting at 1. Runs once.
+   - **Condition (`i <= 5`):** Checks if `i` is less than or equal to 5. If `true`, the code inside `{ ... }` runs. If `false`, the loop ends.
+   - **Increment (`i++`):** Adds 1 to `i` after the block code finishes, then re-checks the condition.
+2. **`while (count > 0) { ... count--; }`**
+   - Checks `count > 0`. If `true`, executes the block.
+   - **`count--`** is shorthand for `count = count - 1`. If you forget this line, `count` will stay `3` forever, creating an **infinite loop** that crashes the browser!
+3. **`for (const item of shoppingList) { ... }`**
+   - A clean modern shorthand. It automatically loops through the `shoppingList` array, assigning the current element value to the variable `item` on each cycle.
+4. **`continue`**
+   - Skips the current step. When `num === 2`, JavaScript immediately skips to the next increment step, so `console.log(2)` never runs.
+5. **`break`**
+   - Exits the loop. When `num === 4`, the loop terminates instantly. No more iterations run.
+
+---
+
 ## 4. Deep Explanation (V8 Compiler Loop Optimizations)
 
 To write performance-critical loops, we must understand how JS engines compile them:

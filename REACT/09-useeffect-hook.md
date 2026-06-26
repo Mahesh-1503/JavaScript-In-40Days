@@ -43,14 +43,52 @@ Component Unmounts                      Apply updates to Zoom Sockets
 Run Cleanup Function (Release Camera, close WebSocket)
 ```
 
----
-
 ## 3. Beginner Explanation
 
 - **Side Effect:** Any code that interacts with the browser or system outside of the React component's rendering loop (e.g. timers, DOM manipulations, API calls, WebSockets).
 - **`useEffect` Hook:** React's built-in function to handle side effects. It takes a callback function containing the effect code and a dependency array.
 - **Dependency Array (`[]`):** The control array that tells React *when* to execute the effect.
 - **Cleanup Function:** The function returned by your `useEffect` callback that React runs before the component unmounts or before re-running the effect, used to clear timers or disconnect listeners.
+
+---
+
+## 3.5. Syntax & Basic Code Mechanics
+
+Let's look at the absolute simplest, bare-minimum React component that uses a side effect: a **Page Title Sync**.
+
+### The Code
+```jsx
+import React, { useState, useEffect } from 'react';
+
+export function ClickCounter() {
+  const [count, setCount] = useState(0);
+
+  // Synconize the browser tab title with the count state
+  useEffect(() => {
+    document.title = `Total Clicks: ${count}`;
+  }, [count]);
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Click Count: {count}
+    </button>
+  );
+}
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`import React, { useState, useEffect } from 'react';`**
+   - We import both the `useState` hook (for our counter number) and the `useEffect` hook (for our side effect).
+2. **`useEffect(() => { ... }, [count]);`**
+   - We invoke the `useEffect` hook. It takes two arguments:
+     - **Argument 1 (The Callback):** `() => { ... }` is the function containing the code we want to run *after* React paints the screen.
+     - **Argument 2 (The Dependency Array):** `[count]` tells React: *"Only run this function if the `count` variable has changed since the last render."*
+3. **`document.title = ...`**
+   - Inside the callback, we mutate the browser window's tab title. This is a **Side Effect** because the tab title exists entirely outside our React component's layout.
+4. **`<button onClick={() => setCount(count + 1)}>`**
+   - The user clicks the button. This triggers `setCount(count + 1)`, updating the state and scheduling a re-render.
+   - After the screen is repainted, React checks `[count]`. Since the value of `count` is different, it runs the `useEffect` callback again, updating the browser tab.
 
 ---
 

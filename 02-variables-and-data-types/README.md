@@ -49,6 +49,46 @@ JavaScript gives us three keywords to create variables:
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before mapping memory heap addresses in Amazon shopping carts, let's look at the basic syntax of creating variables and variables reassignments in JavaScript.
+
+### The Code
+```javascript
+// 1. Constant Variable: value cannot be reassigned
+const birthYear = 2000;
+// birthYear = 2005; // TypeError: Assignment to constant variable!
+
+// 2. Mutable Variable: value can be reassigned
+let userAge = 26;
+userAge = 27; // Reassignment is successful
+
+// 3. Constant Object Reference: reference address cannot change, but properties can
+const userProfile = {
+  name: "Arun",
+  status: "active"
+};
+
+// userProfile = { name: "Vijay" }; // TypeError: Assignment to constant variable!
+userProfile.status = "inactive"; // Works! We modified the property, not the pointer.
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`const birthYear = 2000;`**
+   - We declare a constant named `birthYear` using the `const` keyword and assign it the number `2000`.
+   - The value is locked. If we try to reassign it on line 3, JavaScript throws a TypeError and stops executing.
+2. **`let userAge = 26;`**
+   - We declare a mutable variable named `userAge` using `let` and assign it `26`.
+   - On the next line, we write `userAge = 27;`. This updates the value stored in memory. We do **not** write the `let` keyword again on reassignment.
+3. **`const userProfile = { ... };`**
+   - We create an object variable. In JavaScript, objects are reference types stored in Heap memory.
+   - Using `const` here means the variable `userProfile` is locked to that specific object block. We cannot reassign `userProfile` to a *new* object (e.g. `userProfile = { ... }` throws an error).
+4. **`userProfile.status = "inactive";`**
+   - Because the object contents live inside the Heap, modifying properties *inside* the object is allowed! The constant pointer on the Stack remains unchanged.
+
+---
+
 ## 4. Deep Explanation (V8 Engine & Memory Allocation)
 
 ### 1. Variables Scoping Rules

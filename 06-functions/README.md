@@ -52,6 +52,50 @@ JavaScript lets you write functions in different styles:
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before constructing complex Spotify audio playback pipelines, rest parameter arrays, and IIFE sandboxes, let's look at the basic syntax of declaring and calling functions in JavaScript.
+
+### The Code
+```javascript
+// 1. Function Declaration (Standard & Hoisted)
+function greetUser(username) {
+  return `Welcome back, ${username}!`;
+}
+// Calling the function and storing the returned string
+const message = greetUser("Alice");
+console.log(message); // Outputs: "Welcome back, Alice!"
+
+// 2. Function Expression (Stored in a Variable)
+const calculateDouble = function(number) {
+  return number * 2;
+};
+const result = calculateDouble(10);
+console.log(result); // Outputs: 20
+
+// 3. Arrow Function (Concise Modern Shorthand)
+const checkEven = (num) => num % 2 === 0;
+const isTenEven = checkEven(10);
+console.log(isTenEven); // Outputs: true
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`function greetUser(username) { ... }`**
+   - We declare a function named `greetUser` using the `function` keyword.
+   - **`username` (Parameter):** The placeholder slot for the data inputs when calling this function.
+2. **`return \`Welcome back, \${username}!\`;`**
+   - The `return` keyword stops function execution and sends the calculated value back to the caller. If you forget to write `return`, the function returns `undefined` by default.
+3. **`const message = greetUser("Alice");`**
+   - We invoke/call `greetUser` and pass the string `"Alice"` (called the **Argument**) into the username slot. The return value `"Welcome back, Alice!"` is saved to the variable `message`.
+4. **`const calculateDouble = function(number) { ... };`**
+   - We declare a anonymous function (a function without a name) and store it directly inside a variable named `calculateDouble`. We call it using the variable name.
+5. **`const checkEven = (num) => num % 2 === 0;`**
+   - We write a modern **Arrow Function** using the fat arrow syntax `=>`.
+   - **Implicit Return:** Since the code block is a single expression, we can omit the curly braces `{}` and the `return` keyword. The expression result is returned automatically!
+
+---
+
 ## 4. Deep Explanation (V8 Internal Execution Stack & Scope)
 
 ### 1. Function Call Stack Execution

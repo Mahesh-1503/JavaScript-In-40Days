@@ -45,6 +45,53 @@ This behavior is heavily used in production as inline `if` statements or fallbac
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before computing complex dynamic Uber fares and bitwise driver status flags, let's look at the basic syntax of JavaScript operators and logical expressions.
+
+### The Code
+```javascript
+// 1. Arithmetic Operators
+const distance = 10;
+const speed = 2;
+const timeTaken = distance / speed; // 5 (division)
+const remainder = 10 % 3; // 1 (modulus/remainder)
+
+// 2. Comparison Operators
+const isDistanceLong = distance > 8; // true (comparison)
+const isEqual = distance === 10; // true (strict equality)
+
+// 3. Logical Operators (Short-Circuit)
+const isRaining = true;
+const isWeekend = false;
+
+// AND (&&): BOTH must be true
+const shouldTakeUmbrella = isRaining && isWeekend; // false
+
+// OR (||): AT LEAST ONE must be true
+const stayAtHome = isRaining || isWeekend; // true
+
+// Nullish Coalescing (??): returns fallback ONLY if value is null/undefined
+const userCoupon = null;
+const defaultCoupon = "WELCOME5";
+const activeCoupon = userCoupon ?? defaultCoupon; // "WELCOME5"
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`const remainder = 10 % 3;`**
+   - The `%` symbol is the **modulus (remainder)** operator. 10 divided by 3 is 3 with a remainder of `1`. This is useful for checking if numbers are even or odd (`num % 2 === 0`).
+2. **`const isEqual = distance === 10;`**
+   - We use three equals signs `===` for strict comparison. It checks if the value on the left has the same type and value as the one on the right.
+3. **`const shouldTakeUmbrella = isRaining && isWeekend;`**
+   - The logical AND operator `&&` checks if both left and right variables are `true`. Since `isWeekend` is `false`, the entire expression evaluates to `false`.
+4. **`const stayAtHome = isRaining || isWeekend;`**
+   - The logical OR operator `||` checks if at least one operand is `true`. Since `isRaining` is `true`, it immediately "short-circuits" and returns `true` without even looking at `isWeekend`.
+5. **`const activeCoupon = userCoupon ?? defaultCoupon;`**
+   - The nullish coalescing operator `??` checks if the left value is `null` or `undefined`. Because `userCoupon` is `null`, it returns the right value `"WELCOME5"`.
+
+---
+
 ## 4. Deep Explanation (Floating-Point Precision & Bitwise Engine)
 
 ### 1. Floating-Point Precision Issue (IEEE 754)

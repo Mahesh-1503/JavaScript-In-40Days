@@ -51,6 +51,73 @@ How source files are processed in development (fast ES modules) versus compiled 
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before configuring complex environment variables and API proxies, let's understand the files created inside a default Vite + React project.
+
+### 1. The Project Directory Tree
+Here is what a clean, newly created project looks like:
+```
+my-react-app/
+├── index.html          # The entry point HTML file containing a mounting target <div id="root">
+├── package.json        # The project dashboard (scripts, dependencies, metadata)
+├── vite.config.js      # Vite build configurations and plugin registrations
+└── src/                # Source folder (where 99% of your code is written)
+    ├── main.jsx        # The javascript entry point. Connects React to index.html's root div
+    ├── App.jsx         # The main root React component
+    └── index.css       # Global styling rules
+```
+
+### 2. The Configuration Files
+
+#### `package.json` (Simplest Template)
+This file defines metadata, command shortcuts (scripts), and packages to install.
+```json
+{
+  "name": "my-react-app",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
+    "vite": "^6.0.0"
+  }
+}
+```
+
+#### `vite.config.js` (Simplest Template)
+This configuration loads Vite settings and instructs it to use the React plugin.
+```javascript
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+});
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`"dev": "vite"`** (inside `package.json`)
+   - The key-value shortcut for starting our local development server. In terminal, running `npm run dev` starts Vite, compiling code on the fly.
+2. **`"dependencies": { "react": ... }`**
+   - Libraries that the browser will download and execute in production when visiting the live site.
+3. **`"devDependencies": { "vite": ... }`**
+   - Build-time packages. These tools run on your local computer to compile, clean, and build files. They are excluded from production builds.
+4. **`plugins: [react()]`** (inside `vite.config.js`)
+   - Binds the official React plugin to Vite. This plugin configures Babel/ESBuild to read and compile JSX code tags automatically.
+
+---
+
 ## 4. Deep Explanation (Vite Internals, ESBuild, & HMR)
 
 ### 1. Vite vs. Legacy Bundlers (Webpack)

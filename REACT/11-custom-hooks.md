@@ -61,6 +61,65 @@ How custom hooks isolate and distribute reusable state logic to different compon
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before extracting complex real-time WebSocket feeds, let's look at the absolute simplest, bare-minimum Custom Hook you can write: a custom hook that toggles a boolean state, called **`useToggle`**.
+
+### The Custom Hook Code
+```jsx
+// useToggle.js
+import { useState } from 'react';
+
+export function useToggle(initialValue = false) {
+  const [value, setValue] = useState(initialValue);
+
+  const toggle = () => {
+    setValue(prev => !prev);
+  };
+
+  // Return the state variable and the updater function in an array
+  return [value, toggle];
+}
+```
+
+### The Component Code (Using the Hook)
+```jsx
+// LightBox.jsx
+import React from 'react';
+import { useToggle } from './useToggle';
+
+export function LightBox() {
+  // We use our custom hook just like standard useState!
+  const [isLit, toggleLit] = useToggle(true);
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <p>The lamp is: {isLit ? "ON 💡" : "OFF 🌑"}</p>
+      <button onClick={toggleLit}>
+        Toggle Switch
+      </button>
+    </div>
+  );
+}
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`export function useToggle(initialValue = false) {`**
+   - We declare a function starting with **`use`**. This tells React that it is a Custom Hook, and it can call other hooks inside it.
+   - We accept an optional parameter `initialValue` (defaulting to `false`).
+2. **`const [value, setValue] = useState(initialValue);`**
+   - We call React's built-in `useState` hook inside our custom hook. This sets up the local state storage.
+3. **`const toggle = () => { setValue(prev => !prev); };`**
+   - We create a helper function `toggle` that updates the boolean state to the opposite of its current value.
+4. **`return [value, toggle];`**
+   - We return an array containing the current state value and the function to toggle it.
+5. **`const [isLit, toggleLit] = useToggle(true);`**
+   - Inside `LightBox`, we call our hook.
+   - React initializes a completely private and isolated state node for this component. If you place *two* `<LightBox />` components on the screen, they will operate independently because their states are completely isolated.
+
+---
+
 ## 4. Deep Explanation (Hook Execution & Isolation)
 
 ### 1. The "State is Local" Rule

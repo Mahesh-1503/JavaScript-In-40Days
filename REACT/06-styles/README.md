@@ -55,6 +55,71 @@ Result: Native browser variables, editable via JS on the fly for system-wide the
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before structuring complex themes like Netflix, let's look at the absolute simplest way to apply styles in React using both **Inline Styles** (for dynamic values) and **CSS Modules** (for structured layouts).
+
+### The CSS Module File (Scoped Styling)
+CSS Modules end with `.module.css`. They compile automatically into unique, hashed classes.
+```css
+/* Card.module.css */
+
+.cardBox {
+  border: 1px solid #dddddd;
+  padding: 16px;
+  border-radius: 8px;
+  font-family: sans-serif;
+  background-color: #fafafa;
+}
+
+.title {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+}
+```
+
+### The Component Code
+```jsx
+// Card.jsx
+import React from 'react';
+import styles from './Card.module.css';
+
+export function Card({ title, description, colorAccent }) {
+  // Inline styles must be written as a JavaScript object
+  const titleStyle = {
+    color: colorAccent || '#333333',
+    borderBottom: `2px solid ${colorAccent || '#333333'}`
+  };
+
+  return (
+    // 1. We apply scoped class selectors from our imported styles object
+    <div className={styles.cardBox}>
+      {/* 2. We apply dynamic, custom styles directly to the style prop */}
+      <h3 className={styles.title} style={titleStyle}>
+        {title}
+      </h3>
+      <p>{description}</p>
+    </div>
+  );
+}
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`import styles from './Card.module.css';`**
+   - We import our CSS file as a JavaScript object named `styles`. 
+   - The build tool compiles CSS classes like `.cardBox` into unique identifiers (e.g. `Card_cardBox__h3g8a`) so they never conflict with other components.
+2. **`const titleStyle = { color: ... };`**
+   - Inline styles in React are written as key-value pairs inside standard JavaScript objects.
+   - Property names must use **camelCase** instead of standard CSS kebab-case (e.g., `border-bottom` becomes `borderBottom`).
+3. **`className={styles.cardBox}`**
+   - To apply a CSS module class in JSX, we use `className` instead of the standard HTML `class`. We pass it the variable path from the imported `styles` object.
+4. **`style={titleStyle}`**
+   - We pass our styling object directly to the built-in React `style` prop. 
+   - You can also write this inline using "double curlies" syntax: `style={{ color: colorAccent }}`. The first set of curlies creates the JSX portal, and the second set creates the JavaScript object.
+
+---
+
 ## 4. Deep Explanation (React Specifics, Speficity, & Runtimes)
 
 ### 1. Specificity Escalation in React

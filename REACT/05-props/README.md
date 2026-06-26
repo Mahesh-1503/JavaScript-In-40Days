@@ -43,6 +43,74 @@ Data in React flows in one direction: **Top-Down (Unidirectional)**. Parents pas
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before designing a dynamic Amazon product card grid, let's look at the absolute simplest, bare-minimum way to pass parameters (Props) to a React component: a **Greeting Card**.
+
+### The Component Code (Using the `props` object)
+```jsx
+// Greeting.jsx
+import React from 'react';
+
+export function Greeting(props) {
+  return (
+    <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+      <h3>Welcome, {props.name}!</h3>
+      <p>Role: {props.role}</p>
+    </div>
+  );
+}
+```
+
+### The Component Code (Using Destructuring - Preferred)
+In modern React, we usually "destructure" variables inside the parameters to extract props directly:
+```jsx
+// GreetingDestructured.jsx
+import React from 'react';
+
+export function GreetingDestructured({ name, role }) {
+  return (
+    <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+      <h3>Welcome, {name}!</h3>
+      <p>Role: {role}</p>
+    </div>
+  );
+}
+```
+
+### Passing Props from the Parent Component
+```jsx
+// App.jsx
+import React from 'react';
+import { Greeting } from './Greeting';
+
+export function App() {
+  return (
+    <main>
+      <h1>User Dashboard</h1>
+      {/* We pass inputs exactly like HTML attributes! */}
+      <Greeting name="Alice" role="Administrator" />
+      <Greeting name="Bob" role="Subscriber" />
+    </main>
+  );
+}
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`export function Greeting(props) {`**
+   - React automatically collects all attributes passed to `<Greeting />` and groups them into a single JavaScript object named **`props`**.
+2. **`<h3>Welcome, {props.name}!</h3>`**
+   - We use curly braces `{ ... }` in our JSX. This creates a "portal" into standard JavaScript, allowing us to evaluate the object property `props.name` and print it as text.
+3. **`export function GreetingDestructured({ name, role }) {`**
+   - This syntax is called **Destructuring**. It is exactly equivalent to `const name = props.name` and `const role = props.role`. It keeps component signatures much cleaner and easier to read.
+4. **`<Greeting name="Alice" role="Administrator" />`**
+   - In `App.jsx`, we render the card. We pass key-value pairs (props).
+   - React runs the `Greeting` function for Alice, returning JSX customized with `"Alice"` and `"Administrator"`.
+   - Then React runs it for Bob, creating a second independent element on the screen.
+
+---
+
 ## 4. Deep Explanation (React Prop Internals)
 
 ### 1. The Immutability Rule

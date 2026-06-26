@@ -61,6 +61,60 @@ Decomposing a complex chat screen into a nested component tree:
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before breaking down a WhatsApp chat interface, let's look at the absolute simplest, bare-minimum React component: a **Welcome Message**.
+
+### The Component Code
+```jsx
+// Welcome.jsx
+import React from 'react';
+
+export function Welcome() {
+  return (
+    <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '4px' }}>
+      <h2>Hello, World!</h2>
+      <p>Welcome to learning React component architecture.</p>
+    </div>
+  );
+}
+```
+
+### Rendering the Component
+```jsx
+// App.jsx
+import React from 'react';
+import { Welcome } from './Welcome';
+
+export function App() {
+  return (
+    <main>
+      <h1>My First Dashboard</h1>
+      {/* We reuse the component like a custom HTML tag! */}
+      <Welcome />
+      <Welcome />
+    </main>
+  );
+}
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`import React from 'react';`**
+   - We import the React library. This is required in classic setups to compile JSX into JavaScript instructions.
+2. **`export function Welcome() {`**
+   - We declare a standard JavaScript function named `Welcome`. 
+   - **Crucial Rule:** React components **must** start with a Capital Letter (PascalCase). If you named it `welcome`, React would think it's a standard HTML tag and ignore it.
+   - We add the `export` keyword so this component can be imported and reused in other files (like `App.jsx`).
+3. **`return ( <div ...> ... </div> );`**
+   - A component function must return **JSX** (JavaScript XML), which looks like HTML but lives inside JavaScript files.
+   - Parentheses `( ... )` allow us to return multi-line JSX structures cleanly.
+4. **`<Welcome />`**
+   - To render a component inside another component, we write it like a self-closing HTML tag: `<Welcome />`.
+   - Because components are reusable templates, rendering it twice displays two independent instances on the screen.
+
+---
+
 ## 4. Deep Explanation (React Components & The Render Engine)
 
 ### 1. Functional Components under the Hood

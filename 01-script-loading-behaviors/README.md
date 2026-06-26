@@ -57,6 +57,50 @@ By using **`async`** or **`defer`** attributes, you tell the browser: *"Hey, don
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before parsing complex enterprise conditional scripts, let's look at the absolute simplest way to declare these three loading modes inside your HTML files.
+
+### The HTML Code
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Basic Loading Syntax</title>
+
+  <!-- 1. Normal/Synchronous Script: Blocks HTML parsing while downloading/running -->
+  <script src="normal-script.js"></script>
+
+  <!-- 2. Asynchronous Script: Downloads in background, runs immediately when downloaded -->
+  <script async src="async-script.js"></script>
+
+  <!-- 3. Deferred Script: Downloads in background, runs ONLY after HTML parsing is fully finished -->
+  <script defer src="defer-script.js"></script>
+</head>
+<body>
+  <h1>Hello, Script Loading!</h1>
+</body>
+</html>
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`<script src="normal-script.js"></script>`**
+   - The browser parses the HTML from top to bottom.
+   - When it hits this line, it immediately stops reading the rest of the HTML. It downloads `normal-script.js`, runs it, and then continues parsing. This is **blocking behavior**.
+2. **`<script async src="async-script.js"></script>`**
+   - The browser sees the `async` keyword.
+   - It starts downloading `async-script.js` in the background (non-blocking).
+   - The moment the file is completely downloaded, HTML parsing pauses, the script runs, and HTML parsing resumes. Use this for independent scripts like analytics.
+3. **`<script defer src="defer-script.js"></script>`**
+   - The browser sees the `defer` keyword.
+   - It downloads `defer-script.js` in the background (non-blocking).
+   - Even if the download finishes early, the browser will wait until the entire page is parsed (all HTML is read and DOM is built) before running it. Use this for scripts that need to manipulate page elements.
+
+---
+
 ## 4. Deep Explanation (Browser Engine Internals)
 
 To understand this deeply, we must look at the **Critical Rendering Path (CRP)**:

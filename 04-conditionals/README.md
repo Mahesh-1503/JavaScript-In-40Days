@@ -68,6 +68,62 @@ Conditionals allow your code to make decisions using boolean values (`true` or `
 
 ---
 
+## 3.5. Syntax & Basic Code Mechanics
+
+Before routing SaaS billing structures and designing strategy gates, let's look at the basic syntax of making decisions in JavaScript using **`if / else`**, the **ternary operator**, and **`switch`**.
+
+### The Code
+```javascript
+// 1. Basic If / Else If / Else
+const userRole = "editor";
+
+if (userRole === "admin") {
+  console.log("Full Access Granted");
+} else if (userRole === "editor") {
+  console.log("Edit Access Granted");
+} else {
+  console.log("Read Access Only");
+}
+
+// 2. Ternary Operator (Shorthand inline If/Else)
+const isLoggedIn = true;
+const welcomeMessage = isLoggedIn ? "Welcome Back!" : "Please Sign In";
+
+// 3. Switch Statement (Value Matching)
+const subscriptionPlan = "pro";
+
+switch (subscriptionPlan) {
+  case "free":
+    console.log("Limit: 3 members");
+    break; // Stops JavaScript from running into the next case
+  case "pro":
+    console.log("Limit: 50 members");
+    break;
+  case "enterprise":
+    console.log("Limit: Unlimited members");
+    break;
+  default: // Fallback if no cases match
+    console.log("Invalid subscription plan");
+}
+```
+
+### Line-by-Line Breakdown for Beginners
+
+1. **`if (userRole === "admin") { ... }`**
+   - The browser evaluates the condition inside the parentheses `(...)`. If it's `true`, the code block inside the first `{ ... }` runs, and all other branches are skipped.
+   - If `false`, it moves to the `else if` block. Since `userRole === "editor"` is `true`, it logs `"Edit Access Granted"`.
+2. **`const welcomeMessage = isLoggedIn ? "Welcome Back!" : "Please Sign In";`**
+   - The **Ternary Operator** consists of three parts: a check (`isLoggedIn`), a question mark `?`, a value if true (`"Welcome Back!"`), a colon `:`, and a value if false (`"Please Sign In"`).
+   - This checks `isLoggedIn`. Since it is `true`, it assigns the first string to `welcomeMessage`.
+3. **`switch (subscriptionPlan) { ... }`**
+   - A `switch` compares a single variable (`subscriptionPlan`) against different static values (`case "free"`, `case "pro"`, etc.) using strict comparison (`===`).
+4. **`break;`**
+   - Crucial! The `break` statement exits the switch block. If you omit it, JavaScript will continue executing the code in the subsequent cases even if they don't match (known as case fall-through).
+5. **`default:`**
+   - This acts like the final `else` in an if/else ladder, catching any inputs that did not match any of the specified cases.
+
+---
+
 ## 4. Deep Explanation (V8 Compiler & Jump Tables)
 
 ### 1. Branch Prediction in CPU & V8
