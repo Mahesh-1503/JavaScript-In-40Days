@@ -9,26 +9,26 @@ Welcome to the ultimate learning roadmap to mastering **JavaScript** and **React
 
 ---
 
-## 📅 JavaScript Core Curriculum (Days 1–33)
+## 📅 JavaScript Core Curriculum (Days 1–34)
 
 | Day / Folder | Concept / Topic | Directory Link | Core Concepts Covered |
 | :---: | :--- | :---: | :--- |
 | **01** | **Script Loading Behaviors** | 📂 [01-script-loading-behaviors](01-script-loading-behaviors/) | Synchronous execution, script position in HTML, `async` vs `defer` performance. |
-| **02** | **Variables & Data Types** | 📂 [02-variables-and-data-types](02-variables-and-data-types/) | Block-scoped (`let`, `const`) vs Function-scoped (`var`), primitives vs reference types. |
+| **02** | **Variables & Data Types** | 📂 [02-variables-and-data-types](02-variables-and-data-types/) | Block vs function scopes, primitives vs reference types, comments syntax, type casting vs implicit coercion, String/Number methods, and Symbol keys. |
 | **03** | **Operators & Expressions** | 📂 [03-operators-and-expressions](03-operators-and-expressions/) | Arithmetic, assignment, strict vs loose comparison (`==` vs `===`), logical `&&`/`\|\|`/`??`. |
 | **04** | **Bitwise Operators & Manipulation** | 📂 [04-bitwise-operators-and-bit-manipulation](04-bitwise-operators-and-bit-manipulation/) | Binary representation, signed Int32/Two's complement, AND/OR/XOR/NOT logic, bit shifts, POSIX permission gates, RGB/Hex color masks, variable swaps, and parity checks. |
 | **05** | **Conditionals** | 📂 [05-conditionals](05-conditionals/) | Control flow using `if`, `else if`, `else`, ternary operators, and logical short-circuiting. |
-| **06** | **Loops & Iteration** | 📂 [06-loops](06-loops/) | `for` loops, `while` loops, nested loops, and generating console pyramid patterns. |
-| **07** | **Functions Basics** | 📂 [07-functions](07-functions/) | Function statements vs declarations vs expressions, parameter passing, return values. |
+| **06** | **Loops & Iteration** | 📂 [06-loops](06-loops/) | `for` loops, `while` loops, guaranteed `do...while` loops, nested loop structures, break/continue controls, and console pyramid patterns. |
+| **07** | **Functions Basics** | 📂 [07-functions](07-functions/) | Function declarations vs expressions, arrow functions, parameter passing, rest/default parameters, and recursive function stack frames. |
 | **08** | **Mini Projects** | 📂 [08-mini-projects](08-mini-projects/) | **Rock, Paper, Scissors** game and **Secret Number Guessing** game with attempt counters. |
 | **09** | **Execution Context** | 📂 [09-execution-context](09-execution-context/) | How JS runs under the hood, Creation phase, Execution phase, Call Stack operations. |
 | **10** | **Hoisting** | 📂 [10-hoisting](10-hoisting/) | Variable hoisting (`var` vs `let`/`const` Temporal Dead Zone) and Function hoisting. |
 | **11** | **Scopes & Scope Chaining** | 📂 [11-scopes-and-scope-chaining](11-scopes-and-scope-chaining/) | Global scope, Function/Local scope, Block scope, lexical environment, scope chaining. |
 | **12** | **Closures** | 📂 [12-closures](12-closures/) | Definitions, inner functions retaining outer variables, lexical binding, and closure use cases. |
-| **13** | **Objects in JavaScript** | 📂 [13-objects](13-objects/) | Constructor/Factory functions, Object methods (`keys`, `values`, `entries`), references, shallow vs deep copying, destructuring, optional chaining. |
+| **13** | **Objects in JavaScript** | 📂 [13-objects](13-objects/) | Constructor/Factory functions, Object methods, references, shallow vs deep copies, destructuring, optional chaining, and JSON stringify/parse. |
 | **14** | **`this` Keyword & Explicit Binding**| 📂 [14-this-keyword-and-explicit-binding](14-this-keyword-and-explicit-binding/) | Meaning of `this`, dynamic invocation contexts, explicit binding methods (`call`, `apply`, `bind`). |
 | **15** | **Strict Mode & Error Handling** | 📂 [15-strict-mode-and-error-handling](15-strict-mode-and-error-handling/) | `"use strict"` behavior, types of errors, runtime protection, `try-catch-finally` mechanisms. |
-| **16** | **Arrays & Methods** | 📂 [16-arrays](16-arrays/) | Indexing, cloning (`slice`), nested arrays, advanced methods (`concat`, `reverse`), Grouping, modern ES methods. |
+| **16** | **Arrays & Methods** | 📂 [16-arrays](16-arrays/) | Indexing, cloning (`slice`), advanced methods (`concat`, `reverse`), multidimensional matrix structures, nested loop traversals, and transpose. |
 | **17** | **Looping Objects & Arrays** | 📂 [17-for-in-for-of-foreach](17-for-in-for-of-foreach/) | Comparative study of `for...in` (object keys), `for...of` (iterable values), and `forEach()`. |
 | **18** | **Array Iterators** | 📂 [18-array-iterators-map-filter-reduce](18-array-iterators-map-filter-reduce/) | Transforming elements with `map`, filtering with `filter`, accumulating values with `reduce`. |
 | **19** | **Timers & Advanced Closures** | 📂 [19-advanced-functions-and-settimeout](19-advanced-functions-and-settimeout/) | Asynchronous timers (`setTimeout` and `setInterval`), clearing execution timers (`clearTimeout` and `clearInterval`), event loops, block-scoped loop variables, and recursive timeout schedulers. |
@@ -45,7 +45,8 @@ Welcome to the ultimate learning roadmap to mastering **JavaScript** and **React
 | **30** | **JavaScript Modules** | 📂 [30-javascript-modules-esm-commonjs](30-javascript-modules-esm-commonjs/) | Modular isolation, CommonJS exports vs modern ES Modules static analysis, live bindings, and tree-shaking. |
 | **31** | **Memory & Garbage Collection** | 📂 [31-memory-management-and-garbage-collection](31-memory-management-and-garbage-collection/) | Call Stack vs Heap, Mark-and-Sweep algorithms, closures scope retention, Map vs WeakMap, and profiling. |
 | **32** | **Dates & Browser Dialogs** | 📂 [32-javascript-dates-and-browser-dialogs](32-javascript-dates-and-browser-dialogs/) | Working with Dates, UNIX timestamps, internationalized formatting via Intl, and synchronous window dialog blocks. |
-| **33** | **Modern ES6+ Features** | 📂 [33-modern-es6-plus-features](33-modern-es6-plus-features/) | Comprehensive modern upgrades: let/const, template strings, exponents, library additions, classes, promises, destructuring, spread/rest, enhanced object literals, modules, generators. |
+| **33** | **Modern ES6+ Features** | 📂 [33-modern-es6-plus-features](33-modern-es6-plus-features/) | Modern upgrades: let/const, template strings, exponents, library upgrades, classes, promises, destructuring, spread/rest, enhanced object literals, generators, and reactive Proxies. |
+| **34** | **Regular Expressions (Regex)** | 📂 [34-regular-expressions-and-regex](34-regular-expressions-and-regex/) | Scanners/Detectors, literal vs constructor pattern objects, flags, classes, lookarounds, match/replace string integrations, and lastIndex resets. |
 
 ---
 

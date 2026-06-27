@@ -256,6 +256,86 @@ arr[10] = 100;
 console.log(arr.length); // 11 — sparse array
 ```
 
+
+---
+
+## **9. Multidimensional Arrays (Matrices & Grids)**
+
+### **Definition**
+A **multidimensional array** is an array that contains other arrays as its elements. A 2D array resembles a table or grid structure with **Rows** and **Columns** (often called a Matrix).
+
+### **Code Mechanics**
+
+1. **Creating a 2D Array (Matrix):**
+   ```javascript
+   const matrix = [
+     [1, 2, 3], // Row 0
+     [4, 5, 6], // Row 1
+     [7, 8, 9]  // Row 2
+   ];
+   ```
+
+2. **Accessing Elements:**
+   Specify the row index first, then the column index: `matrix[row][col]`.
+   ```javascript
+   console.log(matrix[0][0]); // 1 (Top-Left)
+   console.log(matrix[1][2]); // 6 (Row 1, Col 2)
+   ```
+
+3. **Updating Elements:**
+   ```javascript
+   matrix[2][1] = 99; // Update Row 2, Col 1 from 8 to 99
+   ```
+
+### **Traversing 2D Arrays**
+To traverse all elements of a matrix, use **nested loops**. The outer loop iterates over the rows, and the inner loop iterates over the columns of each row.
+
+* **Row-wise Traversal:**
+  ```javascript
+  const matrix = [
+    [10, 20],
+    [30, 40]
+  ];
+  for (let r = 0; r < matrix.length; r++) {
+    for (let c = 0; c < matrix[r].length; c++) {
+      console.log(`Element at [${r}][${c}] =`, matrix[r][c]);
+    }
+  }
+  ```
+
+### **Production Example: Matrix Transpose (Rotating Grid Data)**
+In data analysis or graphics processing, you often need to **transpose** a matrix (swap rows with columns).
+
+```javascript
+function transposeMatrix(matrix) {
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+  const result = [];
+
+  for (let c = 0; c < cols; c++) {
+    const newRow = [];
+    for (let r = 0; r < rows; r++) {
+      newRow.push(matrix[r][c]);
+    }
+    result.push(newRow);
+  }
+  return result;
+}
+
+const grid = [
+  ["A1", "B1", "C1"],
+  ["A2", "B2", "C2"]
+];
+console.log(transposeMatrix(grid));
+/* Output:
+[
+  ["A1", "A2"],
+  ["B1", "B2"],
+  ["C1", "C2"]
+]
+*/
+```
+
 ---
 
 ## **Tasks (Module 3)**

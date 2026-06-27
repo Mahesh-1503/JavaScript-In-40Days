@@ -338,6 +338,54 @@ setTimeout(() => {
   console.log(`[Pro Iterator] Array conversion count: ${allAlertsArray.length}\n`);
 
   console.log("==============================================================");
+}, 250);
+
+// ==========================================
+// 11. JAVASCRIPT PROXIES (META-PROGRAMMING)
+// ==========================================
+setTimeout(() => {
+  console.log("--- 11. JavaScript Proxies ---");
+
+  const sensitiveConfig = {
+    _stripeKey: "sk_live_abc123",
+    port: 8080,
+    domain: "saas.api.com"
+  };
+
+  const handler = {
+    get(target, prop) {
+      if (prop.startsWith("_")) {
+        console.log(`[Proxy Block] Access to private property '${prop}' denied.`);
+        return "ACCESS_DENIED";
+      }
+      return target[prop];
+    },
+    set(target, prop, value) {
+      if (prop === "port" && (!Number.isInteger(value) || value < 1024 || value > 65535)) {
+        console.log(`[Proxy Block] Invalid port update attempt: ${value}`);
+        return false; // Fails write
+      }
+      console.log(`[Proxy Log] Property '${prop}' updated to '${value}'`);
+      target[prop] = value;
+      return true;
+    }
+  };
+
+  const proxyConfig = new Proxy(sensitiveConfig, handler);
+
+  // Test get trap
+  console.log("Read domain (Allowed):", proxyConfig.domain);
+  console.log("Read _stripeKey (Blocked):", proxyConfig._stripeKey);
+
+  // Test set trap
+  proxyConfig.port = 9000; // Success
+  const result = (proxyConfig.port = 80); // Fails validation, returns false
+  console.log("Result of setting invalid port (should be false):", result);
+
+  console.log("Final Config values in target:", sensitiveConfig);
+
+  console.log("\n==============================================================");
   console.log("🟢 DEMO EXECUTION COMPLETE (All ES6+ features verified!)");
   console.log("==============================================================");
-}, 250);
+}, 300);
+

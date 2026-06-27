@@ -260,6 +260,61 @@ class LogStreamReader {
     return this.streamLogs();
   }
 }
+
+---
+
+## 5.6. JavaScript Proxies (The Meta-Programming Gatekeeper)
+
+### 1. What is a Proxy?
+A **Proxy** object is an ES6 feature that allows you to wrap a target object and intercept/customize its fundamental operations—such as property lookup, assignment, enumeration, and function invocation. This is known as **Meta-Programming**.
+
+### 2. Core Components
+* **Target:** The original object (or function) that the proxy wraps.
+* **Handler:** A placeholder object that contains one or more **Traps**.
+* **Traps:** Interceptor methods that override the default behaviors of the target object.
+  - **`get(target, property, receiver)`:** Intercepts property reads.
+  - **`set(target, property, value, receiver)`:** Intercepts property writes. Must return `true` on successful write.
+  - **`has(target, property)`:** Intercepts the `in` operator.
+  - **`deleteProperty(target, property)`:** Intercepts property deletion.
+
+### 3. Production Example: Validation, Reactivity, and Private Field Protection
+Proxies are widely used under the hood in modern frontend frameworks (like Vue 3's reactive system) and API clients.
+
+```javascript
+const sensitiveData = {
+  _apiKey: "sk_live_9918a",
+  username: "arun_dev",
+  age: 26
+};
+
+const dashboardHandler = {
+  // 1. Intercept read operations (Private property guard)
+  get(target, prop) {
+    if (prop.startsWith("_")) {
+      throw new Error(`Permission Denied: Cannot access private property '${prop}'`);
+    }
+    return prop in target ? target[prop] : "Field Not Found";
+  },
+
+  // 2. Intercept write operations (Data validation & Reactivity)
+  set(target, prop, value) {
+    if (prop === "age") {
+      if (typeof value !== "number" || value < 0 || value > 120) {
+        throw new TypeError("Invalid Age: Must be a number between 0 and 120");
+      }
+    }
+    console.log(`[Reactive Trigger] '${prop}' changed from '${target[prop]}' to '${value}'`);
+    target[prop] = value;
+    return true; // Must return true to confirm success
+  }
+};
+
+const secureDashboard = new Proxy(sensitiveData, dashboardHandler);
+
+console.log(secureDashboard.username); // "arun_dev"
+secureDashboard.age = 27; // Logs: [Reactive Trigger] 'age' changed from '26' to '27'
+// console.log(secureDashboard._apiKey); // Throws Error!
+// secureDashboard.age = "twenty-seven"; // Throws TypeError!
 ```
 
 ---

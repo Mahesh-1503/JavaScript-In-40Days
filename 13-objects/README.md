@@ -195,6 +195,58 @@ const complexTicket = {
 const copiedTicket = deepClone(complexTicket);
 ```
 
+
+---
+
+## 6.5. JavaScript and JSON (Serialization & Deserialization)
+
+### 1. What is JSON?
+**JSON (JavaScript Object Notation)** is a standard text-based format for representing structured data based on JavaScript object syntax. It is widely used to transmit data in web applications (e.g., sending data from server to client).
+
+### 2. JSON Syntax Rules vs. JavaScript Objects
+While JSON is syntactically a subset of JS Object Literals, it enforces strict rules:
+| Rule | JavaScript Object | JSON |
+| :--- | :--- | :--- |
+| **Quotes on Keys** | Optional (e.g., `name: "Arun"`) | Mandatory double quotes (e.g., `"name": "Arun"`) |
+| **Quotes on Strings** | Single or double quotes | Double quotes only (e.g., `"USD"`) |
+| **Trailing Commas** | Allowed | Forbidden (e.g., `["A", "B"]` is valid, `["A", "B",]` is invalid) |
+| **Supported Data Types** | Any JS type (functions, undefined, symbol, Date, etc.) | Strings, Numbers, Objects, Arrays, Booleans, Null only. |
+
+### 3. Serialization: `JSON.stringify(value, replacer, space)`
+Converts a JavaScript object/value into a serialized JSON string.
+* **Syntax:** `JSON.stringify(value, replacer, space)`
+* **`replacer`:** Optional array of keys or function to filter/transform serialized properties.
+* **`space`:** Optional number or string to insert white space for pretty-printing.
+  ```javascript
+  const user = { name: "Arun", age: 26, secrets: "hidden_token" };
+  // Serialize only 'name' and 'age' with 2-space indentation
+  const jsonStr = JSON.stringify(user, ["name", "age"], 2);
+  console.log(jsonStr);
+  /*
+  {
+    "name": "Arun",
+    "age": 26
+  }
+  */
+  ```
+  > [!NOTE]
+  > When stringifying, `undefined` values, functions, and symbols are **omitted** (if in objects) or converted to `null` (if in arrays).
+
+### 4. Deserialization: `JSON.parse(text, reviver)`
+Parses a JSON string, constructing the JavaScript value described by the string.
+* **Syntax:** `JSON.parse(text, reviver)`
+* **`reviver`:** Optional function to intercept and transform parsed key-value pairs before they are returned. Useful for restoring complex types like `Date` objects.
+  ```javascript
+  const json = '{"name":"Ticket","created":"2026-06-26T12:00:00.000Z"}';
+  
+  // Custom reviver to restore Date objects automatically
+  const parsed = JSON.parse(json, (key, value) => {
+    if (key === "created") return new Date(value);
+    return value;
+  });
+  console.log(parsed.created instanceof Date); // true!
+  ```
+
 ---
 
 ## 7. Common Mistakes

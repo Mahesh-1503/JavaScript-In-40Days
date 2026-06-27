@@ -89,6 +89,66 @@ userProfile.status = "inactive"; // Works! We modified the property, not the poi
 
 ---
 
+## 3.6. JavaScript Comments & Primitives In-Focus (Strings, Numbers, Symbols)
+
+### 1. JavaScript Comments
+Comments are annotations in the code that the JavaScript engine ignores during execution. They are critical for documenting code logic.
+* **Single-line Comments:** Start with `//`. Everything from the symbol to the end of the line is ignored.
+  ```javascript
+  // This is a single-line comment setting the count
+  let count = 10;
+  ```
+* **Multi-line Comments (Block Comments):** Start with `/*` and end with `*/`. Useful for longer explanations or temporarily disabling chunks of code.
+  ```javascript
+  /*
+    This function processes payment checkouts.
+    It takes an amount and validates user limits.
+  */
+  function processPayment() {}
+  ```
+
+### 2. JavaScript Strings
+Strings represent textual data. They are immutable primitive values.
+* **String Creation:** Single quotes (`'...'`), double quotes (`"..."`), or template literals (backticks `` `...` ``) which support variable interpolation and multi-line formatting.
+* **Core Properties & Methods:**
+  - **`.length`:** Property returning string character count.
+  - **`.charAt(index)`:** Returns character at specified position.
+  - **`.indexOf(substring)` / `.lastIndexOf(substring)`:** Returns index of first/last occurrence of a substring (returns `-1` if not found).
+  - **`.slice(start, end)`:** Extracts a section of a string and returns a new string.
+  - **`.substring(start, end)`:** Similar to `slice`, but treats negative indices as `0`.
+  - **`.includes(substring)` / `.startsWith(substring)` / `.endsWith(substring)`:** Boolean checks for substring matches.
+  - **`.replace(target, replacement)` / `.replaceAll(target, replacement)`:** Substitutes occurrences of substrings.
+  - **`.split(separator)`:** Splits a string into an array of substrings.
+  - **`.trim()`:** Removes whitespace from both ends.
+  - **`.toUpperCase()` / `.toLowerCase()`:** Case conversion.
+
+### 3. JavaScript Numbers
+In JavaScript, all numbers are double-precision 64-bit binary format IEEE 754 values (floats). There is no distinct "Integer" type at the primitive level (though modern JS includes `BigInt` for arbitrary precision integers).
+* **Floating-Point Precision:** Floating-point numbers can cause rounding errors due to binary representation limits (e.g., `0.1 + 0.2` evaluates to `0.30000000000000004`).
+* **Special Constants:**
+  - `Number.MAX_VALUE` / `Number.MIN_VALUE`: Largest/smallest positive numeric values representable.
+  - `Number.MAX_SAFE_INTEGER` / `Number.MIN_SAFE_INTEGER`: Safe limit for integer calculations (`2^53 - 1` and `-(2^53 - 1)`).
+  - `Number.NaN`: "Not-a-Number", representing invalid mathematical operations (e.g., `0 / 0`).
+* **Core Methods:**
+  - `Number.isNaN(value)`: Checks if a value is NaN without type coercion (preferred over global `isNaN()`).
+  - `Number.isInteger(value)`: Returns boolean indicating if a number is a whole integer.
+  - `Number.parseInt(string, radix)` / `Number.parseFloat(string)`: Parses string representations to numbers.
+  - `num.toFixed(digits)`: Formats a number to a fixed decimal point representation (returns a string).
+
+### 4. JavaScript Symbols
+Introduced in ES6, a **Symbol** is an immutable primitive value that is guaranteed to be unique.
+* **Uniqueness:** Even if created with the same description, symbols are completely unique.
+  ```javascript
+  const sym1 = Symbol("id");
+  const sym2 = Symbol("id");
+  console.log(sym1 === sym2); // false
+  ```
+* **Primary Use Cases:**
+  - **Hidden Object Keys:** Symbols do not show up in standard iteration loops (like `for...in` or `Object.keys()`), making them perfect for private/metadata properties on objects.
+  - **Global Registry:** Using `Symbol.for(key)` looks up or creates a shared global symbol.
+
+---
+
 ## 4. Deep Explanation (V8 Engine & Memory Allocation)
 
 ### 1. Variables Scoping Rules
@@ -99,6 +159,57 @@ userProfile.status = "inactive"; // Works! We modified the property, not the poi
 ### 2. Primitive vs Reference Types
 - **Primitives (Value Types):** Stored directly in the **Stack**. These include: `String`, `Number`, `Boolean`, `Undefined`, `Null`, `Symbol`, `BigInt`. They are immutable and compared by value.
 - **Reference Types:** Stored in the **Heap**. These include: `Object`, `Array`, `Function`. The variable only holds a reference pointer to the Heap memory location. They are compared by reference address.
+
+---
+
+## 4.5. Type Conversion (Explicit Casting vs. Implicit Coercion)
+
+In JavaScript, variables can change types dynamically. This happens in two ways:
+
+### 1. Explicit Type Conversion (Casting)
+Explicit conversion is when a developer intentionally converts a value from one type to another using built-in constructors.
+* **To String:** `String(value)` or `value.toString()`.
+  ```javascript
+  String(100);       // "100"
+  String(true);      // "true"
+  String(null);      // "null"
+  ```
+* **To Number:** `Number(value)`, `parseInt(value, radix)`, or `parseFloat(value)`.
+  ```javascript
+  Number("42");      // 42
+  Number("42.5");    // 42.5
+  Number("");        // 0
+  Number(null);      // 0
+  Number(undefined); // NaN
+  parseInt("42px", 10); // 42 (stops parsing at non-numeric characters)
+  ```
+* **To Boolean:** `Boolean(value)`. Evaluates the value based on truthiness.
+  - **Falsy Values (evaluates to `false`):** `false`, `0`, `-0`, `0n` (BigInt zero), `""` (empty string), `null`, `undefined`, and `NaN`.
+  - **Truthy Values (evaluates to `true`):** Everything else, including empty objects `{}` and empty arrays `[]`!
+
+### 2. Implicit Type Coercion
+Coercion is when the JavaScript engine automatically converts a value's type under the hood during operation evaluation.
+* **String Coercion (with the `+` operator):** If any operand is a string, the `+` operator acts as concatenation and coerces other values to strings.
+  ```javascript
+  "5" + 2;     // "52" (Number 2 is coerced to string "2")
+  "5" + true;  // "5true"
+  5 + 5 + "5"; // "105" (Evaluates left-to-right: 5+5=10, 10+"5"="105")
+  ```
+* **Numeric Coercion (with `-`, `*`, `/`, `%`):** Non-addition arithmetic operators coerce strings or boolean values to numbers.
+  ```javascript
+  "5" - 2;    // 3 (String "5" is coerced to number 5)
+  "5" * "2";  // 10
+  true + 2;   // 3 (Boolean true is coerced to 1)
+  false * 10; // 0 (Boolean false is coerced to 0)
+  ```
+* **Loose Equality Coercion (`==`):** Compares values after coercing them to a common type.
+  ```javascript
+  "5" == 5;    // true (String coerced to Number)
+  true == 1;   // true (Boolean coerced to Number)
+  null == undefined; // true (Special rule in spec)
+  ```
+  > [!WARNING]
+  > Because implicit coercion in loose comparison leads to unpredictable bugs (e.g., `[] == false` is `true`), **always use strict equality (`===`)**, which checks both value and type without coercion.
 
 ---
 

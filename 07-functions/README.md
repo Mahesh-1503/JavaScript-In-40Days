@@ -248,6 +248,77 @@ registerPlayerHook("onTrackEnd", (payload) => {
   4. An eventPayload object is created.
   5. callbackAction(eventPayload) invokes the arrow callback, logging the ending alert.
 */
+
+---
+
+## 5.5. Deep-Dive on Recursion (The Stack-Based Crawler)
+
+### 1. What is Recursion?
+**Recursion** is a programming technique where a function calls itself to solve a smaller instance of the same problem. It is highly effective for tasks with hierarchical structures (like file directories, nested JSON objects, or search trees).
+
+### 2. The Two Rules of Recursion
+Every recursive function MUST satisfy two requirements to avoid looping forever and crashing:
+1. **The Base Case (The Exit Door):** A conditional branch that returns a value immediately without making any further recursive calls.
+2. **The Recursive Step (The Progression):** The action where the function calls itself, passing a modified parameter that brings the execution **one step closer** to the base case.
+
+### 3. Call Stack Mechanics & Stack Overflow
+Each time a function calls itself, a new **Execution Stack Frame** is created and pushed onto the Call Stack. This frame holds the function's parameters and local variables.
+* **Stack Progression:** The frames accumulate until the base case is reached.
+* **Stack Unwinding:** Once the base case returns, the frames resolve from top to bottom (Last-In, First-Out).
+* **Stack Overflow:** If a recursive function lacks a base case, or if the base case is never met, V8 eventually runs out of stack memory and throws:
+  `RangeError: Maximum call stack size exceeded`
+
+```text
+CALL STACK TRACE (factorial(3) evaluation):
+┌───────────────────────────┐
+│ factorial(1) ──> returns 1│  <-- Base Case hit! Unwinding begins...
+├───────────────────────────┤
+│ factorial(2) ──> 2 * f(1) │
+├───────────────────────────┤
+│ factorial(3) ──> 3 * f(2) │
+└───────────────────────────┘
+```
+
+### 4. Production Example: Nested Playlist Folder Crawler
+Consider a Spotify playlist configuration where folders contain lists of tracks and nested subfolders:
+```javascript
+const playlistLibrary = {
+  name: "Root",
+  tracks: ["track_101"],
+  subfolders: [
+    {
+      name: "Chill Beats",
+      tracks: ["track_202", "track_203"],
+      subfolders: []
+    },
+    {
+      name: "Gym Workout",
+      tracks: ["track_301"],
+      subfolders: [
+        {
+          name: "Metal Cardio",
+          tracks: ["track_404"],
+          subfolders: []
+        }
+      ]
+    }
+  ]
+};
+
+// Recursive function to crawl folders and extract all track IDs
+function collectAllTracks(folder) {
+  let list = [...folder.tracks]; // Collect current folder tracks
+  
+  // Base Case: Loop handles empty arrays automatically (stops calling if empty)
+  for (const sub of folder.subfolders) {
+    // Recursive Step: call collectAllTracks with the nested subfolder
+    list = list.concat(collectAllTracks(sub));
+  }
+  return list;
+}
+
+const allSongs = collectAllTracks(playlistLibrary);
+console.log(allSongs); // Output: [ 'track_101', 'track_202', 'track_203', 'track_301', 'track_404' ]
 ```
 
 ---

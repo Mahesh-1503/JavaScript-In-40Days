@@ -47,6 +47,7 @@ Tracing the path of a loop processing a feed array using control keywords:
 Loops let you repeat a block of code multiple times without rewriting it.
 - **`for` Loop:** Best when you know *exactly* how many times you want to loop beforehand (e.g. print numbers from 1 to 10).
 - **`while` Loop:** Best when you want to repeat code until a certain condition changes, but you don't know when that will be (e.g. wait for a server response).
+- **`do...while` Loop:** Similar to a `while` loop, but it executes the code block *first* before checking the condition. This guarantees that the loop body runs **at least once** even if the condition is initially `false`.
 - **`break`:** Stop the loop immediately and exit.
 - **`continue`:** Skip the rest of the current loop step and jump directly to the next iteration.
 
@@ -70,13 +71,20 @@ while (count > 0) {
   count--; // CRUCIAL: Decrement count so the loop eventually ends!
 }
 
-// 3. The "for...of" loop (Simplest way to loop through arrays)
+// 3. The "do...while" loop (Guaranteed At-Least-Once Execution)
+let attempts = 0;
+do {
+  console.log("Attempt number:", attempts + 1);
+  attempts++;
+} while (attempts < 0); // Condition is false, but runs once!
+
+// 4. The "for...of" loop (Simplest way to loop through arrays)
 const shoppingList = ["milk", "eggs", "bread"];
 for (const item of shoppingList) {
   console.log("Shopping item:", item);
 }
 
-// 4. Using "continue" and "break" inside loops
+// 5. Using "continue" and "break" inside loops
 for (let num = 1; num <= 5; num++) {
   if (num === 2) {
     continue; // Skip the rest of this iteration (skips printing 2)
@@ -97,11 +105,14 @@ for (let num = 1; num <= 5; num++) {
 2. **`while (count > 0) { ... count--; }`**
    - Checks `count > 0`. If `true`, executes the block.
    - **`count--`** is shorthand for `count = count - 1`. If you forget this line, `count` will stay `3` forever, creating an **infinite loop** that crashes the browser!
-3. **`for (const item of shoppingList) { ... }`**
+3. **`do { ... } while (attempts < 0);`**
+   - The engine executes the code block first (printing "Attempt number: 1" and incrementing `attempts` to `1`).
+   - It then checks `attempts < 0`. Since `1 < 0` is `false`, the loop terminates. The block executed exactly once.
+4. **`for (const item of shoppingList) { ... }`**
    - A clean modern shorthand. It automatically loops through the `shoppingList` array, assigning the current element value to the variable `item` on each cycle.
-4. **`continue`**
+5. **`continue`**
    - Skips the current step. When `num === 2`, JavaScript immediately skips to the next increment step, so `console.log(2)` never runs.
-5. **`break`**
+6. **`break`**
    - Exits the loop. When `num === 4`, the loop terminates instantly. No more iterations run.
 
 ---
