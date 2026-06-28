@@ -1,18 +1,15 @@
 # Beginner's Guide: JavaScript Mini-Projects
 
-Welcome to the beginner's guide to JS mini-projects! In this section, we apply variables, comparison operators, loops, and functions to build two real games: **Rock Paper Scissors (RPS)** and **Secret Number Guessing**.
+Hey there, future game developer! 👋 Welcome to your hands-on guide to JavaScript Mini-Projects. Today, we are going to apply everything we've learned so far—variables, conditionals, loops, functions, and math—to build two fully interactive games: **Rock Paper Scissors** and **Secret Number Guessing**.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** Interactive Programs: The User-Machine Loop
-*   **Part 2:** Capturing & Sanitizing User Inputs
-*   **Part 3:** Understanding Randomness in JavaScript (`Math.random()`)
-*   **Part 4:** Building Rock Paper Scissors (Step-by-Step)
-*   **Part 5:** Building the Secret Number Game (Step-by-Step)
-*   **Part 6:** Production Scopes: Input Validation & Recursion Replays
-*   **Part 7:** Practice Exercises & Game Enhancements
+To get the most out of your mini-projects experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand user input sanitization and random number generation formulas.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-games.js`), and run them with `node test-games.js` in your terminal to see them in action.
+3.  **Step 3:** Open and read [08-mini-projects/rps/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/08-mini-projects/rps/README.md) and [08-mini-projects/guessing-game/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/08-mini-projects/guessing-game/README.md) to explore design templates and game loops.
 
 ---
 
@@ -35,7 +32,14 @@ Users enter data in unpredictable ways. They might type `"ROCK "`, `"Rock"`, or 
 
 ### 1. Capturing with `prompt()`
 The `prompt()` function pauses execution and displays a popup input box. **It always returns a String** (or `null` if the user clicks cancel).
+
+To run these snippets in Node.js without errors, we declare a mock `prompt()` function at the top of our script:
 ```javascript
+// Safe Node.js mock prompt (simulates a user typing " ROCK ")
+if (typeof prompt === "undefined") {
+  global.prompt = (message, defaultVal) => defaultVal || " ROCK ";
+}
+
 const userInput = prompt("Enter your choice:");
 ```
 

@@ -1,19 +1,15 @@
 # Beginner's Guide: Bitwise Operators & Bit Manipulation
 
-Welcome to the beginner's guide to JavaScript bitwise operators and bit manipulation! In this guide, we break down how computer bits work under the hood using friendly analogies, simple calculations, and step-by-step scripts.
+Hey there, future bits engineer! 👋 Welcome to your hands-on guide to JavaScript Bitwise Operators and Bit Manipulation. Today, we are going to explore how computers see numbers in binary switches, shift bits around, and build a blazing fast permission access system using bitmasks.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** Understanding Binary First (The Light Switch Analogy)
-*   **Part 2:** Why Learn Bit Manipulation?
-*   **Part 3:** The 7 Bitwise Operators (Explained simply with analogies)
-*   **Part 4:** Permission Systems in Real Software
-*   **Part 5:** Bitwise Magic Tricks (Code shortcuts)
-*   **Part 6:** Real-World Production Examples
-*   **Part 7:** Essential Interview Questions
-*   **Part 8:** Practice Exercises & Cheat Sheet
+To get the most out of your bitwise experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand the light switch analogies and bitmask states.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-bits.js`), and run them with `node test-bits.js` in your terminal to see it compute.
+3.  **Step 3:** Open and read [04-bitwise-operators-and-bit-manipulation/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/04-bitwise-operators-and-bit-manipulation/README.md) to review binary masks, permissions flags, and shifting math.
 
 ---
 

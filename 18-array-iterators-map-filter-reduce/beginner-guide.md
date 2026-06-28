@@ -1,19 +1,15 @@
 # Beginner's Guide: Array Iterators (`map`, `filter`, `reduce`)
 
-Welcome to the beginner's guide to JavaScript Array Iterators! This guide explains functional programming methods (`map`, `filter`, `reduce`), how to write declarative pipelines, and how to avoid the common reduce initial-value gotcha.
+Hey there, future functional programmer! 👋 Welcome to your hands-on guide to JavaScript Array Iterators. Today, we are going to learn how to process lists declaratively using the assembly lines of `map()`, `filter()`, and `reduce()`, chain them in pipelines, and avoid accumulator type-coercion bugs.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** Declarative Programming (Assembly Line Analogy)
-*   **Part 2:** Transforming lists with `map()`
-*   **Part 3:** Filtering lists with `filter()`
-*   **Part 4:** Accumulating lists with `reduce()`
-*   **Part 5:** The Reduce Initial Value Gotcha (Critical Bug)
-*   **Part 6:** Pipeline Method Chaining
-*   **Part 7:** Real-World Application Code
-*   **Part 8:** Essential Interview Questions & Practice Exercises
+To get the most out of your array iterator experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand audit spreadsheet ledgers and QuickBooks assembly lines.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-iterators.js`), and run them with `node test-iterators.js` in your terminal to inspect outputs.
+3.  **Step 3:** Open and read [18-array-iterators-map-filter-reduce/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/18-array-iterators-map-filter-reduce/README.md) to explore immutability, callback parameter definitions, and performance differences against `for` loops.
 
 ---
 

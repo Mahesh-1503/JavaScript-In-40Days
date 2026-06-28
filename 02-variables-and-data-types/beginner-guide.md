@@ -1,19 +1,16 @@
 # Beginner's Guide: Variables & Data Types
 
-Welcome to the beginner's guide to JavaScript! This guide will take you step-by-step from the absolute basics of variables to how memory works in JavaScript, using simple language, clear analogies, and practical examples.
+Hey there, future coder! 👋 Welcome to your hands-on guide to JavaScript Variables and Data Types. Today, we are going to explore how data is stored, casting types, and how primitive copy-by-value differs from object copy-by-reference.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Phase 1:** What is a Variable?
-*   **Phase 2:** Declaring Variables (`let`, `const`, `var`)
-*   **Phase 3:** Primitive Data Types
-*   **Phase 4:** Reference Data Types
-*   **Phase 5:** Stack vs. Heap Memory (Why Objects behave differently)
-*   **Phase 6:** Type Conversion & Coercion
-*   **Phase 7:** Real Application Examples
-*   **Phase 8:** Cheat Sheet & Golden Rules
+To get the most out of your variables experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand storage box concepts and stack vs. heap layouts.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-vars.js`), and run them with `node test-vars.js` in your terminal to see the outcomes.
+3.  **Step 3:** Open and read [02-variables-and-data-types/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/02-variables-and-data-types/README.md) to explore the deep inner workings of V8 shapes and hidden classes.
+4.  **Step 4:** Inspect and run [02-variables-and-data-types/type-conversion-and-primitives.js](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/02-variables-and-data-types/type-conversion-and-primitives.js) to see precision rounding, symbols, and coercion traps.
 
 ---
 
@@ -80,7 +77,12 @@ console.log(age); // 26
 Use `const` when the value must remain locked once initialized.
 ```javascript
 const country = "India";
-country = "USA"; // TypeError: Assignment to constant variable!
+try {
+  country = "USA"; // ❌ TypeError: Assignment to constant variable!
+} catch (error) {
+  console.log("Expected Error Caught: const variables cannot be reassigned!");
+  console.log("Error details:", error.message);
+}
 ```
 
 ### 3. `var` (Legacy scope variables)
@@ -400,7 +402,12 @@ const user = { name: "Arun" };
 
 user.name = "Vijay"; // Works! We changed properties inside the Heap.
 
-// user = {}; // ILLEGAL! Throws TypeError. We cannot change the stack pointer to another address.
+try {
+  user = {}; // ❌ ILLEGAL! Throws TypeError. We cannot change the stack pointer to another address.
+} catch (error) {
+  console.log("Expected Error Caught: Object constant pointers cannot be reassigned to a new address!");
+  console.log("Error details:", error.message);
+}
 ```
 
 ---

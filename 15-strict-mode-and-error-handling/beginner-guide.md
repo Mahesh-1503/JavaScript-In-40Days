@@ -1,20 +1,15 @@
 # Beginner's Guide: Strict Mode & Error Handling
 
-Welcome to the beginner's guide to JavaScript Strict Mode and Error Handling! This guide explains how to write secure, clean JavaScript using `"use strict"`, how to catch runtime exceptions, throw custom validation errors, and perform database cleanup using `finally` blocks.
+Hey there, future debugger! 👋 Welcome to your hands-on guide to JavaScript Strict Mode and Error Handling. Today, we are going to learn how to enforce safety guardrails using `"use strict"`, catch V8 exceptions with try-catch nets, trigger custom error classifications, and execute cleanups inside finally blocks.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** Strict Mode (`"use strict"`) - Safety Guardrails
-*   **Part 2:** The 6 Standard Errors in JavaScript
-*   **Part 3:** The Try-Catch Safety Net
-*   **Part 4:** The `finally` Block (Cleanup Crew)
-*   **Part 5:** Throwing & Rethrowing Exceptions
-*   **Part 6:** Creating Custom Error Classes (`ValidationError`)
-*   **Part 7:** Logical Nullish Assignment (`??=`)
-*   **Part 8:** Real-World Application Code
-*   **Part 9:** Essential Interview Questions & Practice Exercises
+To get the most out of your debugging experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand standard error categories and finally blocks.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-errors.js`), and run them with `node test-errors.js` in your terminal to see the safety flows.
+3.  **Step 3:** Open and read [15-strict-mode-and-error-handling/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/15-strict-mode-and-error-handling/README.md) to explore error stack traces, throwing models, and rethrowing structures.
 
 ---
 
@@ -26,12 +21,18 @@ To prevent this, we use **Strict Mode**.
 *   *Analogy:* **Switching from a Wild West dirt road to a policed highway.** The police (strict mode) will immediately pull you over (throw an error) for minor violations, stopping bugs before they escape to production.
 
 ### How to use it:
-Add `"use strict";` as a string at the very top of your JavaScript file (or inside a specific function):
+Add `"use strict";` at the top of your file (or inside a function scope). Let's test it inside a try-catch block:
 ```javascript
-"use strict";
-
-// ❌ Bug: Throws ReferenceError (Auto-globals are forbidden in strict mode!)
-username = "Mahesh"; 
+function testStrictMode() {
+  "use strict";
+  try {
+    username = "Mahesh"; // ❌ Bug: Throws ReferenceError (Auto-globals are forbidden in strict mode!)
+  } catch (error) {
+    console.log("Expected Strict Mode Error Caught:");
+    console.log("Error details:", error.message);
+  }
+}
+testStrictMode();
 ```
 
 ### Core Strict Mode Rules:
@@ -47,28 +48,44 @@ username = "Mahesh";
 
 ## Part 2: The 6 Standard Errors in JavaScript
 
-JavaScript has specific built-in objects to represent different types of errors:
+JavaScript has specific built-in objects to represent different types of errors. Let's run and catch them safely so they don't halt our script:
 
-1.  **SyntaxError:** The code violates grammar rules (e.g. missing parentheses or invalid operators):
+1.  **SyntaxError:** The code violates grammar rules (e.g. missing parentheses). *Note: Syntax errors fail during the compilation pass, so they cannot be caught at runtime. We comment it out here:*
     ```javascript
-    console.log("hello" // SyntaxError: Unexpected end of input
+    // console.log("hello" // SyntaxError: Unexpected end of input
     ```
 2.  **ReferenceError:** Accessing a variable name that does not exist in memory:
     ```javascript
-    console.log(x); // ReferenceError: x is not defined
+    try {
+      console.log(x); // ❌ ReferenceError: x is not defined
+    } catch (error) {
+      console.log("ReferenceError Caught:", error.message);
+    }
     ```
 3.  **TypeError:** Performing an operation on an incompatible data type:
     ```javascript
-    let obj = null;
-    console.log(obj.name); // TypeError: Cannot read properties of null
+    try {
+      let obj = null;
+      console.log(obj.name); // ❌ TypeError: Cannot read properties of null
+    } catch (error) {
+      console.log("TypeError Caught:", error.message);
+    }
     ```
 4.  **RangeError:** Using numeric values outside their allowed boundaries:
     ```javascript
-    let arr = new Array(-1); // RangeError: Invalid array length
+    try {
+      let arr = new Array(-1); // ❌ RangeError: Invalid array length
+    } catch (error) {
+      console.log("RangeError Caught:", error.message);
+    }
     ```
 5.  **URIError:** Passing invalid characters to URL decoding/encoding functions:
     ```javascript
-    decodeURIComponent("%"); // URIError: Malformed URI sequence
+    try {
+      decodeURIComponent("%"); // ❌ URIError: Malformed URI sequence
+    } catch (error) {
+      console.log("URIError Caught:", error.message);
+    }
     ```
 6.  **EvalError:** Errors related to the legacy `eval()` compilation function.
 

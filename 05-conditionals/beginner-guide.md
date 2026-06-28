@@ -1,24 +1,15 @@
 # Beginner's Guide: JavaScript Conditionals
 
-Welcome to the beginner's guide to JavaScript conditionals! This guide explains how programs make decisions, using clear real-world analogies, step-by-step examples, and clean coding patterns.
+Hey there, future decision maker! 👋 Welcome to your hands-on guide to JavaScript Conditionals. Today, we are going to learn how to write logic that helps programs choose different execution pathways, compare values, and structure clean branches using switch blocks, early returns, and object lookups.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** What are Conditionals? (Decision Making)
-*   **Part 2:** The `if` Statement
-*   **Part 3:** The `if...else` Statement
-*   **Part 4:** The `else if` Multi-Branch
-*   **Part 5:** Combining Conditions (`&&` and `||`)
-*   **Part 6:** Nested Conditionals
-*   **Part 7:** The Ternary Operator (`? :`)
-*   **Part 8:** The `switch` Statement
-*   **Part 9:** Switch Strict Equality & Multiple Cases
-*   **Part 10:** Application-Level Projects (ATM, Movie Ticketer, Calculator)
-*   **Part 11:** Production-Grade Design Patterns (Early Returns, Object Mapping)
-*   **Part 12:** Truthy vs. Falsy Gotchas
-*   **Part 13:** Essential Interview Questions & Exercises
+To get the most out of your conditionals experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand conditional blocks and object mapping techniques.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-cond.js`), and run them with `node test-cond.js` in your terminal to see the outcomes.
+3.  **Step 3:** Open and read [05-conditionals/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/05-conditionals/README.md) to review strict equality, switch tables, and optimal returns.
 
 ---
 

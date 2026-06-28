@@ -1,6 +1,15 @@
 # Beginner's Guide: APIs & The Fetch API
 
-Welcome to the beginner's guide to APIs and the Fetch API! This guide explains how to connect your application to external databases, retrieve data with GET requests, write POST submissions, handle HTTP errors, and cancel pending requests.
+Hey there, future web integrator! 👋 Welcome to your hands-on guide to APIs and the Fetch API. Today, we will learn how to connect your application to external services, perform GET and POST requests, handle HTTP errors, and cancel pending requests safely.
+
+---
+
+## 📂 How to Learn This Folder
+
+To get the most out of this chapter, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand API request flow and error handling.
+2.  **Step 2:** Copy the code examples into a file like `test-fetch.js` and run them with `node test-fetch.js` to observe fetch stage behavior.
+3.  **Step 3:** Open and read [25-apis-and-fetch/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/25-apis-and-fetch/README.md) to explore API patterns and practical tasks.
 
 ---
 

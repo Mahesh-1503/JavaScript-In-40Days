@@ -1,6 +1,15 @@
 # Beginner's Guide: OOP & Prototypal Inheritance
 
-Welcome to the beginner's guide to Object-Oriented Programming (OOP) and JavaScript Prototypes! This guide explains how to structure clean application models, use the 4 pillars of OOP, write modern ES6 classes, and trace prototypal inheritance chains.
+Hey there, future OOP builder! 👋 Welcome to your hands-on guide to Object-Oriented Programming and JavaScript prototypes. Today, we will learn how to structure clean application models, use the four pillars of OOP, write ES6 classes, and trace prototypal inheritance chains.
+
+---
+
+## 📂 How to Learn This Folder
+
+To get the most out of this chapter, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand object-oriented models and prototype behavior.
+2.  **Step 2:** Copy the code examples into a file like `test-oop.js` and run them with `node test-oop.js` to inspect inheritance and class behavior.
+3.  **Step 3:** Open and read [24-oop-and-prototypes/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/24-oop-and-prototypes/README.md) to explore prototype exercises and object design challenges.
 
 ---
 

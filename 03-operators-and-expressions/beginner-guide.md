@@ -1,26 +1,15 @@
 # Beginner's Guide: Operators and Expressions
 
-Welcome to the beginner's guide to JavaScript operators and expressions! Here, we break down how mathematical, logical, and assignment expressions work in JavaScript, using simple code snippets, visual rules, and practical projects.
+Hey there, future developer! 👋 Welcome to your hands-on guide to JavaScript Operators and Expressions. Today, we are going to explore mathematical operators, increment prefix/postfix rules, logical short-circuiting, and ternary operations.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-1.  **Step 1:** What are Operators and Expressions?
-2.  **Step 2:** Arithmetic Operators
-3.  **Step 3:** Increment and Decrement (Prefix vs. Postfix)
-4.  **Step 4:** Assignment Operators
-5.  **Step 5:** Comparison Operators (`==` vs. `===`)
-6.  **Step 6:** Logical Operators (`&&`, `||`, `!`)
-7.  **Step 7:** Short-Circuit Evaluation
-8.  **Step 8:** Nullish Coalescing (`??`)
-9.  **Step 9:** Ternary Operator (`? :`)
-10. **Step 10:** Operator Precedence
-11. **Step 11:** Bitwise Operators
-12. **Step 12:** The `typeof` Operator
-13. **Step 13:** Real-World Application Projects
-14. **Step 14:** Most Important Interview Questions
-15. **Step 15:** Practice Exercises
+To get the most out of your operators experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand operators classifications and short-circuit evaluations.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-ops.js`), and run them with `node test-ops.js` in your terminal to see the results.
+3.  **Step 3:** Open and read [03-operators-and-expressions/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/03-operators-and-expressions/README.md) to explore operator precedence and bitwise masks.
 
 ---
 

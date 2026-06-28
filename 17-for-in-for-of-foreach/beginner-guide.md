@@ -1,18 +1,15 @@
 # Beginner's Guide: Looping Collections (`for...in`, `for...of`, `forEach`)
 
-Welcome to the beginner's guide to looping collections in JavaScript! This guide explains how to iterate through lists and maps, select the right loop for arrays vs. objects, and avoid common loop iteration bugs.
+Hey there, future collection iterator! 👋 Welcome to your hands-on guide to JavaScript Collection Loops. Today, we are going to learn how to scan spreadsheet rows (lists) using standard `for` loops, direct `for...of` value reading, functional `forEach` callbacks, and traverse object keys with `for...in`.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** Collection Loops (The Spreadsheet Reader Analogy)
-*   **Part 2:** Looping Arrays: `for`, `for...of`, and `forEach()`
-*   **Part 3:** Looping Objects: `for...in`
-*   **Part 4:** Why `for...in` is Dangerous for Arrays (The Prototype Leak)
-*   **Part 5:** Converting Objects to Arrays using `Array.from()`
-*   **Part 6:** Real-World Application Code
-*   **Part 7:** Essential Interview Questions & Practice Exercises
+To get the most out of your loop iterator experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand spreadsheet analogies and prototype inheritance leaks.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-loops.js`), and run them with `node test-loops.js` in your terminal to compare outputs.
+3.  **Step 3:** Open and read [17-for-in-for-of-foreach/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/17-for-in-for-of-foreach/README.md) to explore lexical execution scopes, performance speeds, and iteration protocols.
 
 ---
 
@@ -101,6 +98,9 @@ for (let index in num) {
     for (let index in arr) {
       console.log(index); // "0", "1", "customHelper" (Leaked helper property!)
     }
+    
+    // Clean up prototype modifications so other test files stay pristine:
+    delete Array.prototype.customHelper;
     ```
 
 ---

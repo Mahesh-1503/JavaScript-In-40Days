@@ -1,19 +1,15 @@
 # Beginner's Guide: Timers & Advanced Closures (`setTimeout` & `setInterval`)
 
-Welcome to the beginner's guide to JavaScript Timers and Asynchronous execution! This guide explains how to schedule code delays, create repeating pings, trace the Event Loop, and resolve the famous loop-timer closure bug.
+Hey there, future scheduling wizard! 👋 Welcome to your hands-on guide to JavaScript Timers and Asynchronous Execution. Today, we are going to learn how to delegate timing countdowns to V8 Web APIs, prevent event loop blockages, schedule recurring heartbeats, and debug loop scopes using block scoping.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** Timers in JavaScript (The Zoom Room Analogy)
-*   **Part 2:** One-Off Alarms: `setTimeout()` and `clearTimeout()`
-*   **Part 3:** Repeating Pendulums: `setInterval()` and `clearInterval()`
-*   **Part 4:** Behind the Scenes: The Event Loop & Web APIs
-*   **Part 5:** The `setInterval` Queue Pile-Up Hazard & Recursive Timeouts
-*   **Part 6:** The Loop Closure Timer Gotcha (`var` vs. `let`)
-*   **Part 7:** Real-World Application Code
-*   **Part 8:** Essential Interview Questions & Practice Exercises
+To get the most out of your timer experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand Event Loop queues and Zoom room telemetries.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-timers.js`), and run them with `node test-timers.js` in your terminal to see the async schedules.
+3.  **Step 3:** Open and read [19-advanced-functions-and-settimeout/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/19-advanced-functions-and-settimeout/README.md) to explore Heap memory spaces, macro-task queues, and lexical binding offsets.
 
 ---
 

@@ -1,6 +1,15 @@
 # Beginner's Guide: Browser DevTools & Debugging
 
-Welcome to the beginner's guide to Browser Developer Tools and Debugging! This guide explains how to inspect webpages, use advanced console methods, set code breakpoints, throttle network speeds, and debug execution flow step-by-step.
+Hey there, future debugger detective! 👋 Welcome to your hands-on guide to Browser Developer Tools and debugging. Today, we will learn how to inspect webpages, use advanced console methods, set breakpoints, throttle network speeds, and debug execution flow step-by-step.
+
+---
+
+## 📂 How to Learn This Folder
+
+To get the most out of this chapter, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand browser debugging tools and workflows.
+2.  **Step 2:** Copy the examples into a file like `test-devtools.js` and run them with `node test-devtools.js` to practice debugging techniques.
+3.  **Step 3:** Open and read [28-browser-developer-tools-and-debugging/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/28-browser-developer-tools-and-debugging/README.md) to explore DevTools exercises and try the workflows in a browser.
 
 ---
 

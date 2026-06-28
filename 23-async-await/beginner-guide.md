@@ -1,6 +1,15 @@
 # Beginner's Guide: Modern Async / Await
 
-Welcome to the beginner's guide to JavaScript Async/Await! This guide explains how to write clean, synchronous-looking asynchronous code, use try-catch for error handling, parallelize operations using `Promise.all()`, and understand thread suspension.
+Hey there, future async/await master! 👋 Welcome to your hands-on guide to JavaScript Async/Await. Today, we will learn how to write clean, synchronous-looking asynchronous code, handle errors with `try...catch`, parallelize tasks with `Promise.all()`, and understand how async functions suspend without blocking the main thread.
+
+---
+
+## 📂 How to Learn This Folder
+
+To get the most out of this chapter, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand async/await flow and error handling.
+2.  **Step 2:** Copy the examples into a file like `test-async-await.js` and run them with `node test-async-await.js` to observe sequencing and parallel execution.
+3.  **Step 3:** Open and read [23-async-await/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/23-async-await/README.md) to explore async/await use cases and practice exercises.
 
 ---
 

@@ -1,6 +1,15 @@
 # Beginner's Guide: Asynchronous Promises
 
-Welcome to the beginner's guide to JavaScript Promises! This guide explains what Promises are, how to construct and chain them, how V8 prioritizes Promise callbacks in the Microtask Queue, and how to handle errors cleanly.
+Hey there, future promise pro! 👋 Welcome to your hands-on guide to JavaScript Promises. Today, we will learn what promises are, how to create and chain them, why the Microtask Queue matters, and how to handle errors cleanly in modern asynchronous code.
+
+---
+
+## 📂 How to Learn This Folder
+
+To get the most out of this chapter, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand promise creation and chaining.
+2.  **Step 2:** Copy the code examples into a file like `test-promises.js` and run them with `node test-promises.js` to observe promise resolution order and error handling.
+3.  **Step 3:** Open and read [22-promises/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/22-promises/README.md) to explore promise-based patterns and challenge tasks.
 
 ---
 

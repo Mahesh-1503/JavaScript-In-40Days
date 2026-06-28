@@ -1,6 +1,15 @@
 # Beginner's Guide: DOM & Cookies
 
-Welcome to the beginner's guide to the Document Object Model (DOM) and Cookies! This guide explains how to select and manipulate webpage elements, batch updates using `DocumentFragment` to prevent page lag, manage event bubbling via Event Delegation, and secure cookie authentication tokens.
+Hey there, future DOM builder! 👋 Welcome to your hands-on guide to the Document Object Model (DOM) and cookies. Today, we will learn how to select and manipulate webpage elements, batch updates with `DocumentFragment`, manage event propagation with delegation, and handle cookie security flags.
+
+---
+
+## 📂 How to Learn This Folder
+
+To get the most out of this chapter, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand DOM manipulation and cookie handling.
+2.  **Step 2:** Copy the code examples into a file like `test-dom.js` and run them with `node test-dom.js` to practice DOM operations and event handling.
+3.  **Step 3:** Open and read [26-dom-and-cookies/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/26-dom-and-cookies/README.md) to explore DOM tasks and cookie security exercises.
 
 ---
 

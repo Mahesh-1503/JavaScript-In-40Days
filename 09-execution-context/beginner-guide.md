@@ -1,19 +1,15 @@
 # Beginner's Guide: JavaScript Execution Context & The Call Stack
 
-Welcome to the beginner's guide to the JavaScript Execution Context and Call Stack! In this guide, we demystify how the JavaScript engine reads, scans, and executes your code under the hood, using simple analogies and visual tracing maps.
+Hey there, future engine engineer! 👋 Welcome to your hands-on guide to JavaScript Execution Contexts and the Call Stack. Today, we are going to learn how the V8 engine sets up memory folders, executes code synchronously line-by-line, and tracks scopes using the call stack.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** What is an Execution Context? (The Kitchen Workspace)
-*   **Part 2:** The Two Components of the Workspace
-*   **Part 3:** The Two Execution Phases (Creation vs. Run)
-*   **Part 4:** The Call Stack (The Cafeteria Tray Stack)
-*   **Part 5:** Conceptual Analogy: The Slack Chat Client
-*   **Part 6:** Step-by-Step Code Execution Trace
-*   **Part 7:** Production Scopes: Garbage Collection & Stack Limits
-*   **Part 8:** Essential Interview Questions & Practice Exercises
+To get the most out of your execution context experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand Variable Environments and LIFO cafeteria tray stacks.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-context.js`), and run them with `node test-context.js` in your terminal to see the lifecycle.
+3.  **Step 3:** Open and read [09-execution-context/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/09-execution-context/README.md) to review compilation phases, thread queues, and call stacks.
 
 ---
 
@@ -150,12 +146,18 @@ The engine scans the code and allocates memory:
 When a function finishes executing and pops off the Call Stack, its entire execution context (including local variables like `res` inside `double()`) is destroyed. The JS engine's **Garbage Collector** releases that memory space so the computer doesn't slow down.
 
 ### 2. Stack Overflow Limit
-The call stack has a maximum limit (usually around 10,000 frames). If you run infinite recursion, the stack overflow exception crashes the browser:
+The call stack has a maximum limit (usually around 10,000 frames). If you run infinite recursion, the stack overflow exception crashes the browser. We wrap this in a safe try-catch to keep our script running:
 ```javascript
 function recurse() {
   recurse(); // Pushes frames infinitely
 }
-recurse(); // Throws: RangeError: Maximum call stack size exceeded
+
+try {
+  recurse(); 
+} catch (error) {
+  console.log("Expected Stack Overflow Error Caught (RangeError):");
+  console.log("Error details:", error.message);
+}
 ```
 
 ---

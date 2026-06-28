@@ -1,19 +1,15 @@
 # Beginner's Guide: Scopes & Scope Chaining
 
-Welcome to the beginner's guide to JavaScript Scopes and Scope Chaining! In this guide, we explore how JavaScript isolates variable names, how nested code searches for variables, and how variable shadowing overrides data values.
+Hey there, future variables scope manager! 👋 Welcome to your hands-on guide to JavaScript Scopes and Scope Chaining. Today, we are going to learn how JavaScript creates memory boundaries, resolves variable declarations through scope chaining lookup ladders, and manages variable shadowing under block scoping.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** What is Scope? (The Nesting Dolls Analogy)
-*   **Part 2:** The 4 Types of Scope (Global, Function, Block, Module)
-*   **Part 3:** The Scope Chain (The Ladder Lookup Model)
-*   **Part 4:** Variable Shadowing (The Sunglasses Analogy)
-*   **Part 5:** `var` vs. `let` / `const` Block Scoping
-*   **Part 6:** Real-World Application Code
-*   **Part 7:** Tricky Interview Gotchas (Auto-Globals Leak)
-*   **Part 8:** Practice Exercises & Cheat Sheet
+To get the most out of your scope experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand local function scopes and nesting doll models.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-scopes.js`), and run them with `node test-scopes.js` in your terminal to see the outcomes.
+3.  **Step 3:** Open and read [11-scopes-and-scope-chaining/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/11-scopes-and-scope-chaining/README.md) to explore V8 scoping environments, global registers, and auto-global hazards.
 
 ---
 
@@ -73,7 +69,12 @@ function toDo() {
 }
 toDo();
 
-// console.log(task); // ❌ Bug: ReferenceError: task is not defined
+try {
+  console.log(task); // ❌ Bug: ReferenceError: task is not defined
+} catch (error) {
+  console.log("Expected Error Caught: Local function variables cannot be accessed from outside!");
+  console.log("Error details:", error.message);
+}
 ```
 
 ### 3. Block Scope
@@ -84,7 +85,12 @@ Introduced in ES6. Variables declared with `let` and `const` inside `{}` curly b
   console.log(count); // Accessible
 }
 
-// console.log(count); // ❌ Bug: ReferenceError: count is not defined
+try {
+  console.log(count); // ❌ Bug: ReferenceError: count is not defined
+} catch (error) {
+  console.log("Expected Error Caught: Block-scoped variables cannot be accessed outside their block!");
+  console.log("Error details:", error.message);
+}
 ```
 
 ### 4. Module Scope

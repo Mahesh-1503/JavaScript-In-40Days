@@ -1,6 +1,15 @@
 # Beginner's Guide: Callbacks & Callback Hell
 
-Welcome to the beginner's guide to JavaScript Callbacks and the nested callback problem! This guide explains how callback functions operate, why deeply nested callbacks create "Callback Hell", what "Inversion of Control" is, and how to write robust asynchronous logic.
+Hey there, future async expert! 👋 Welcome to your hands-on guide to JavaScript Callbacks and Callback Hell. Today, we will explore callback functions, why nested callback structures hurt readability and reliability, how Inversion of Control affects async flow, and how to write more robust asynchronous logic.
+
+---
+
+## 📂 How to Learn This Folder
+
+To get the most out of this chapter, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand async callback patterns.
+2.  **Step 2:** Copy the code examples from this guide into a file like `test-callbacks.js` and run them with `node test-callbacks.js` to observe callback ordering and error handling.
+3.  **Step 3:** Open and read [21-callbacks-and-callback-hell/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/21-callbacks-and-callback-hell/README.md) to explore callback patterns and callback restructuring exercises.
 
 ---
 

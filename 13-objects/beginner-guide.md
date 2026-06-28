@@ -1,22 +1,16 @@
 # Beginner's Guide: JavaScript Objects & JSON
 
-Welcome to the beginner's guide to JavaScript Objects and JSON! This guide explains how to store complex key-value data structures, use object constructor templates, copy objects safely, write JSON serializers, and prevent application crashes using optional chaining.
+Hey there, future object designer! 👋 Welcome to your hands-on guide to JavaScript Objects and JSON. Today, we are going to learn how to store structured data using key-value pairs, duplicate heap properties using structuredClone, serialize objects to strings, and safeguard against crashes using optional chaining.
 
 ---
 
-## 📅 Learning Roadmap
+## 📂 How to Learn This Folder
 
-*   **Part 1:** What is an Object? (The Jira Ticket Analogy)
-*   **Part 2:** Accessing Properties (Dot vs. Bracket vs. Computed Keys)
-*   **Part 3:** Object Templates: Factory vs. Constructor Functions
-*   **Part 4:** Inspecting & Iterating Objects (`Object.keys()`, `hasOwn()`, `for...in`)
-*   **Part 5:** Memory Pointers: Shallow vs. Deep Copying
-*   **Part 6:** Cloning Primitives & JSON Serialization Rules
-*   **Part 7:** Locking Objects: preventExtensions vs. Seal vs. Freeze
-*   **Part 8:** Modern Patterns: Destructuring, Aliasing, and Optional Chaining (`?.`)
-*   **Part 9:** V8 Engine Internals: Hidden Classes (Shapes)
-*   **Part 10:** Real-World Application Code
-*   **Part 11:** Essential Interview Questions & Practice Exercises
+To get the most out of your objects experiments, follow this sequence:
+1.  **Step 1:** Read this guide (`beginner-guide.md`) to understand Jira ticket analogies and shallow vs. deep heap memory architectures.
+2.  **Step 2:** Copy the code blocks in this guide, paste them into a file (like `test-objects.js`), and run them with `node test-objects.js` in your terminal to see the logs.
+3.  **Step 3:** Open and read [13-objects/README.md](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/13-objects/README.md) to explore V8 hidden classes, shape offsets, and serialization bounds.
+4.  **Step 4:** Inspect and run [13-objects/json-demo.js](file:///f:/40-Days%20JavaScript/JavaScript-In-40Days/13-objects/json-demo.js) to see custom replacers, Date revivers, and structural clones.
 
 ---
 
@@ -254,7 +248,13 @@ console.log(email); // "no-email@jira.com" (Applied default fallback)
 Accessing properties inside nested objects that might be missing can crash your app:
 ```javascript
 const ticket = { id: "t_1" }; // Has no 'reporter'
-// console.log(ticket.reporter.name); // ❌ Throws TypeError: Cannot read properties of undefined!
+
+try {
+  console.log(ticket.reporter.name); // ❌ Throws TypeError: Cannot read properties of undefined!
+} catch (error) {
+  console.log("Expected Error Caught: Cannot access property of undefined!");
+  console.log("Error details:", error.message);
+}
 
 console.log(ticket.reporter?.name); // 🟢 safely returns undefined without crashing!
 ```
