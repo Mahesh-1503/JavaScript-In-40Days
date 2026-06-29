@@ -167,6 +167,81 @@ todoList.addEventListener("click", function(event) {
 });
 ```
 
+### 3. Controlling Event Actions: preventDefault & stopPropagation
+
+Inside event handlers, the browser provides a native **`event`** object containing parameters about the action. Sometimes you need to cancel the default browser behavior or halt the event ripple (bubbling) chain:
+
+*   **`event.preventDefault()`:** Prevents the browser's default action.
+    *   *Real-World Use:* When a user submits an HTML `<form>`, the browser automatically reloads the entire page. Calling `event.preventDefault()` inside the submit handler halts the reload so you can validate and process the form asynchronously in JavaScript.
+*   **`event.stopPropagation()`:** Stops the event from bubbling up to parent element listeners.
+    *   *Real-World Use:* Clicking a modal popup's "Close" button should close the modal, but if the modal background overlay has a click-to-dismiss handler, the click on the button bubbles up and triggers the overlay, causing layout bugs. Calling `stopPropagation()` on the button click locks the event from floating upward.
+
+```javascript
+// Example Form Submit handler:
+const formElement = { addEventListener: (event, cb) => cb({ preventDefault: () => {} }) };
+formElement.addEventListener("submit", function(event) {
+  event.preventDefault(); // Stop page reload!
+  console.log("Form submission intercepted dynamically in JS.");
+});
+```
+
+---
+
+## Part 5.5: Managing UI States with ClassList
+
+Instead of editing inline style strings directly in Javascript (e.g. `el.style.color = "red"; el.style.fontSize = "20px"`), the best practice in web design is to toggle CSS classes declared inside a stylesheet. This keeps your design rules isolated inside CSS files.
+
+Use the **`element.classList`** API:
+*   `classList.add("classname")`: Appends a CSS class.
+*   `classList.remove("classname")`: Deletes a CSS class.
+*   `classList.toggle("classname")`: Adds the class if it is missing, or deletes it if it is present.
+*   `classList.contains("classname")`: Returns `true` if the element has that class active.
+
+```html
+<!-- Companion HTML markup -->
+<div id="alert-box" class="alert-message hidden">
+  Transaction Complete!
+</div>
+```
+
+```javascript
+// Node-safe mock so this runs in terminal consoles without crashing:
+if (typeof document === "undefined") {
+  global.document = {
+    getElementById: () => ({
+      classList: {
+        add: () => {},
+        toggle: (name) => console.log(`Class toggled: ${name}`)
+      }
+    })
+  };
+}
+
+const alertBox = document.getElementById("alert-box");
+
+// Toggle class (shows alert if hidden, hides alert if visible)
+alertBox.classList.toggle("hidden");
+```
+
+---
+
+## Part 5.6: The DOM Readiness Lifecycle (DOMContentLoaded vs. Load)
+
+If you place your `<script>` tag inside the HTML `<head>` block, and the script tries to query the body (e.g. `document.getElementById("btn")`), it will return `null` and crash with `Cannot read properties of null (reading 'addEventListener')` because the browser parser hasn't drawn the buttons yet!
+
+To prevent this, you can wait for browser ready cycles:
+
+1.  **`DOMContentLoaded`:** Fires on `document` as soon as the HTML file is fully parsed and the DOM tree is constructed in memory, *before* heavy images, stylesheets, or frames finish loading. (Recommended for starting scripts quickly).
+2.  **`load`:** Fires on `window` only after the entire page has loaded, including all massive image layouts, frames, and external stylesheets.
+
+```javascript
+// 🟢 Safe setup: Run logic only after DOM is ready!
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM Tree fully ready. Safe to query elements!");
+  // Safe to bind event listeners here
+});
+```
+
 ---
 
 ## Part 6: Storing Data: Cookies & Security Flags
