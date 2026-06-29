@@ -78,6 +78,12 @@ asyncCall();
 Instead of attaching `.catch()` hooks at the bottom, async/await allows you to handle errors using standard `try...catch` blocks:
 
 ```javascript
+function fetchDatabasePayload() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error("Database connection timeout")), 1000);
+  });
+}
+
 async function fetchConfig() {
   try {
     const data = await fetchDatabasePayload();
@@ -86,28 +92,41 @@ async function fetchConfig() {
     console.error("Caught Connection Failure:", error.message);
   }
 }
+fetchConfig();
 ```
 
 ---
 
 ## Part 4: Sequential vs. Parallel Awaits
 
-If tasks do not depend on each other, awaiting them line-by-line sequentially wastes time:
+If tasks do not depend on each other, awaiting them line-by-line sequentially wastes time. Let's measure the performance difference:
 
-### Sequential Await (Slow: Total Time = 400ms)
 ```javascript
-// Waits 200ms for user, then waits 200ms for bookings:
-const user = await fetchUserProfile(); 
-const booking = await fetchUserBookings(); 
-```
+function fetchUserProfile() {
+  return new Promise(resolve => setTimeout(() => resolve({ name: "Arun" }), 200));
+}
 
-### Parallel Await with `Promise.all` (Fast: Total Time = 200ms)
-Fire both requests simultaneously in the background and await their unified completion:
-```javascript
-const [user, booking] = await Promise.all([
-  fetchUserProfile(),
-  fetchUserBookings()
-]);
+function fetchUserBookings() {
+  return new Promise(resolve => setTimeout(() => resolve(["Hotel Room", "Flight"]), 200));
+}
+
+async function runPerformanceTest() {
+  // 1. Sequential execution (Slow: ~400ms)
+  console.time("Sequential Test");
+  const user = await fetchUserProfile(); 
+  const booking = await fetchUserBookings(); 
+  console.timeEnd("Sequential Test");
+
+  // 2. Parallel execution (Fast: ~200ms)
+  console.time("Parallel Test");
+  const [userParallel, bookingParallel] = await Promise.all([
+    fetchUserProfile(),
+    fetchUserBookings()
+  ]);
+  console.timeEnd("Parallel Test");
+}
+
+runPerformanceTest();
 ```
 
 ---

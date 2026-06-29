@@ -52,6 +52,13 @@ Instead of inventing hidden tags, HTML5 allows you to store custom metadata dire
 ### Accessing Datasets in JavaScript:
 The browser parses all `data-*` properties into a single **`element.dataset`** object. Hyphenated names are converted into camelCase:
 ```javascript
+// Node-safe mock so this runs in terminal consoles without crashing:
+if (typeof document === "undefined") {
+  global.document = {
+    querySelector: () => ({ dataset: { action: "add", itemId: "kindle-10" } })
+  };
+}
+
 const button = document.querySelector("button");
 
 console.log(button.dataset.action); // "add"
@@ -65,6 +72,15 @@ console.log(button.dataset.itemId); // "kindle-10" (Hyphen converted to camelCas
 The Clipboard API allows websites to securely copy text to the user's system clipboard using standard Promises:
 
 ```javascript
+// Node-safe mock for clipboard:
+if (typeof navigator === "undefined") {
+  global.navigator = {
+    clipboard: {
+      writeText: (text) => Promise.resolve()
+    }
+  };
+}
+
 function copyApiKey(text) {
   navigator.clipboard.writeText(text)
     .then(() => {
@@ -74,6 +90,7 @@ function copyApiKey(text) {
       console.error("Clipboard copy failed:", err);
     });
 }
+copyApiKey("test-key-123");
 ```
 *Note: This API only works inside secure contexts (HTTPS) and requires user interaction (like a button click event) to trigger.*
 
@@ -86,19 +103,32 @@ Traditionally, detecting if an element was on screen required listening to the w
 The **Intersection Observer API** offloads this work to the browser background compiler:
 
 ```javascript
+// Node-safe mock for IntersectionObserver:
+if (typeof IntersectionObserver === "undefined") {
+  global.IntersectionObserver = class {
+    constructor(callback) {
+      this.callback = callback;
+    }
+    observe(target) {
+      // Simulate trigger immediately for testing
+      this.callback([{ isIntersecting: true, target }]);
+    }
+  };
+}
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       console.log("Target element has scrolled into view!");
       entry.target.classList.add("visible");
-      // Optional: Stop observing after first display
-      // observer.unobserve(entry.target); 
     } else {
       console.log("Target has left the view.");
       entry.target.classList.remove("visible");
     }
   });
 });
+
+observer.observe({ target: {}, classList: { add: () => {}, remove: () => {} } });
 
 // Start observing target div box
 const targetBox = document.getElementById("sensor-box");
@@ -112,6 +142,24 @@ observer.observe(targetBox);
 Unlike `window.onresize` (which only monitors the full browser window), the **Resize Observer API** monitors size changes of **specific elements** (e.g. when a sidebar is collapsed or a container panel shrinks):
 
 ```javascript
+// Node-safe mock for ResizeObserver:
+if (typeof ResizeObserver === "undefined") {
+  global.ResizeObserver = class {
+    constructor(callback) {
+      this.callback = callback;
+    }
+    observe(target) {
+      // Simulate size change for testing
+      this.callback([{ contentRect: { width: 200 }, target }]);
+    }
+  };
+}
+if (typeof document === "undefined") {
+  global.document = {
+    getElementById: () => ({ classList: { add: () => {}, remove: () => {} } })
+  };
+}
+
 const resizeObserver = new ResizeObserver((entries) => {
   for (let entry of entries) {
     const currentWidth = entry.contentRect.width;
@@ -139,15 +187,30 @@ If a CSS property is declared inside a stylesheet rather than inline on the HTML
 To read the actual styles resolved by the browser rendering engine, use **`window.getComputedStyle()`**:
 
 ```javascript
-const panel = document.getElementById("resize-box");
+// Node-safe mock for getComputedStyle:
+if (typeof window === "undefined") {
+  global.window = {
+    getComputedStyle: () => ({
+      fontSize: "16px",
+      backgroundColor: "rgb(250, 250, 250)"
+    })
+  };
+}
+if (typeof document === "undefined") {
+  global.document = {
+    getElementById: () => ({ style: { fontSize: "" } })
+  };
+}
 
-// ❌ Reads only inline attributes
-console.log(panel.style.fontSize); // ""
+const panelStyleCheck = document.getElementById("resize-box");
 
-// 🟢 Reads final resolved browser values
-const computed = window.getComputedStyle(panel);
-console.log(computed.fontSize); // "16px"
-console.log(computed.backgroundColor); // "rgb(250, 250, 250)"
+// Reads only inline attributes
+console.log("Inline style font:", panelStyleCheck.style.fontSize); // ""
+
+// Reads final resolved browser values
+const computed = window.getComputedStyle(panelStyleCheck);
+console.log("Computed font:", computed.fontSize); // "16px"
+console.log("Computed background:", computed.backgroundColor); // "rgb(250, 250, 250)"
 ```
 
 ---

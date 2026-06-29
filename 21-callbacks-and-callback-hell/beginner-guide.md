@@ -143,6 +143,12 @@ function triggerVoiceAlert(user, text, callback) {
   }, 1000);
 }
 
+function sendSMS(message, callback) {
+  setTimeout(() => {
+    callback(null, { smsId: "msg_9011", status: "sent" });
+  }, 1000);
+}
+
 // Triggering nested flow
 triggerVoiceAlert("Vijay", "Critical Server Down Alert", (err, callData) => {
   if (err) {

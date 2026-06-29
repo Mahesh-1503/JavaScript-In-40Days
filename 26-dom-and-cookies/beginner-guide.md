@@ -44,6 +44,15 @@ Before you can modify an element, you must find it in the DOM tree:
 
 ### 1. By ID:
 ```javascript
+// Node-safe mock so this runs in terminal consoles without crashing:
+if (typeof document === "undefined") {
+  global.document = {
+    getElementById: () => ({ appendChild: () => {} }),
+    querySelector: () => ({}),
+    querySelectorAll: () => []
+  };
+}
+
 const editor = document.getElementById("docs-editor-body");
 ```
 
@@ -63,6 +72,17 @@ To add content dynamically, we build new elements in memory and append them to p
 
 ### 1. Element Creation & Text Insertion
 ```javascript
+// Node-safe mock so this runs in terminal consoles without crashing:
+if (typeof document === "undefined") {
+  global.document = {
+    getElementById: () => ({ appendChild: () => {} }),
+    createElement: () => ({
+      classList: { add: () => {} },
+      appendChild: () => {}
+    })
+  };
+}
+
 function insertParagraphBlock(text) {
   const editor = document.getElementById("docs-editor-body");
   
@@ -144,10 +164,13 @@ todoList.addEventListener("click", function(event) {
 
 Cookies are small key-value strings stored by the browser. They are sent automatically to the server on every HTTP request.
 
-### Writing cookies in JavaScript:
-```javascript
+// Node-safe mock for cookies:
+if (typeof document === "undefined") {
+  global.document = { cookie: "" };
+}
+
 document.cookie = "username=Mahesh; max-age=3600; path=/";
-```
+console.log("Document Cookie set:", document.cookie);
 
 ### Cookie Security Flags (Essential for Authentication):
 To protect users against token theft and session hacking, servers configure cookies with three vital flags:
