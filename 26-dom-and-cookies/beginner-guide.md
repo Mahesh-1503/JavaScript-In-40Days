@@ -42,6 +42,15 @@ Think of an online word processor like **Google Docs**:
 
 Before you can modify an element, you must find it in the DOM tree:
 
+### The HTML Structure We Are Searching:
+```html
+<div id="docs-editor-body">
+  <h1>Welcome to Google Docs</h1>
+  <p class="editor-block">This is the first block of text.</p>
+  <p class="editor-block">This is the second block of text.</p>
+</div>
+```
+
 ### 1. By ID:
 ```javascript
 // Node-safe mock so this runs in terminal consoles without crashing:
@@ -182,7 +191,21 @@ To protect users against token theft and session hacking, servers configure cook
 
 ## Part 7: Real-World Application Code
 
-Here is a simple interactive checklist builder utilizing Fragments and Event Delegation:
+Here is a simple interactive checklist builder utilizing Fragments and Event Delegation. 
+
+#### The Companion HTML Structure:
+```html
+<form id="task-form">
+  <input type="text" id="task-input" placeholder="Enter task details..." required />
+  <button type="submit">Add Task</button>
+</form>
+
+<ul id="tasks">
+  <!-- Dynamic task rows will be created here -->
+</ul>
+```
+
+#### The JavaScript Application Logic:
 ```javascript
 const form = document.getElementById("task-form");
 const listContainer = document.getElementById("tasks");

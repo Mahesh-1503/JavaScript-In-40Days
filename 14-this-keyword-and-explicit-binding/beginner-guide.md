@@ -203,11 +203,41 @@ const supervisor = {
 // ❌ Bug: Prints "Supervisor: undefined" after 1 second
 setTimeout(supervisor.reportStatus, 1000);
 ```
-*Why?* `setTimeout` extracts the function reference `reportStatus` and calls it later as a simple function call (`add()`), default binding `this` to `window`.
-*The Fix:* Use `bind()` to lock the context:
+
+#### 🔍 Step-by-Step Visualization of Context Loss:
+Why does this happen? Beginners think they are passing the "object method combo". In reality, JavaScript only passes a **pointer reference to the function itself**:
+1. **The reference copy:** `setTimeout` receives a pointer to the function code block: `function() { console.log(this.name); }`. It does **not** receive the `supervisor` object container.
+2. **The detached callback execution:** In the background, after 1000ms, the event loop pops the timer callback and executes it inside the call stack. But it invokes it as a simple function call:
+   ```javascript
+   // Inside setTimeout's engine implementation:
+   callback(); // ❌ No dot to the left! Dynamic binding defaults to global or undefined.
+   ```
+
+#### 🟢 The Fixes (Locking the Context):
+
+##### 1. Using `.bind()` (Explicit context locking)
+`.bind()` manufactures a new wrapper function that internally invokes `reportStatus.call(supervisor)` every time:
 ```javascript
-// 🟢 Correct
-setTimeout(supervisor.reportStatus.bind(supervisor), 1000);
+setTimeout(supervisor.reportStatus.bind(supervisor), 1000); // 🟢 Prints "Supervisor: Alice"
+```
+
+##### 2. Using Arrow Functions (Lexical Context inheritance)
+Arrow functions do not define their own `this`. They resolve `this` by looking up the surrounding lexical scopes where they were written:
+```javascript
+setTimeout(() => supervisor.reportStatus(), 1000); // 🟢 Prints "Supervisor: Alice"
+```
+*Visual Execution Trace:*
+```text
+[ GEC: supervisor defined ]
+           │
+           ▼
+[ setTimeout invoked with arrow function () => supervisor.reportStatus() ]
+           │
+           ▼ (1000ms later)
+[ Arrow callback executed in Call Stack ]
+   - Arrow check: "Do I have a 'this'?" ➔ No.
+   - Lexical lookup: Parent scope is GEC (where supervisor is active).
+   - Resolves 'this' from GEC parent, executing supervisor.reportStatus() implicitly.
 ```
 
 ---

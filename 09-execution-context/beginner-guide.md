@@ -95,6 +95,18 @@ CALL STACK TRANSITION:
 
 ---
 
+### ⚠️ Beginner Trap: Do Block Scopes (if, for, {}) create Execution Contexts?
+
+This is a massive source of confusion for new JavaScript developers: *"If code inside a function gets its own FEC workspace, does code inside an `if` block or a `for` loop get its own Execution Context pushed to the stack?"*
+
+**The short answer: No!**
+
+1. **Only functions create execution contexts:** Calling a function pushes a new FEC workspace tray onto the Call Stack.
+2. **Blocks create Lexical Environments:** `if` blocks, `for` loop blocks, or raw curly braces `{}` do **not** push a new context tray onto the Call Stack. Instead, they create a nested **Lexical Environment** *within the currently active execution context*.
+3. **Variable checks look upward:** Any `let` or `const` variable declared inside a block is locked inside that local environment slot. When the block finishes execution, that local environment slot is discarded, but the execution context itself remains active on the stack.
+
+---
+
 ## Part 5: Conceptual Analogy: The Slack Chat Client
 
 Let's look at how a real application like **Slack** executes code:

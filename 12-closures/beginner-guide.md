@@ -37,6 +37,16 @@ const triggerInner = outer(); // outer() runs, returns inner, and is completely 
 triggerInner(); // 10 (Accesses 'x' from its closure backpack!)
 ```
 
+### 🔍 Wait, How is this physically possible? (Stack vs. Heap Memory)
+
+For many beginners, closures seem like magic: *"If `outer()` has finished running, aren't its local variables deleted? How does `inner` still access `x`?"*
+
+Here is what the V8 engine does under the hood:
+1. **The Stack is for temporary frames:** Standard local variables are stored on the **Call Stack** and destroyed the millisecond a function returns.
+2. **The Heap is for persistent objects:** When V8 compiles your code, it notices that `inner` refers to `x` inside `outer()`. 
+3. **The Closure Object:** Because `inner` is returned (escaping the function scope), V8 does NOT allocate `x` on the Stack. Instead, it places `x` inside a special **Closure Scope Object** on the **Heap** (where data persists as long as something points to it).
+4. **No Garbage Collection:** The returned `inner` function object has a hidden property pointing directly to this Closure Scope Object on the Heap. As long as you keep `triggerInner` alive, the Garbage Collector cannot clean up `x`!
+
 ---
 
 ## Part 2: Why Use Closures?

@@ -100,8 +100,17 @@ copyApiKey("test-key-123");
 
 Traditionally, detecting if an element was on screen required listening to the window scroll event and manually computing boundary math offsets (`getBoundingClientRect()`), which ran hundreds of times per second and lagged the browser.
 
-The **Intersection Observer API** offloads this work to the browser background compiler:
+The **Intersection Observer API** offloads this work to the browser background compiler.
 
+#### The Companion HTML Structure:
+```html
+<!-- A target element positioned down the page to trigger on scroll -->
+<div id="sensor-box" style="margin-top: 100vh; height: 150px; background: grey;">
+  Scroll down to observe me!
+</div>
+```
+
+#### The JavaScript Application Logic:
 ```javascript
 // Node-safe mock for IntersectionObserver:
 if (typeof IntersectionObserver === "undefined") {
@@ -139,8 +148,17 @@ observer.observe(targetBox);
 
 ## Part 5: The Resize Observer API
 
-Unlike `window.onresize` (which only monitors the full browser window), the **Resize Observer API** monitors size changes of **specific elements** (e.g. when a sidebar is collapsed or a container panel shrinks):
+Unlike `window.onresize` (which only monitors the full browser window), the **Resize Observer API** monitors size changes of **specific elements** (e.g. when a sidebar is collapsed or a container panel shrinks).
 
+#### The Companion HTML Structure:
+```html
+<!-- A resizable container box -->
+<div id="resize-box" style="width: 300px; height: 150px; resize: both; overflow: auto; background: lightblue;">
+  Drag the bottom-right corner to resize me!
+</div>
+```
+
+#### The JavaScript Application Logic:
 ```javascript
 // Node-safe mock for ResizeObserver:
 if (typeof ResizeObserver === "undefined") {
@@ -217,7 +235,15 @@ console.log("Computed background:", computed.backgroundColor); // "rgb(250, 250,
 
 ## Part 7: Real-World Application Code
 
-Here is a copy-to-clipboard button utility with dynamic success visual states:
+Here is a copy-to-clipboard button utility with dynamic success visual states.
+
+#### The Companion HTML Structure:
+```html
+<code id="api-key">sk-proj-live-mock-key-abc123xyz</code>
+<button id="copy-btn">Copy Key</button>
+```
+
+#### The JavaScript Application Logic:
 ```javascript
 const copyBtn = document.getElementById("copy-btn");
 const codeBlock = document.getElementById("api-key");
