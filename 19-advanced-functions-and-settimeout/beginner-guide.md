@@ -187,6 +187,41 @@ setTimeout(resetInactivityTimer, 2000); // Resets countdown at 2 seconds
 
 ---
 
+## 🚀 Modern ES2025 Upgrades: Iterator Helpers (Lazy Evaluation)
+
+In advanced functions, **Generators** are commonly used to construct custom data streams. Previously, if you wanted to perform `map`, `filter`, or slice operations on an Iterator (like custom sequences, Map keys, or file streams), you had to convert it into a full array: `[...iterator]`. This defeated the purpose of lazy evaluation and caused immediate memory overflow on infinite streams.
+
+ES2025 introduces **Iterator Helpers** (like `.map()`, `.filter()`, `.take()`, and `.drop()`) directly to the global `Iterator` prototype, enabling memory-efficient lazy processing.
+
+### The Infinite Sequence Problem:
+Imagine we have a generator producing infinite fibonacci numbers, and we want to find the first 5 even values in that stream. If we cast the stream to an array, the script will loop forever and crash.
+
+### The ES2025 Solution:
+```javascript
+function* fibonacciGenerator() {
+  let [prev, curr] = [0, 1];
+  while (true) {
+    yield curr;
+    [prev, curr] = [curr, prev + curr];
+  }
+}
+
+// Get the iterator helper
+const numbersIterator = fibonacciGenerator();
+
+// 🟢 Safe: Process infinite stream lazily using ES2025 helpers!
+const firstFiveEvens = numbersIterator
+  .filter(num => num % 2 === 0)
+  .take(5); // Stop pulling values after 5 items are found!
+
+console.log("Lazy First 5 Evens:", [...firstFiveEvens]);
+// Output: [2, 8, 34, 144, 610]
+```
+
+*When to use:* Use Iterator Helpers when consuming large API streams, cursor databases, infinite math/log sequences, or raw file lines, avoiding RAM overhead by processing elements one by one.
+
+---
+
 ## Part 8: Essential Interview Questions & Practice Exercises
 
 ### Q1: What does `setTimeout(fn, 0)` do?

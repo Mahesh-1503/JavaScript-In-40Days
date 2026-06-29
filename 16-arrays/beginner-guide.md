@@ -222,6 +222,47 @@ console.log("Page 2:", getPage(2)); // ["Book", "Pen"]
 
 ---
 
+## 🚀 Modern ES2023 Upgrades: Change Array by Copy
+
+In modern application state management (like React state or Redux), it is a major bug to directly mutate an array using methods like `sort()`, `reverse()`, or `splice()`, because they edit the original array in place (mutating by reference). Previously, you had to clone the array first using `[...arr]` before performing operations.
+
+ES2023 introduces **Change Array by Copy** methods to return new, modified copies of the array without altering the original source data:
+1. `toReversed()` instead of `reverse()`
+2. `toSorted()` instead of `sort()`
+3. `toSpliced()` instead of `splice()`
+4. `with(index, value)` to replace a specific item instead of `arr[index] = value`
+
+### The Mutation Problem:
+```javascript
+const originalList = ["Banana", "Apple", "Orange"];
+
+// ❌ Bad: reverse() mutates the original array in memory!
+const reversedList = originalList.reverse();
+console.log("Original changed unexpectedly:", originalList); // ["Orange", "Apple", "Banana"]
+```
+
+### The ES2023 Immutable Solution:
+```javascript
+const fruits = ["Banana", "Apple", "Orange"];
+
+// 1. toReversed() - Returns a reversed copy
+const cleanReversed = fruits.toReversed();
+console.log("fruits remains untouched:", fruits);      // ["Banana", "Apple", "Orange"]
+console.log("cleanReversed copy:", cleanReversed);      // ["Orange", "Apple", "Banana"]
+
+// 2. toSorted() - Returns a sorted copy
+const cleanSorted = fruits.toSorted();
+console.log("cleanSorted copy:", cleanSorted);          // ["Apple", "Banana", "Orange"]
+
+// 3. with() - Replaces an item at a specific index by copying
+const updatedFruits = fruits.with(1, "Grape");
+console.log("updatedFruits copy:", updatedFruits);      // ["Banana", "Grape", "Orange"]
+```
+
+*When to use:* Use these methods when building state updates (such as React lists, shopping cart filters, sorting dropdowns, or transaction logs) to avoid side effects and silent reference mutation bugs.
+
+---
+
 ## Part 9: Essential Interview Questions & Practice Exercises
 
 ### Q1: Why is `unshift()` slower than `push()` in JavaScript?

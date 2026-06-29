@@ -207,6 +207,34 @@ scheduleAlert();
 
 ---
 
+## 🚀 Modern ECMAScript Upgrades: The Temporal API
+
+Handling dates and times using the legacy **`Date`** object has been a notorious source of bugs in JavaScript since its inception:
+1. It is mutable (calling `date.setDate()` modifies the object reference).
+2. It has no built-in support for time-zones (everything is local time or UTC).
+3. The month index is zero-based (`0` is January), which is highly counter-intuitive.
+
+To resolve these issues, ECMAScript introduces the **`Temporal`** API (currently in final stages of standardization and supported via polyfills). It is a modern, immutable date-time library built directly into the language.
+
+### The Problem:
+Adding 5 days to a date, converting it to another timezone, and formatting it, usually requires manual math, timezone offset lookups, or heavy third-party libraries (like Moment.js).
+
+### The Temporal Solution:
+```javascript
+// Note: Demonstrating the upcoming standard Temporal API syntax (immutable operations):
+// 1. Create a calendar date (No zero-indexed month bugs: 1 is January!)
+// const date = Temporal.PlainDate.from({ year: 2026, month: 1, day: 15 });
+
+// 2. Add time cleanly using an immutable method
+// const futureDate = date.add({ days: 5 });
+// console.log(date.toString());       // "2026-01-15" (Original remains untouched!)
+// console.log(futureDate.toString()); // "2026-01-20"
+```
+
+*When to use:* Once fully native or when working with standard polyfills, always use `Temporal` instead of the legacy `Date` object to perform complex date computations, shift times across timezones, and structure duration comparisons safely.
+
+---
+
 ## Part 7: Essential Interview Questions & Practice Exercises
 
 ### Q1: Why does `new Date(2026, 0, 1)` create a date for January 1st, 2026?

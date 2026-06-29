@@ -159,6 +159,40 @@ Because ES Modules are static (cannot be nested inside runtime logic), build too
 This enables an optimization called **Tree Shaking**:
 *   If your module exports 50 helper functions, but your app only imports 2 of them, the compiler flags the remaining 48 functions as unused.
 *   The compiler excludes ("shakes off") that dead code during compilation, resulting in smaller file downloads and faster websites.
+```
+
+---
+
+## 🚀 Modern ES2025 Upgrades: Import Attributes (JSON Modules)
+
+In modern web development, importing configuration settings, static data translation files, or assets stored as JSON directly into modules is a standard requirement. Previously, developers had to use network `fetch` or file system loaders to read JSON, or compile non-standard tooling features. Furthermore, importing JSON posed a security risk if a malicious actor replaced a JSON file with an executable JavaScript script.
+
+ES2025 introduces **Import Attributes** (specifically the `with` syntax) to declare the module type statically, ensuring the runtime treats the import strictly as JSON data.
+
+### The Security Problem:
+If you try to load a module dynamically without specifying its type, a server script could return executable JS when you expected static data, resulting in a script execution vulnerability.
+
+### The ES2025 Solution:
+Use the `with { type: "json" }` attribute to import JSON static datasets safely:
+```javascript
+// Node-safe mock import syntax demonstration (statically analyzed)
+// import config from "./config.json" with { type: "json" };
+```
+If we had a `config.json` file in our directory:
+```json
+{
+  "host": "localhost",
+  "port": 5432
+}
+```
+We load and read it like this:
+```javascript
+// const config = (await import("./config.json", { with: { type: "json" } })).default;
+// console.log("Database Host:", config.host);
+```
+*Note: If the server or disk returns a non-JSON MIME type for the targeted file, the browser or Node.js will block the import immediately, protecting your app against injection attacks.*
+
+*When to use:* Use Import Attributes whenever you import static configuration files, localization dictionaries, product catalogs, or constants dictionaries stored in JSON format within ES Modules.
 
 ---
 

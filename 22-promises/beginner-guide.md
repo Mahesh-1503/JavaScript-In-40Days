@@ -169,6 +169,47 @@ createOrder()
 
 ---
 
+## 🚀 Modern ES2025 Upgrades: Promise.try() (Safe Chain Initializers)
+
+When building Promise chains, the initial function in the chain is often synchronous. If that initial function throws a synchronous error (e.g. invalid arguments or parsing failures), it throws an immediate exception in the execution stack *before* the Promise chain is returned. This prevents the downstream `.catch()` block from capturing the error.
+
+ES2025 introduces **`Promise.try()`** to execute a callback function immediately, automatically wrapping any synchronous throw in a rejected Promise so it stays within the promise chain flow.
+
+### The Sync-Async Pipeline Problem:
+```javascript
+function parseUserToken(token) {
+  if (!token) {
+    throw new Error("Token missing! (Sync Error)"); // Synchronous throw
+  }
+  return JSON.parse(token);
+}
+
+function fetchUserStatus(user) {
+  return Promise.resolve({ user, status: "Active" }); // Async operation
+}
+
+// ❌ Bug: Calling this directly crashes the program before catch is set up!
+/*
+parseUserToken("") // Throws synchronously!
+  .then(user => fetchUserStatus(user))
+  .catch(err => console.log("Caught:", err.message)); // Never runs!
+*/
+```
+
+### The ES2025 Solution:
+```javascript
+// 🟢 Safe: Promise.try wraps the initializer, routing all errors to .catch()
+Promise.try(() => parseUserToken(""))
+  .then(user => fetchUserStatus(user))
+  .then(result => console.log("User status:", result))
+  .catch(err => console.error("Safely caught inside chain:", err.message));
+  // Output: Safely caught inside chain: Token missing! (Sync Error)
+```
+
+*When to use:* Use `Promise.try()` at the start of any Promise chain or API handler that performs synchronous argument checks or config checks before initiating asynchronous network calls.
+
+---
+
 ## Part 7: Essential Interview Questions & Practice Exercises
 
 ### Q1: What is the difference between the Macrotask and Microtask queue?

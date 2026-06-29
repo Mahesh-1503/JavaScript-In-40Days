@@ -463,6 +463,43 @@ console.log("5" === 5); // false (Checks types, string !== number)
 
 ---
 
+## 🚀 Modern ES2025 Upgrades: Algebraic Set Methods
+
+While primitive and object references are core to JavaScript, a major collection type is the **`Set`** (a collection of unique values). Previously, finding the intersection or difference of two sets required manual looping or temporary array spread filters. 
+
+ES2025 introduces **Set Algebraic Methods** directly to the prototype.
+
+### The Venn Diagram Problem:
+Imagine we have active users (`activeUsers`) and premium users (`premiumUsers`), and we want to find:
+1. All users in either category (**Union**)
+2. Only premium active users (**Intersection**)
+3. Active users who are NOT premium (**Difference**)
+
+### The ES2025 Solution:
+```javascript
+const activeUsers = new Set(["Arun", "Mahesh", "Sita"]);
+const premiumUsers = new Set(["Mahesh", "Sita", "John"]);
+
+// 1. Union: Combining sets
+const allUsers = activeUsers.union(premiumUsers);
+console.log("Union:", [...allUsers]); 
+// Output: ["Arun", "Mahesh", "Sita", "John"]
+
+// 2. Intersection: Common items
+const activePremium = activeUsers.intersection(premiumUsers);
+console.log("Intersection:", [...activePremium]); 
+// Output: ["Mahesh", "Sita"]
+
+// 3. Difference: Unique to the first set (Active minus Premium)
+const activeFree = activeUsers.difference(premiumUsers);
+console.log("Difference (Active Free):", [...activeFree]); 
+// Output: ["Arun"]
+```
+
+*When to use:* Use these built-in methods to perform clean database-style operations on user groups, tags, permission scopes, and unique configuration options without using slow nested loops or external utility libraries.
+
+---
+
 ## 7. Real Application Examples
 
 ### 1. Shopping Cart Counter

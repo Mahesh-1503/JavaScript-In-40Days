@@ -190,6 +190,39 @@ console.log("Invoice Total: $", finalInvoiceTotal.toFixed(2)); // "Invoice Total
 
 ---
 
+## 🚀 Modern ES2024 Upgrades: Map.groupBy()
+
+While ES2024's `Object.groupBy()` categorizes collections into plain objects (coercing keys to strings), sometimes you need to group items using **complex objects or symbols as keys**. 
+
+To solve this, ES2024 introduced **`Map.groupBy()`**, which returns a native Map instance, allowing keys to remain exact references.
+
+### The Problem:
+We have a team of users and we want to group them by their department configuration settings (which are stored as object references rather than simple strings).
+
+### The ES2024 Solution:
+```javascript
+const deptEngineering = { name: "Engineering", floor: 3 };
+const deptMarketing = { name: "Marketing", floor: 1 };
+
+const employees = [
+  { name: "Arun", dept: deptEngineering },
+  { name: "Mahesh", dept: deptMarketing },
+  { name: "Sita", dept: deptEngineering }
+];
+
+// Group employees by department object references!
+const groupedByDept = Map.groupBy(employees, (emp) => emp.dept);
+
+console.log("Grouped by Engineering Object:", groupedByDept.get(deptEngineering));
+// Output: [{ name: "Arun", dept: ... }, { name: "Sita", dept: ... }]
+
+console.log("Is result a native Map?", groupedByDept instanceof Map); // true
+```
+
+*When to use:* Use `Map.groupBy()` when grouping database records, configurations, or application states where the category labels themselves are objects, symbols, or other non-string types, keeping your lookups strictly typed and object-referenced.
+
+---
+
 ## Part 8: Essential Interview Questions & Practice Exercises
 
 ### Q1: What does `map()` return if the callback function does not return a value?

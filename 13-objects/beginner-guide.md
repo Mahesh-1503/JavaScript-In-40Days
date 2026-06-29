@@ -291,6 +291,49 @@ console.log(managerName); // "No Manager Assigned" (Safe fallback!)
 
 ---
 
+## 🚀 Modern ES2024 Upgrades: Object.groupBy()
+
+A common real-world problem is taking an array of objects (like a database query result or shopping cart items list) and grouping them by a specific property (like product category or task status). Previously, this required using a complex `Array.prototype.reduce()` aggregator loop.
+
+ES2024 introduces **`Object.groupBy()`** to perform this operation natively and efficiently.
+
+### The Problem:
+We have a list of tickets, each with a status ("Open", "Progress", "Closed"), and we want to group them by status to render dashboard columns.
+
+### The ES2024 Solution:
+```javascript
+const tickets = [
+  { id: "t-101", title: "Fix crash", status: "Open" },
+  { id: "t-102", title: "Update css", status: "Closed" },
+  { id: "t-103", title: "Add loading state", status: "Open" },
+  { id: "t-104", title: "Build module", status: "Progress" }
+];
+
+// Group tickets by status key
+const groupedTickets = Object.groupBy(tickets, (ticket) => ticket.status);
+
+console.log("Grouped Tickets:", groupedTickets);
+/*
+Output:
+{
+  Open: [
+    { id: "t-101", title: "Fix crash", status: "Open" },
+    { id: "t-103", title: "Add loading state", status: "Open" }
+  ],
+  Progress: [
+    { id: "t-104", title: "Build module", status: "Progress" }
+  ],
+  Closed: [
+    { id: "t-102", title: "Update css", status: "Closed" }
+  ]
+}
+*/
+```
+
+*When to use:* Use `Object.groupBy()` when you need to quickly categorize collections of objects (e.g., grouping logs by severity level, grouping users by department, or cataloging products by category) before rendering them on the screen.
+
+---
+
 ## Part 11: Essential Interview Questions & Practice Exercises
 
 ### Q1: What is the difference between shallow copy and deep copy?

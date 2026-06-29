@@ -243,6 +243,40 @@ console.log(parsePayload("invalid-json")); // { theme: "Dark" }
 
 ---
 
+## 🚀 Modern ES2025 Upgrades: Promise.try()
+
+When handling errors in API workflows, some operations are synchronous (like checking cache or validating payload structure) and some are asynchronous (like database queries). 
+
+Previously, wrapping both types of actions inside a unified Promise flow required awkward try-catch blocks or creating dummy `Promise.resolve().then(...)` chains. If a synchronous check threw a direct error, it might crash the program before the promise chain's `.catch()` callback could be initialized.
+
+ES2025 introduces **`Promise.try()`** to wrap both synchronous and asynchronous operations into a single, safe Promise chain.
+
+### The Problem:
+Imagine a loader function that crashes immediately on invalid input before returning a Promise, bypassing `.catch()`:
+```javascript
+function loadUserSync(id) {
+  if (!id) throw new Error("Invalid ID (sync throw)");
+  return Promise.resolve({ id, name: "Arun" });
+}
+
+// ❌ Bug: This will CRASH Node.js with an unhandled exception if not wrapped!
+// The .catch() is never called because the function throws synchronously inside the stack.
+```
+
+### The ES2025 Solution:
+`Promise.try()` executes the function immediately. If it throws a synchronous error, it wraps it in a rejected Promise, ensuring `.catch()` intercepts it safely:
+```javascript
+// 🟢 Safe: Promise.try catches both sync throws and async rejections!
+Promise.try(() => loadUserSync(null))
+  .then(user => console.log("Loaded user:", user))
+  .catch(err => console.log("Promise.try caught error:", err.message));
+  // Output: Promise.try caught error: Invalid ID (sync throw)
+```
+
+*When to use:* Use `Promise.try()` as a generic wrapper when executing utility functions or callbacks that might throw synchronous exceptions, ensuring your asynchronous promise chains catch them uniformly without manual outer try-catch blocks.
+
+---
+
 ## Part 9: Essential Interview Questions & Practice Exercises
 
 ### Q1: What does `finally` do that code placed *after* the try-catch block does not?
